@@ -1,0 +1,19 @@
+{
+	"nome": {
+		"description": "Nome do monitor",
+		"validate": "required, fullName, string"
+	},
+	"login": {
+		"description": "Nome de login",
+		"validate": "required, noSpaces"
+	},
+	"email": {
+		"description": "Email",
+		"validate": "required, email"
+	},
+	"pass": {
+		"description": "Senha",
+		"validate": "required, password",
+		"minLength": 6
+	}
+}

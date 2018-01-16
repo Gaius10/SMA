@@ -1,0 +1,12 @@
+@media only screen and (min-width: 0)
+{
+	footer {
+		grid-area: footer;
+		background: #124559;
+		color: white;
+		text-align: center;
+		box-sizing: border-box;
+		padding-top: 1.5em;
+		font-size: 1.3em;
+	}
+}

@@ -1,0 +1,59 @@
+@media only screen and (min-width: 0)
+{
+
+	/* Menu superior da pagina */
+	header.menu {
+		-webkit-grid-template-columns: 1fr 2fr;
+		-moz-grid-template-columns: 1fr 2fr;
+		grid-template-columns: 1fr 2fr;
+		grid-area: menu;
+	}
+	header.menu div.menuIcon {
+		font-size: 1.7em;
+	}
+	header.menu div.menuIcon label#opnMenu {
+		display: block;
+		text-align: center;
+	}
+	header.menu div.pageTitle {
+		text-align: right;
+		padding-right: 0.3em;
+		padding-top: 0.7em;
+		font-size: 3.5em;
+	}
+
+	@media only screen and (max-width: 1024px)
+	{
+		/* Menu de opcoes aberto pelo botao no menu superior */
+		input#opnMobileMenu:checked ~ .menu-content {
+			transform: translateX(100%);
+		}
+
+
+		/* Lista de opcoes */
+		.menu-content ul {
+			display: grid;
+			margin-top: 1em;
+			line-height: 3em;
+		}
+		.menu-content ul li:hover,
+		.menu-content label:hover {
+			background-color: #0FF;
+			cursor: pointer;
+		}
+		.menu-content ul li span,
+		.menu-content ul label span {
+			font-size:1.5em;
+		}
+
+		.menu-content ul li,
+		.menu-content label {
+			grid-template-columns: 1fr 11fr;
+		}
+
+		/* Ícones */
+		.menu-content i {
+			padding-left: 2%;
+		}
+	}
+}

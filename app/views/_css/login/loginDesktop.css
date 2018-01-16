@@ -1,0 +1,53 @@
+@media only screen and (min-width: 1024px)
+{
+	/* Toda a pagina */
+	div.all {
+		grid-template-rows: 5.5em 7fr 1fr;
+		grid-template-areas:
+	 		"menu"
+	 		"conteudo"
+	 		"footer";
+	}
+
+	/* #### Formulario de login #### */
+	section.login-content {
+		margin-top: 7em;
+	}
+
+	/* Posisionando elementos do formulario */
+	section.login-content form {
+		margin: 0 auto;
+		display: grid;
+		width: 70%;
+		grid-template-columns: repeat(8, 1fr);
+		grid-template-rows: 1fr 1fr 1fr 1fr;
+		grid-template-areas: 
+			"img title title title title title title title"
+			"img lineOne lineOne lineOne lineOne lineOne lineOne lineOne"
+			"img lineTwo lineTwo lineTwo lineTwo lineTwo lineTwo lineTwo"
+			"img . lineThree lineThree lineThree lineFour lineFour lineFour"
+	}
+ 	
+ 	section.login-content h1 {
+ 		grid-area: title;
+ 	}
+	
+	/* Logo do SMA à esquerda do formulário */
+	section.login-content div.img {
+		grid-area: img;
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	/* Botoes */
+	section.login-content form label.btn {
+		margin-top: 0;
+	}
+	section.login-content form label.btn input, 
+	section.login-content form label.btn button {
+		width: 100%;
+		height: 100%;
+		cursor: pointer;
+	}
+}

@@ -1,0 +1,50 @@
+/* Todo conteudo das paginas */
+.all {
+	display: grid;
+	width: 100%;
+	min-height: 100%;
+	position: absolute;
+}
+.grid {
+	display: grid;
+}
+
+/* Menus superiores */
+.menu {
+	background-color: black;
+	color: white;
+}
+
+/* Corpos das paginas */
+body {
+	font-size: 62.5%;
+	font-family: arial, sans-serif;
+}
+
+/* Todos botoes */
+.button {
+	background-color: black;
+	color: white;
+	border: none;
+	font-size: 1.7em;
+}
+.button:hover {
+	background-color: #0FF;
+	color: black;
+}
+
+/* Resetando aparencia dos inputs */
+input[type=submit],
+button {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	border-radius: 0;
+}
+
+/* Personaliza borda dos inputs */
+input[type=text],
+input[type=password] {
+	border: 0.1em black solid;
+	padding-left: 0.3em;
+}
