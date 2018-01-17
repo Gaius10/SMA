@@ -1,6 +1,6 @@
 <?php if (!defined("ROOT_PATH")) exit("Internal Error"); ?>
 <!--JANELA MODAL ENCOMENDA SISTEMA QR-->
-<div class="modal" id="jmodalEncomenda">
+<section class="modal" hidden>
     <a class="modal_fechar" id="jmodalEncomendaClose" href="#">
         <i class="fa fa-close close"></i>
     </a>
@@ -20,4 +20,4 @@
             <input type="button" class="btnmodal" value="enviar">
         </form>
     </div>
-</div>
+</section>

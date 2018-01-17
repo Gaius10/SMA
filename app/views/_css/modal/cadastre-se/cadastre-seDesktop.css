@@ -1,0 +1,65 @@
+@media only screen and (min-width: 1024px)
+{
+	section#cadastre_se {
+		display: none;
+		position: absolute;
+		top: 10em;
+		left: 25%;
+		width: 50%;
+		background-color: white;
+		box-sizing: border-box;
+		padding: 1em;
+		border: 0.2em #124559 solid;
+	}
+	section#cadastre_se h1 {
+		display: block;
+		text-align: center;
+		margin: 0;
+		text-decoration: underline;
+	}
+
+	/* Nomes das areas do fomularios */
+	label#nome { grid-area: nome; }
+	label#login { grid-area: login; }
+	label#email { grid-area: email; }
+	label#senha { grid-area: senha; }
+	label#senha2 { grid-area: senhaDois; }
+	label#btn1 { grid-area: btnUm; }
+	label#btn2 { grid-area: btnDois; }
+
+	/* Template das areas */
+	section#cadastre_se form {
+		line-height: 3em;
+		display: grid;
+		grid-template-columns: 1fr 2fr 1em 2fr 1fr;
+		grid-template-areas: 
+			"nome  nome  . 	   login 	 login"
+			"email email email email 	 email"
+			"senha senha . 	   senhaDois senhaDois"
+			". 	   btnUm . 	   btnDois 	 .";
+	}
+
+	/* Campos */
+	section#cadastre_se form label {
+		margin: 0;
+	}
+	section#cadastre_se form label#email {
+		margin-top: 1em;
+		margin-bottom: 1em;
+		grid-template-columns: 1fr 7fr;
+	}
+
+
+	/* Botoes */
+	section#cadastre_se label.btn + label.btn {
+		margin-top: 1em;
+	}
+	section#cadastre_se label.btn {
+		margin-top: 1em;
+	}
+	section#cadastre_se form label.btn button {
+		cursor: pointer;
+		height: 2.5em;
+		font-size: 1em;
+	}
+}

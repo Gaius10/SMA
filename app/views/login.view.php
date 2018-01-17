@@ -40,9 +40,9 @@
 		<?php endif; ?>
 	</form>
 </section>
-<section id="modals">
+<div id="modals">
 	<?php include MODAL_PATH . '/encomenda.modal.php'; ?>
 	<?php include MODAL_PATH . '/sobre-nos.modal.php'; ?>
 	<?php include MODAL_PATH . '/suporte.modal.php'; ?>
 	<?php include MODAL_PATH . '/cadastre-se.modal.php'; ?>
-</section>
+</div>

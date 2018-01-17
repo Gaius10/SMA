@@ -1,7 +1,7 @@
 @media only screen and (min-width: 0)
 {
 	section#cadastre_se {
-		transform: translateX(100%);
+		display: block;
 	}
 	
 	/* Titulo */

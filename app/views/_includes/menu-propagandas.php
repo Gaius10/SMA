@@ -11,7 +11,7 @@
 		<div class="menu-content modal">
 			<h1>Opções</h1>
 			<ul>
-				<li>
+				<li onclick="openModal('suporteModal')">
 					<i class="fa fa-wrench fa-2x"></i>
 					<span>Suporte</span>
 				</li>

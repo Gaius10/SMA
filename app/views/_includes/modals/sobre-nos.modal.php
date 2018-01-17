@@ -1,11 +1,10 @@
 <?php if (!defined("ROOT_PATH")) exit("Internal Error"); ?>
 <!--JANELA MODAL **SOBRE NÓS**-->
-<div class="modal" id="jmodalSobreNos">
-    <a class="modal_fechar" id="jmodalSobreNosClose" href="#">
-        <i class="fa fa-close close"></i>
-    </a>
+<section class="modal" hidden>
+    <i class="fa fa-close close"></i>
+
     <div class="modal_txt">
-        <h1><center>SOBRE NÓS</center></h1>
+        <h1><center>Sobre nós</center></h1>
         <br>
         <p>
             Caio Corrêa e Izabela Reis são estudantes da ETEC Osasco II onde começaram a desenvolver o SMA.
@@ -18,4 +17,4 @@
             <i>slinegroup.contato@gmail.com</i>
         </p>
     </div>
-</div>
+</section>
