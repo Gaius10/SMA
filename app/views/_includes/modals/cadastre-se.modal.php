@@ -25,11 +25,10 @@
 			<input type="password" name="userPassConfirm" placeholder="Confirmação">
 		</label>
 		<label class="btn" id="btn1">
-			<button class="button">Cadastrar</button>
+			<button>Cadastrar</button>
 		</label>
 		<label class="btn" id="btn2">
-			<button onclick="closeModal('cadastre_se'); return false;" 
-				class="button">
+			<button onclick="closeModal('cadastre_se'); return false;">
 				Cancelar
 			</button>
 		</label>

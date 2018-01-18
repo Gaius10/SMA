@@ -15,10 +15,6 @@
 					<i class="fa fa-wrench fa-2x"></i>
 					<span>Suporte</span>
 				</li>
-				<li>
-					<i class="fa fa-hand-peace-o fa-2x"></i>
-					<span>Sobre nós</span>
-				</li>
 				<label for="opnMobileMenu">
 					<i class="fa fa-arrow-left fa-2x"></i>
 					<span>Voltar</span>

@@ -2,20 +2,8 @@
 {
 	section#cadastre_se {
 		display: none;
-		position: absolute;
+		font-size: 1em;
 		top: 10em;
-		left: 25%;
-		width: 50%;
-		background-color: white;
-		box-sizing: border-box;
-		padding: 1em;
-		border: 0.2em #124559 solid;
-	}
-	section#cadastre_se h1 {
-		display: block;
-		text-align: center;
-		margin: 0;
-		text-decoration: underline;
 	}
 
 	/* Nomes das areas do fomularios */

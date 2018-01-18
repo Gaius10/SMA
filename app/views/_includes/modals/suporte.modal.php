@@ -20,15 +20,13 @@
             <textarea name="suporteMsg"></textarea>
         </label>
         <label class="btn">
-            <button class="button">
+            <button>
                 <i class="fa fa-check fa-lg"></i>
                 Contatar Suporte
             </button>
         </label>
         <label class="btn">
-            <button class="button" 
-                onclick="closeModal('suporteModal'); return false;">
-                
+            <button onclick="closeModal('suporteModal'); return false;">
                 <i class="fa fa-arrow-left fa-lg"></i>
                 Voltar
             </button>

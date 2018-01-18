@@ -22,13 +22,13 @@ body {
 }
 
 /* Todos botoes */
-.button {
+button {
 	background-color: black;
 	color: white;
 	border: none;
 	font-size: 1.7em;
 }
-.button:hover {
+button:hover {
 	background-color: #0FF;
 	color: black;
 }
@@ -45,6 +45,6 @@ button {
 /* Personaliza borda dos inputs */
 input[type=text],
 input[type=password] {
-	border: 0.1em black solid;
+	border: 0.05em black solid;
 	padding-left: 0.3em;
 }

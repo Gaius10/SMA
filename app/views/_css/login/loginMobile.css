@@ -2,7 +2,7 @@
 {
 	/* Toda a pagina */
 	div.all {
-		grid-template-rows: 7em 4fr 7em;
+		grid-template-rows: 7em 4fr 5em;
 		grid-template-areas:
 	 		"menu"
 	 		"conteudo"
@@ -57,6 +57,9 @@
 
 	/* Erros */
 	section.login-content form span.login-error {
-		font-size: 1.5em;
+		font-size: 1.2em;
+	}
+	section.login-content form span.login-error i {
+		font-size: 1.2em;
 	}
 }

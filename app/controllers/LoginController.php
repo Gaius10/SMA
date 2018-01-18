@@ -25,7 +25,7 @@ class LoginController extends MainController
 				"modal",
 				"modal/cadastre-se",
 				"modal/suporte",
-				"modal/sobre-nos", 
+				"modal/encomenda", 
 				"footer"];
 
 			include VIEWS_PATH . "/_includes/header.php";

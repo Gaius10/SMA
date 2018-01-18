@@ -11,6 +11,6 @@ function closeModal(elementId)
 	if (screen.width < 1024) {
 		document.getElementById(elementId).style.transform = 'translateX(0)';
 	} else {
-		document.getElementById(elementId).style.display = 'none'
+		document.getElementById(elementId).style.display = 'none';
 	}
 }
