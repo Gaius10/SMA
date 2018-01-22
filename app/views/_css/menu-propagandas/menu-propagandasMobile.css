@@ -5,21 +5,21 @@
 	header.menu {
 		-webkit-grid-template-columns: 1fr 2fr;
 		-moz-grid-template-columns: 1fr 2fr;
-		grid-template-columns: 1fr 2fr;
+		grid-template-columns: 8em 2fr;
 		grid-area: menu;
 	}
 	header.menu div.menuIcon {
-		font-size: 1.7em;
+		font-size: 1.5em;
 	}
 	header.menu div.menuIcon label#opnMenu {
 		display: block;
-		text-align: center;
+		padding-left: 1em;
 	}
 	header.menu div.pageTitle {
 		text-align: right;
 		padding-right: 0.3em;
 		padding-top: 0.7em;
-		font-size: 3.5em;
+		font-size: 3em;
 	}
 
 	@media only screen and (max-width: 1024px)

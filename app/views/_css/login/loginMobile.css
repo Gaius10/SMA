@@ -1,14 +1,5 @@
 @media only screen and (min-width: 0)
 {
-	/* Toda a pagina */
-	div.all {
-		grid-template-rows: 7em 4fr 5em;
-		grid-template-areas:
-	 		"menu"
-	 		"conteudo"
-	 		"footer";
-	}
-
 	/* #### Formulario de login #### */
 	section.login-content {
 		display: block;

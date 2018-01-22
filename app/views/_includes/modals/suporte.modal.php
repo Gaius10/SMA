@@ -21,7 +21,7 @@
         </label>
         <label class="btn">
             <button>
-                <i class="fa fa-check fa-lg"></i>
+                <i class="fa fa-check"></i>
                 Contatar Suporte
             </button>
         </label>

@@ -13,7 +13,7 @@ class LoginController extends MainController
 	{
 		if ($this->loggedIn)
 		{
-			header("Location: " . HOME_URL . "/HOME_URL");
+			header("Location: " . HOME_URL . "/almoco");
 		}
 		else
 		{

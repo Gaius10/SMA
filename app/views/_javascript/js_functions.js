@@ -1,3 +1,6 @@
+/**
+ * Abrir e fechar qualquer modal pelo ID
+ */
 function openModal(elementId)
 {
 	if (screen.width < 1024) {

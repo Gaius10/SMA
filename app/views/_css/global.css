@@ -27,6 +27,7 @@ button {
 	color: white;
 	border: none;
 	font-size: 1.7em;
+	cursor: pointer;
 }
 button:hover {
 	background-color: #0FF;
@@ -47,4 +48,14 @@ input[type=text],
 input[type=password] {
 	border: 0.05em black solid;
 	padding-left: 0.3em;
+}
+
+/* Formato padrao de paginas */
+/* Toda a pagina */
+div.all {
+	grid-template-rows: 6.3em 1fr 5em;
+	grid-template-areas:
+	"menu"
+	"conteudo"
+	"footer";
 }

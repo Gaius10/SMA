@@ -36,6 +36,9 @@
 		display: inline-block;
 		width: calc(50% - 4px);
 	}
+	section#suporteModal form label.btn i {
+		font-size: 1em;
+	}
 	section#suporteModal form label.btn button {
 		width: 100%;
 	}

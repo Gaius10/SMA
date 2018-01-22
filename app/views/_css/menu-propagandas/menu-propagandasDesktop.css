@@ -18,6 +18,7 @@
 		position: relative;
 		overflow: hidden;
 		margin: 0.3em;
+		font-size: 1.2em;
 	}
 
 	header.menu .menuIcon div.menu-content i {
@@ -27,7 +28,7 @@
 	header.menu .menuIcon div.menu-content ul li {
 		display: inline-block;
 		margin-right: 1em;
-		padding: 0.5em 1em;
+		padding: 0.6em 1em;
 	}
 
 	header.menu .menuIcon div.menu-content ul li:hover {
@@ -35,6 +36,5 @@
 		background-color: #333;
 	}
 	header.menu div.pageTitle {
-		padding-top: 0.3em;
 	}
 }

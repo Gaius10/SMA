@@ -1,6 +1,6 @@
 <?php if (!defined("ROOT_PATH")) exit("Internal Error"); ?>
 <section class="login-content">
-	<form name="formLogin" method="post" action="">
+	<form name="formLogin" method="post">
 		
 		<h1>Bem vindo ao SMA</h1>
 

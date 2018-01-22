@@ -1,0 +1,74 @@
+@media only screen and (min-width: 1024px)
+{
+	/* Organizar itens */
+	header#menu div#modal_menu {
+		display: grid;
+		width: 100%;
+		position: absolute;
+		grid-template-columns: 1fr 14%;
+		font-size: 1.8em;
+		line-height: 3.5em;
+	}
+
+	/* Esconder e mostrar itens desejados */
+	header#menu label#menu_icon,
+	header#menu div#pageTitle,
+	header#menu section#opcoes {
+		display: none;
+	}
+	header#menu div#optIcon {
+		display: block;
+	}
+
+	/* Estilos da lista de links */
+	header#menu section#navegacao h1 { display: none; }
+	header#menu section#navegacao ul li {
+		display: inline-block;
+		padding: 0 0.5em;
+		cursor: pointer;
+	}
+	header#menu section#navegacao ul li:hover {
+		color: blue;
+	}
+	header#menu section#navegacao ul li + li {
+		margin-left: -4px;
+	}
+
+	/* Parte com o nome do usuario e icone para o menu de opcoes */
+	header#menu div#optIcon {
+		text-align: right;
+		padding-right: 1em;
+		cursor: pointer;
+		display: grid;
+		grid-template-columns: 8em 1fr;
+	}
+	header#menu div#optIcon:hover section#opcoes {
+		display: block;
+	}
+	header#menu div#optIcon i.uname { line-height: 3.5em; }
+	header#menu div#optIcon span.uname {
+		overflow-x: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	/* Menu com opcoes */
+	section#opcoes {
+		text-align: left;
+		position: absolute;
+		background-color: black;
+		width: 15%;
+		right: 0;
+		top: 3.5em;
+	}
+	section#opcoes ul li {
+		padding-left: 1em;
+	}
+	section#opcoes ul li:hover {
+		background-color: #333;
+	}
+	section#opcoes h1,
+	section#opcoes label {
+		display: none;
+	}
+}

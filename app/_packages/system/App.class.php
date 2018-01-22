@@ -111,7 +111,7 @@ class App
         }
         else
         {
-            $this->controller = "almocos";
+            $this->controller = "almoco";
             $this->action = "index";
             $this->params = "";
             
