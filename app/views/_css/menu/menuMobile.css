@@ -46,8 +46,6 @@
 			width: 90%;
 			left: -90%;
 			color: black;
-			font-size: 2em;
-			line-height: 2.3em;
 			transition-duration: 0.5s;
 			overflow-y: auto;
 			overflow-x: hidden;
@@ -58,8 +56,6 @@
 		div#modal_menu h1 {
 			background-color: black;
 			color: white;
-			line-height: 1.5em;
-			font-size: 1.2em;
 			text-align: center;
 		}
 

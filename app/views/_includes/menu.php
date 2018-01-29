@@ -7,7 +7,7 @@
 		<i class="fa fa-bars"></i>
 	</label>
 
-	<div id="modal_menu">
+	<div id="modal_menu" class="modal">
 		<section id="navegacao">
 			<h1>Navegar pelo site</h1>
 			<ul>
@@ -38,16 +38,16 @@
 			<section id="opcoes">
 				<h1>Opções</h1>
 				<ul>
-					<li>
+					<li onclick="openModal('meus_dados')">
 						<i class="fa fa-user"></i>
 						<span>Ver Meus Dados</span>
 					</li>
-					<li>
+					<li onclick="openModal('iniciar_almoco')">
 						<i class="fa fa-plus-circle"></i>
 						<span>Iniciar Almoço</span>
 					</li>
 					<?php if (in_array('root', $this->userdata['USER_PERMISSIONS'])): ?>
-					<li>
+					<li onclick="openModal('form_autorizar')">
 						<i class="fa fa-user-plus"></i>
 						<span>Autorizar Monitor</span>
 					</li>

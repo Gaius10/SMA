@@ -9,10 +9,11 @@ class UserLogin
 	public $loggedIn;
 	public $loginError;
 	public $userdata;
+	public $user;
 
 	/**
-	 * Checa se o usuário fez ou não login
-	 */
+	* Checa se o usuário fez ou não login
+	*/
 	protected function checkLogin()
 	{
 		$userdata = null;
@@ -36,7 +37,7 @@ class UserLogin
 			!empty($_POST['userdata'])
 		) {
 			$userdata = $_POST['userdata'];
-			$post = true;
+		$post = true;
 		}
 
 		/* Logout se os dados do usuário não forem encontrados */
@@ -62,7 +63,7 @@ class UserLogin
 
 		$w = "WHERE MONITOR_LOGIN = '{$login}'";
 		$user = $connection->read("Monitor", "*", $w);
-		
+
 		if (!$user)
 		{
 			$this->loginError = "Usuário não encontrado.";
@@ -120,8 +121,8 @@ class UserLogin
 
 
 	/**
-	 * Função que faz logout
-	 */
+	* Função que faz logout
+	*/
 	final protected function logout($redirect = false)
 	{
 		$this->loggedIn = false;
@@ -135,8 +136,8 @@ class UserLogin
 
 
 	/**
-	 * Método que redireciona o navegador para a página de login
-	 */
+	* Método que redireciona o navegador para a página de login
+	*/
 	final protected function gotoLogin()
 	{
 		if (defined("HOME_URL"))
@@ -150,8 +151,8 @@ class UserLogin
 	}
 
 	/**
-	 * Método que redireciona o navegador para uma página específica
-	 */
+	* Método que redireciona o navegador para uma página específica
+	*/
 	final protected function gotoPage($pageUrl = null)
 	{
 		if (isset($_GET['path']) and !empty($_GET['path']) and !pageUrl)
@@ -166,8 +167,8 @@ class UserLogin
 
 
 	/**
-	 * Checa se o usuario tem permissao para acessar determinada página
-	 */
+	* Checa se o usuario tem permissao para acessar determinada página
+	*/
 	final protected function checkPermissions(
 		$required = 'any',
 		$owned = array('any')
@@ -176,5 +177,42 @@ class UserLogin
 			return;
 
 		return in_array($required, $owned);
+	}
+
+	/**
+	* function simplificaDados($old, $new)
+	* 
+	* Função feita para simplificar o array de dados obtidos do banco de dados
+	* afim de tornar os índices menores e simples, melhorando a legibilidade
+	* do código.
+	* 
+	* @param array $old Dados obtidos do banco de dados
+	* @param array $new Array que indica como será simplificado o $old
+	* 
+	* $new Deverá seguir o padrão = 
+	* $new = array (
+	*     "<indice_em_old>" => "<novo_indice_correspondente>",
+	*     .
+	*     .
+	*     .
+	* );
+	* 
+	* @return array
+	* @access public
+	* @throws InvalidArgumentException Se o índice em $new referente a $old não existe
+	*/
+	public function simplificaDados(array $old, array $new)
+	{
+		$return = null;
+		foreach ($new as $key => $value) {
+
+			if (isset($old[$key])) {
+				$return[$value] = $old[$key];
+			} else {
+				$error = '[[ Formato do array $new inválido. ]]';
+				throw new InvalidArgumentException($error);
+			}
+		}
+		return $return;
 	}
 }

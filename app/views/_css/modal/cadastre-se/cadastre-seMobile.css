@@ -1,51 +1,29 @@
 @media only screen and (min-width: 0)
 {
-	section#cadastre_se {
-		display: block;
-	}
-	
-	/* Titulo */
-	section#cadastre_se h1 {
-		font-size: 2em;
-		line-height: 3em;
-		margin-bottom: 1em;
-	}
-
-	/* #### Formulario #### */
 	section#cadastre_se form {
-		line-height: 4em;
-		height: 70%;
-		padding-right: 1em;
-		padding-left: 1em;
-	}
-
-
-	/* Campos e textos referentes aos mesmos */
-	section#cadastre_se label {
+		margin-top: 1.5em;
 		display: grid;
-		font-size: 1.7em;
-		grid-template-columns: 1fr 3fr;
+		grid-template-rows: 2.5em 2.5em 2.5em 2.5em 2.5em 6em;
 	}
-	section#cadastre_se label + label {
+
+	section#cadastre_se form label input {
+		font-size: 1em;
+		width: 90%;
+	}
+
+	section#cadastre_se form label {
+		display: grid;
+		grid-template-columns: 4em 1fr;
+	}
+
+	section#cadastre_se form label + label {
+		margin-top: 0.2em;
+	}
+
+	section#cadastre_se form div.buttons {
 		margin-top: 1em;
 	}
-
-	/* Inputs */
-	section#cadastre_se form input {
-		font-size: 1em;
-		width: calc(100% - 0.5em);
-	}
-
-	/* Botoes */
-	section#cadastre_se label.btn + label.btn {
-		margin-top: 0.1em;
-	}
-	section#cadastre_se label.btn {
+	section#cadastre_se form div.buttons label.btn {
 		grid-template-columns: 1fr;
-	}
-	section#cadastre_se label.btn button {
-		display: block;
-		height: 2.5em;
-		font-size: 1.3em;
 	}
 }

@@ -10,17 +10,14 @@
 
 		
 		<label style="grid-area: lineOne">
-			<span hidden>Login</span>
 			<i class="fa fa-user-circle fa-2x"></i>
 			<input type="text" name="userdata[username]" 
 			value="<?= @$_POST['userdata']['username'] ?>" placeholder="Login">
 		</label>
 
 		<label style="grid-area: lineTwo">
-			<span hidden>Senha</span>
 			<i class="fa fa-key fa-2x"></i>
-			<input type="password" name="userdata[userpass]"
-			placeholder="Senha" />
+			<input type="password" name="userdata[userpass]" placeholder="Senha" />
 
 			<!-- Feedback de login -->
 			<?php if ($this->loginError): ?>

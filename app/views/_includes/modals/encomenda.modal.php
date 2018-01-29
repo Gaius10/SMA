@@ -1,6 +1,6 @@
 <?php if (!defined("ROOT_PATH")) exit("Internal Error"); ?>
 <!--JANELA MODAL ENCOMENDA SISTEMA QR-->
-<section class="modal" id="encomendaModal">
+<section class="modal" id="encomendaModal" title="Encomende seu sistema">
     <h1>Preencha os campos abaixo:</h1>
     <form action="<?= HOME_URL ?>/suporte/encomenda">
 

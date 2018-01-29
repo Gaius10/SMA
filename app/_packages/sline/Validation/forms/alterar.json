@@ -1,0 +1,10 @@
+{
+    "MONITOR_NOME": {
+        "description": "Nome do monitor",
+        "validate": "required, fullName, string"
+    },
+    "MONITOR_EMAIL": {
+        "description": "Email do monitor",
+        "validate": "email, required"
+    }
+}

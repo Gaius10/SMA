@@ -1,6 +1,6 @@
 <?php if (!defined("ROOT_PATH")) exit("Internal Error"); ?>
 <!--JANELA MODAL **SUPORTE**-->
-<section class="modal" id="suporteModal">
+<section class="modal" id="suporteModal" title="Suporte - envie sua dúvida">
     <h1>Suporte</h1>
     <p>
         Envie aqui sua dúvida ou solicitação de suporte, nossa equipe está 
@@ -22,7 +22,7 @@
         <label class="btn">
             <button>
                 <i class="fa fa-check"></i>
-                Contatar Suporte
+                Solicitar Suporte
             </button>
         </label>
         <label class="btn">

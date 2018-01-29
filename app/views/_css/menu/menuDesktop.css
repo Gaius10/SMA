@@ -8,6 +8,11 @@
 		grid-template-columns: 1fr 14%;
 		font-size: 1.8em;
 		line-height: 3.5em;
+		top: 0;
+		left: 0;
+		padding: 0;
+		background: none;
+		border: none;
 	}
 
 	/* Esconder e mostrar itens desejados */

@@ -1,0 +1,32 @@
+@media only screen and (min-width: 0)
+{
+    /* Formulario */
+    section#form_autorizar form {
+        display: grid;
+        grid-template-rows: 4em 4em 4em 6em;
+        margin-top: 1em;
+    }
+
+    /* Campos do formulario */
+    section#form_autorizar form label {
+        display: block;
+        line-height: 100%;
+        text-align: center;
+    }
+    section#form_autorizar form label input {
+        width: 90%;
+        height: 1.6em;
+        font-size: 1em;
+    }
+
+    /* Botoes */
+    section#form_autorizar form label.btn {
+        display: block;
+    }
+    section#form_autorizar form label.btn + label.btn {
+        margin-top: 2%;
+    }
+    section#form_autorizar form label.btn button {
+        display: block;
+    }
+}

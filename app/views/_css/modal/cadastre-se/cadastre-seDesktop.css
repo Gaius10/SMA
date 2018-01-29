@@ -1,53 +1,53 @@
 @media only screen and (min-width: 1024px)
 {
-	section#cadastre_se {
-		display: none;
-		font-size: 1em;
-		top: 10em;
-	}
+	section#cadastre_se { display: none; }
+	/* Definindo grid areas */
+	label#nome 		{ grid-area: nome }
+	label#login 	{ grid-area: login }
+	label#email 	{ grid-area: email }
+	label#senha 	{ grid-area: senha }
+	label#senha2 { grid-area: senhaDois }
+	div.buttons 	{ grid-area: buttons }
 
-	/* Nomes das areas do fomularios */
-	label#nome { grid-area: nome; }
-	label#login { grid-area: login; }
-	label#email { grid-area: email; }
-	label#senha { grid-area: senha; }
-	label#senha2 { grid-area: senhaDois; }
-	label#btn1 { grid-area: btnUm; }
-	label#btn2 { grid-area: btnDois; }
-
-	/* Template das areas */
+	/* "Formatando" formulario */
 	section#cadastre_se form {
-		line-height: 3em;
 		display: grid;
-		grid-template-columns: 1fr 2fr 1em 2fr 1fr;
+		grid-template-rows: 2.5em 2.5em 2.5em 3.5em;
+		grid-template-columns: 49% 2% 49%;
+		line-height: 2.3em;
 		grid-template-areas: 
-			"nome  nome  . 	   login 	 login"
-			"email email email email 	 email"
-			"senha senha . 	   senhaDois senhaDois"
-			". 	   btnUm . 	   btnDois 	 .";
-	}
-
-	/* Campos */
-	section#cadastre_se form label {
-		margin: 0;
+		"nome  .     login"
+		"email email email"
+		"senha .     senhaDois"
+		"buttons buttons buttons"
 	}
 	section#cadastre_se form label#email {
-		margin-top: 1em;
-		margin-bottom: 1em;
-		grid-template-columns: 1fr 7fr;
+		margin-top: 0.1em;
+		margin-bottom: 0.1em;
+	}
+
+	/* Campos do formulario */
+	section#cadastre_se form label + label {
+		margin: 0;
+	}
+	section#cadastre_se form label {
+		display: grid;
+		grid-template-columns: 4em 1fr;
+	}
+	section#cadastre_se form label input {
+		width: 100%;
 	}
 
 
 	/* Botoes */
-	section#cadastre_se label.btn + label.btn {
-		margin-top: 1em;
+	section#cadastre_se form div.buttons {
+		display: grid;
+		grid-template-columns: 51% 51%;
+		font-size: 0.6em;
 	}
-	section#cadastre_se label.btn {
-		margin-top: 1em;
-	}
-	section#cadastre_se form label.btn button {
-		cursor: pointer;
-		height: 2.5em;
-		font-size: 1em;
+
+	section#cadastre_se form div.buttons label.btn {
+		margin-right: 2%;
+		font-size: 2em;
 	}
 }

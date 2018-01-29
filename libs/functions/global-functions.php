@@ -2,7 +2,6 @@
 /**
  *  verifica se chave existe num array
  */
-
 function chk_array($array, $key)
 {
     if (isset($array[$key]) and !empty($array[$key]))
@@ -144,4 +143,20 @@ function turn($val)
 function select($target, $value)
 {
 	echo ($target == $value) ? "selected" : "";
+}
+
+/**
+ * Gera string aleatoria
+ */
+function randString(int $len)
+{
+	$base = "abcdefghijklmnopqrstuvwxysABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.";
+
+	$return = "";
+
+	for ($i=0; $i < $len; $i++) { 
+		$return .= $base[rand(0, strlen($base) - 1)];
+	}
+	
+	return $return;
 }

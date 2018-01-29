@@ -1,0 +1,34 @@
+@media only screen and (min-width: 0)
+{
+    /* Formulário com os dados do monitor logado */
+    section#meus_dados form { 
+        display: grid;
+        margin-top: 1em;
+        grid-template-rows: 2.5em 2.5em 2.5em 2.5em 7em;
+    }
+
+    /* Campos do formulário */
+    section#meus_dados form label {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        text-align: left;
+    }
+    section#meus_dados form label input {
+        font-size: 1em;
+        width: 90%;
+        height: 70%;
+        margin-top: 5%;
+    }
+
+    /* Botoes */
+    section#meus_dados form div.buttons {
+        margin-top: 1em;
+    }
+
+    section#meus_dados form label.btn + label.btn {
+        margin-top: 0.3em;
+    }
+    section#meus_dados form label.btn {
+        display: block;
+    }
+}

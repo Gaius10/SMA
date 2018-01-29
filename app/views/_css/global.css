@@ -50,6 +50,9 @@ input[type=password] {
 	padding-left: 0.3em;
 }
 
+input[readonly] {
+	background: #AAA;
+}
 /* Formato padrao de paginas */
 /* Toda a pagina */
 div.all {

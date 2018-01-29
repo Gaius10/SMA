@@ -37,6 +37,8 @@ class CadastroModel extends MainModel
 			try
 			{
 				unset($this->data['passConfirm']);
+				$strSalt = "$2a$10$" . randString(22) . "$";
+				$this->data['MONITOR_SENHA'] = crypt($dados['MONITOR_SENHA'], $strSalt);
 				// Configurar ID desta sessao para registrar
 				$this->data['SESSION_ID'] = session_id();
 

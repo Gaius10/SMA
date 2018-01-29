@@ -34,16 +34,12 @@
 		.menu-content ul {
 			display: grid;
 			margin-top: 1em;
-			line-height: 3em;
+			line-height: 2em;
 		}
 		.menu-content ul li:hover,
 		.menu-content label:hover {
 			background-color: #0FF;
 			cursor: pointer;
-		}
-		.menu-content ul li span,
-		.menu-content ul label span {
-			font-size:1.5em;
 		}
 
 		.menu-content ul li,
@@ -54,6 +50,7 @@
 		/* Ícones */
 		.menu-content i {
 			padding-left: 2%;
+			font-size: 1em;
 		}
 	}
 }
