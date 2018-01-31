@@ -1,0 +1,29 @@
+@media only screen and (min-width: 0)
+{
+    section#ocorrencia form {
+        line-height: 1.5em;
+        padding-left: 0.5em;
+    }
+    section#ocorrencia form label input,
+    section#ocorrencia form label textarea {
+        font-size: inherit;
+        width: 90%;
+        line-height: 1.7em;
+        font-family: inherit;
+    }
+
+    section#ocorrencia form label textarea {
+        height: 5em;
+    }
+
+    section#ocorrencia form div.buttons {
+        margin-left: -0.5em;
+        margin-top: 1em;
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        height: 6em;
+    }
+    section#ocorrencia form div.buttons button + button {
+        margin-top: 0.3em;
+    }
+}

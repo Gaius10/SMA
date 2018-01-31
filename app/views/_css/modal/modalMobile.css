@@ -12,7 +12,7 @@
 		left: -90%;
 		position: absolute;
 		z-index: 10;
-		overflow: auto;
+		overflow-y: auto;
 	}
 
 	/* Titulos */

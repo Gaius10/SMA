@@ -34,6 +34,7 @@ class AlmocoController extends MainController
             $this->title = "Bem vindo ao SMA";
             $styleRequires = [
                 "menu",
+                "almoco",
                 "modal",
                 "footer",
                 // modals
@@ -41,7 +42,8 @@ class AlmocoController extends MainController
                 "modal/novo-monitor",
                 "modal/iniciar-almoco",
                 "modal/meus-dados",
-                "modal/confirmacao"
+                "modal/confirmacao",
+                "modal/ocorrencia"
             ];
 
             include VIEWS_PATH . "/_includes/header.php";

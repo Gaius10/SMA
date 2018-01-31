@@ -1,0 +1,101 @@
+@media only screen and (min-width: 0)
+{
+    /* Div com todo o conteudo sobre o almoco */
+    div#almoco {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+        font-size: 1.7em;
+        line-height: 1.3em;
+    }
+    div#almoco h1 {
+        display: block;
+        background: #912e2e;
+        color: white;
+        line-height: 1.5em;
+        font-size: 1.3em;
+        text-align: center;
+    }
+
+    /* Escondendo dados desnecessários em mobile */
+    section#lista_alunos ul li div.dados-title {
+        display: none;
+    }
+
+    /* Estilos da aside com informacoes sobre o almoco */
+    aside#status_almoco ul {
+        width: 60%;
+        margin: auto;
+        line-height: 2em;
+    }
+    aside#status_almoco ul li span {
+        float: right;
+    }
+
+    /* Estilos da lista de almocos */
+    section#lista_alunos,
+    aside#status_almoco { 
+        width: 90%;
+        margin: 0 auto;
+    }
+    section#lista_alunos ul {
+        width: 100%;
+        margin: auto;
+        margin-top: 0.5em;
+        line-height: 2em;
+    }
+
+    /* Nome e turma do aluno */
+    section#lista_alunos ul li {
+        padding-left: 0.5em;
+    }
+    section#lista_alunos ul li:hover {
+        background-color: #DDD;
+    }
+    section#lista_alunos ul li div.aluno {
+        display: grid;
+        grid-template-columns: 5fr 1fr 1fr;
+    }
+    section#lista_alunos ul li label {
+        display: block;
+        text-align: right;
+        box-sizing: border-box;
+        padding-right: 0.5em;
+    }
+    section#lista_alunos ul li label:first-child {
+        text-align: left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    section#lista_alunos ul li label i {
+        font-size: 1.4em;
+        line-height: inherit;
+    }
+    /* Primeira linha, titulo da lista */
+    section#lista_alunos ul li.list-title:hover {
+        background-color: white;
+    }
+
+    /* Dados que aparecem ao clicar no nome ou turma de um aluno */
+    section#lista_alunos ul li div.dados {
+        background: white;
+        margin-left: -0.5em;
+        grid-template-columns: 1fr 1fr 2fr;
+    }
+    section#lista_alunos ul li div.dados label {
+        display: inline-block;
+        padding: 0;
+    }
+    section#lista_alunos ul li div.dados button {
+        background-color: white;
+        color: black;
+        font-size: inherit;
+        z-index: 1;
+    }
+    section#lista_alunos ul li div.dados button:hover {
+        background-color: #DDD;
+    }
+
+}

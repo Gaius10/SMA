@@ -41,3 +41,37 @@
         document.getElementById('userPass').style.borderColor = "red";
     }
 }
+
+/**
+ * Abre modal com dados do aluno em dispositivos mobile
+ *
+ * Funcao usada em "views/almoco.view.php"
+ */
+function verDados(codAluno)
+{
+    var elementId = 'dados_aluno' + codAluno;
+    var caretId   = 'c' + codAluno;
+
+    var element = document.getElementById(elementId);
+    var caret   = document.getElementById(caretId);
+
+    if (screen.width < 1024) {
+        if (element.style.display == "none") {
+            element.style.display = "grid";
+            caret.setAttribute('class', 'fa fa-caret-up');
+        } else {
+            element.style.display = "none";
+            caret.setAttribute('class', 'fa fa-caret-down');
+        }
+    }
+}
+
+/**
+ * Abre formulario para registro de ocorrencia
+ */
+function novaOcorrencia(codAluno, nomeAluno)
+{
+    document.getElementById("cod_aluno").value = codAluno;
+    document.getElementById('nome_aluno').value = nomeAluno;
+    openModal('ocorrencia');
+}

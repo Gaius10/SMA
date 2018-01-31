@@ -64,7 +64,8 @@
 		background-color: black;
 		width: 15%;
 		right: 0;
-		top: 3.5em;
+		top: 3.35em;
+		z-index: 1;
 	}
 	section#opcoes ul li {
 		padding-left: 1em;

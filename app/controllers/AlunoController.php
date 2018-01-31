@@ -17,7 +17,11 @@ class AlunoController extends MainController
      */
     public function cadastrar($aluno = null)
     {
-
+        if (!$this->loggedIn) {
+            header("Location: " . HOME_URL . "/login");
+        } else {
+            
+        }
     }
 
     /**
@@ -30,6 +34,10 @@ class AlunoController extends MainController
      */
     public function cadastrados()
     {
-        
+        if (!$this->loggedIn) {
+            header("Location: " . HOME_URL . "/login");
+        } else {
+            
+        }
     }
 }

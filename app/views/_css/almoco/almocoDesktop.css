@@ -1,0 +1,61 @@
+@media only screen and (min-width: 1024px)
+{
+    div#almoco {
+        grid-template-columns: 1fr 3fr;
+        margin-top: 2em;
+    }
+
+    /* Centralizando conteudo */
+    section#lista_alunos,
+    aside#status_almoco {
+        margin: 0;
+    }
+    section#lista_alunos { margin-left: 5%; }
+    aside#status_almoco { margin-left: 15%; }
+
+    /* Lista de alunos que almocaram */
+    section#lista_alunos ul li {
+        display: grid;
+        grid-template-columns: 9fr 2fr;
+        padding-right: 0.5em;
+    }
+    section#lista_alunos ul li div.aluno {
+        grid-template-columns: 12fr 1fr;
+    }
+
+    /* Dados adicionais dos alunos (em mobile o conteudo fica numa modal) */
+    section#lista_alunos ul li div.dados {
+        display: grid;
+        grid-template-columns: 1fr 1fr 2fr;
+        position: relative;
+        top: 0;
+        width: auto;
+        left: auto;
+        background-color: transparent;
+        border: none;
+        border-radius: 0;
+        box-sizing: border-box;
+        padding: 0;
+        font-size: inherit;
+        line-height: inherit;
+    }
+
+    section#lista_alunos ul li div label,
+    section#lista_alunos ul li div label:first-child {
+        padding: 0;
+        text-align: center;
+    }
+    section#lista_alunos ul li div:first-child label:first-child {
+        text-align: left;
+    }
+
+    /* Botao de registrar ocorrencia */
+    section#lista_alunos ul li div.dados button {
+        font-size: 0.6em;
+        background-color: inherit;
+    }
+    section#lista_alunos ul li div.dados button:hover {
+        background-color: #AAA;
+        color: black;
+    }
+}

@@ -7,8 +7,8 @@
 		width: 40%;
 		left: 30%;
 		background-color: white;
-		border: 0.3em black solid;
-		border-radius: 0.6em;
+		border-bottom: 0.3em black solid;
+		border-top: 0.3em black solid;
 		box-sizing: border-box;
 		padding: 1em;
 		font-size: 1.5em;
@@ -19,7 +19,6 @@
 		display: block;
 		text-align: center;
 		font-size: 1.3em;
-		text-decoration: underline;
 		margin-bottom: 1em;
 	}
 
