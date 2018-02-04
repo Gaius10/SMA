@@ -11,13 +11,13 @@
 		
 		<label style="grid-area: lineOne">
 			<i class="fa fa-user-circle fa-2x"></i>
-			<input type="text" name="userdata[username]" 
-			value="<?= @$_POST['userdata']['username'] ?>" placeholder="Login">
+			<input type="text" name="userdata[username]" id="username" 
+				value="<?= @$_POST['userdata']['username'] ?>" placeholder="Login">
 		</label>
 
 		<label style="grid-area: lineTwo">
 			<i class="fa fa-key fa-2x"></i>
-			<input type="password" name="userdata[userpass]" placeholder="Senha" />
+			<input type="password" name="userdata[userpass]" id="userpass" placeholder="Senha" />
 
 			<!-- Feedback de login -->
 			<?php if ($this->loginError): ?>
@@ -36,6 +36,17 @@
 			<button id="btnCadastreSe" 
 				onclick="openModal('cadastre_se'); return false;"> Cadastre-se </button>
 		</label>
+
+		<script>
+			var username = document.getElementById('username');
+			var userpass = document.getElementById('userpass');
+
+			if (username.value.length > 0) {
+				userpass.focus();
+			} else {
+				username.focus();
+			}
+		</script>
 	</form>
 </section>
 <div id="modals">

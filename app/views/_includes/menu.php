@@ -11,19 +11,19 @@
 		<section id="navegacao">
 			<h1>Navegar pelo site</h1>
 			<ul>
-				<li onclick="window.location.href='<?=HOME_URL?>/aluno/cadastrar'">
+				<li onclick="window.location.href='<?=HOME_URL?>/aluno/cadastrar'" <?= sel($pag, 'new_aluno') ?>>
 					<i class="fa fa-child"></i>
 					<span>Cadastrar Aluno</span>
 				</li>
-				<li onclick="window.location.href='<?=HOME_URL?>/almoco/gerenciar'">
+				<li onclick="window.location.href='<?=HOME_URL?>/almoco/gerenciar'" <?= sel($pag, 'ger_alm') ?>>
 					<i class="fa fa-balance-scale"></i>
 					<span>Gerenciar Almoços</span>
 				</li>
-				<li onclick="window.location.href='<?=HOME_URL?>/aluno/cadastrados'">
+				<li onclick="window.location.href='<?=HOME_URL?>/aluno/cadastrados'" <?= sel($pag, 'ver_al') ?>>
 					<i class="fa fa-address-book"></i>
 					<span>Ver alunos cadastrados</span>
 				</li>
-				<li onclick="window.location.href='<?=HOME_URL?>/almoco/estatisticas'">
+				<li onclick="window.location.href='<?=HOME_URL?>/almoco/estatisticas'" <?= sel($pag, 'ests') ?>>
 					<i class="fa fa-tasks"></i>
 					<span>Estatísticas de almoços</span>
 				</li>
@@ -32,8 +32,10 @@
 		
 		<div id="optIcon">
 			<?php $uname = $this->userdata['MONITOR_NOME']; ?>
-			<span class="uname" title="<?= $uname ?>"> <?= $uname ?> </span>
-			<i class="fa fa-cogs uname" title="Opções"></i>
+			<a href="<?=HOME_URL?>">
+				<span class="uname" title="<?= $uname ?>"> <?= $uname ?> </span>
+				<i class="fa fa-cogs uname" title="Opções"></i>
+			</a>
 
 			<section id="opcoes">
 				<h1>Opções</h1>

@@ -20,7 +20,7 @@
 
 
     <section id="lista_alunos">
-        <h1>Almoços</h1>
+        <h1>Almoços - Hoje <span><?= date('d / m / Y') ?></span></h1>
         <ul>
             <li class="list-title">
                 <div class="aluno">
@@ -29,7 +29,7 @@
                 </div>
                 
                 <div class="dados dados-title">
-                    <label title="Repetições"><i class="fa fa-refresh"></i></label>
+                    <label title="Repetições"><i class="fa fa-sync-alt"></i></label>
                     <label title="Ocorrências"><i class="fa fa-close"></i></label>
                 </div>
             </li>
@@ -41,9 +41,11 @@
 
 <div id="modals">
     <?php include MODAL_PATH . "/encomenda.modal.php"; ?>
+    <?php include MODAL_PATH . "/confirmacao.modal.php"; ?>
+    <?php include MODAL_PATH . "/ocorrencia.modal.php"; ?>
+
+    <!-- Modals do menu -->
     <?php include MODAL_PATH . "/iniciar-almoco.modal.php"; ?>
     <?php include MODAL_PATH . "/novo-monitor.modal.php"; ?>
     <?php include MODAL_PATH . "/meus-dados.modal.php"; ?>
-    <?php include MODAL_PATH . "/confirmacao.modal.php"; ?>
-    <?php include MODAL_PATH . "/ocorrencia.modal.php"; ?>
 </div>

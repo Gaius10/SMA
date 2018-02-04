@@ -62,4 +62,14 @@ class MainModel
 		}
 		return $returnArray;
 	}
+
+	/**
+	 * function testPass($pass)
+	 * 
+	 * Testa a senha do usuario de sessao atual
+	 */
+	public function testPass(string $pass, string $userPass)
+	{
+		return (crypt($pass, $userPass) === $userPass) ? true : false;
+	}
 }

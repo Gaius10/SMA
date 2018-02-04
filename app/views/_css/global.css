@@ -30,8 +30,8 @@ button {
 	cursor: pointer;
 }
 button:hover {
-	background-color: #0FF;
-	color: black;
+	background-color: #124559;
+	color: white;
 }
 
 /* Resetando aparencia dos inputs */
@@ -62,11 +62,15 @@ div.all {
 	"conteudo"
 	"footer";
 }
-
-/* Tag strong */
+/* ## Outras tags ## */
 strong {
 	font-weight: bold;
 }
+a {
+	color: inherit;
+	text-decoration: inherit;
+}
+
 
 /* Conteudo escondido em desktops */
 @media only screen and (min-width: 1024px)

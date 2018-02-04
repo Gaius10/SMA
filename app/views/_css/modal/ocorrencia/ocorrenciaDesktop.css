@@ -1,8 +1,5 @@
 @media only screen and (min-width: 1024px)
 {
-    section#ocorrencia {
-        display: block;
-    }
     section#ocorrencia form label {
         display: block;
         display: grid;

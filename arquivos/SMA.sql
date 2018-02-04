@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Tempo de geração: 04/01/2018 às 15:52
--- Versão do servidor: 5.7.20-0ubuntu0.16.04.1
+-- Tempo de geração: 03/02/2018 às 23:31
+-- Versão do servidor: 5.7.21-0ubuntu0.16.04.1
 -- Versão do PHP: 7.0.22-0ubuntu0.16.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -56,8 +56,16 @@ CREATE TABLE `Aluno` (
   `ALUNO_COD` int(11) NOT NULL,
   `ALUNO_NOME` varchar(255) NOT NULL,
   `ALUNO_TURMA` char(2) NOT NULL,
-  `ALUNO_QRCODE` varchar(1000) NOT NULL
+  `ALUNO_QRCODE` varchar(1000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Gatilhos `Aluno`
+--
+DELIMITER $$
+CREATE TRIGGER `UpdateUltimoAluno` AFTER INSERT ON `Aluno` FOR EACH ROW UPDATE UltimoAluno set COD = NEW.ALUNO_COD
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -66,8 +74,7 @@ CREATE TABLE `Aluno` (
 --
 
 CREATE TABLE `Autorizacao` (
-  `AUTORIZACAO_EMAIL` varchar(255) NOT NULL,
-  `MONITOR_COD` int(11) NOT NULL
+  `AUTORIZACAO_EMAIL` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -82,7 +89,7 @@ CREATE TABLE `Monitor` (
   `MONITOR_EMAIL` varchar(255) NOT NULL,
   `MONITOR_LOGIN` varchar(255) NOT NULL,
   `MONITOR_SENHA` varchar(255) NOT NULL,
-  `USER_PERMISSIONS` varchar(255) NOT NULL,
+  `USER_PERMISSIONS` varchar(255) NOT NULL DEFAULT 'a:1:{i:0;s:3:"any";}',
   `SESSION_ID` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -91,7 +98,7 @@ CREATE TABLE `Monitor` (
 --
 
 INSERT INTO `Monitor` (`MONITOR_COD`, `MONITOR_NOME`, `MONITOR_EMAIL`, `MONITOR_LOGIN`, `MONITOR_SENHA`, `USER_PERMISSIONS`, `SESSION_ID`) VALUES
-(1, 'root', 'root@root', 'root', '$2a$10$tEIwh2Rk0i0MKft3hWjUmeBvOhFlCtrBh4Lz/ux0KeT6MG4rHXv2.', 'a:1:{i:0;s:4:"root";}', '42u6j85edce2afsknnplu6f195');
+(1, 'root', 'caio.chaves@etec.sp.gov.br', 'root', '$2a$10$tEIwh2Rk0i0MKft3hWjUmeBvOhFlCtrBh4Lz/ux0KeT6MG4rHXv2.', 'a:1:{i:0;s:4:"root";}', '16seibs98k31723816e1du3d01');
 
 -- --------------------------------------------------------
 
@@ -103,6 +110,23 @@ CREATE TABLE `Ocorrencia` (
   `ALUNO_COD` int(11) NOT NULL,
   `ALUNO_OCORRENCIA` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `UltimoAluno`
+--
+
+CREATE TABLE `UltimoAluno` (
+  `COD` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Fazendo dump de dados para tabela `UltimoAluno`
+--
+
+INSERT INTO `UltimoAluno` (`COD`) VALUES
+(7);
 
 --
 -- Índices de tabelas apagadas
@@ -153,17 +177,17 @@ ALTER TABLE `Ocorrencia`
 -- AUTO_INCREMENT de tabela `Almoco`
 --
 ALTER TABLE `Almoco`
-  MODIFY `ALMOCO_COD` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ALMOCO_COD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de tabela `Aluno`
 --
 ALTER TABLE `Aluno`
-  MODIFY `ALUNO_COD` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ALUNO_COD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de tabela `Monitor`
 --
 ALTER TABLE `Monitor`
-  MODIFY `MONITOR_COD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `MONITOR_COD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Restrições para dumps de tabelas
 --

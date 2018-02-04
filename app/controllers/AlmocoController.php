@@ -32,6 +32,7 @@ class AlmocoController extends MainController
             header("Location: " . HOME_URL . "/login");
         } else {
             $this->title = "Bem vindo ao SMA";
+            $pag = "";
             $styleRequires = [
                 "menu",
                 "almoco",
@@ -64,7 +65,21 @@ class AlmocoController extends MainController
      */
     public function gerenciar()
     {
-        
+        if (!$this->loggedIn) {
+            header("Location: " . HOME_URL . "/login");
+        } else {
+            $pag = "ger_alm";
+
+            $styleRequires = [
+                "menu",
+                "modal",
+                "footer"
+            ];
+
+            include VIEWS_PATH . "/_includes/header.php";
+            include VIEWS_PATH . "/_includes/menu.php";
+            include VIEWS_PATH . "/_includes/footer.php";
+        }
     }
 
     /**
@@ -77,6 +92,20 @@ class AlmocoController extends MainController
      */
     public function estatisticas()
     {
-        
+        if (!$this->loggedIn) {
+            header("Location: " . HOME_URL . "/login");
+        } else {
+            $pag = "ests";
+
+            $styleRequires = [
+                "menu",
+                "modal",
+                "footer"
+            ];
+
+            include VIEWS_PATH . "/_includes/header.php";
+            include VIEWS_PATH . "/_includes/menu.php";
+            include VIEWS_PATH . "/_includes/footer.php";
+        }
     }
 }

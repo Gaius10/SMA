@@ -4,6 +4,15 @@
         grid-template-columns: 1fr 3fr;
         margin-top: 2em;
     }
+    section#lista_alunos h1 {
+        text-align: left;
+        padding-left: 1em;
+    }
+    section#lista_alunos h1 span {
+        display: block;
+        float: right;
+        margin-right: 1em;
+    }
 
     /* Centralizando conteudo */
     section#lista_alunos,

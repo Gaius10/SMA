@@ -12,7 +12,7 @@
 	}
 
 	header#menu label#menu_icon {
-		font-size: 6em;
+		font-size: 5.7em;
 		padding-left: 0.2em;
 	}
 
@@ -59,22 +59,18 @@
 			text-align: center;
 		}
 
-		/* Espaço entre as divisoes do menu */
-		div#modal_menu section + div {
-			margin-top: 2em;
-		}
-
 		/* Lista de links */
 		div#modal_menu ul li,
 		div#modal_menu ul label {
 			padding-left: 0.4em;
 			display: grid;
 			width: 100%;
-			grid-template-columns: 1.7em 1fr;
+			grid-template-columns: 2.3em 1fr;
 		}
 		div#modal_menu ul li:hover,
 		div#modal_menu ul label:hover {
-			background-color: #0FF;
+			background-color: #124559;
+			color: white;
 		}
 		div#modal_menu ul i {
 			font-size: 1.3em;

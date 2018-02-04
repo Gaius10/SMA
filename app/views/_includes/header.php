@@ -19,7 +19,7 @@
     <!--ESTILO GLOBAL-->
     <link rel="stylesheet" type="text/css" href="<?=STYLE_URL?>/global.css">
     <!--ICONS-->
-    <link rel="stylesheet" type="text/css" href="<?=HOME_URL?>/libs/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="<?=HOME_URL?>/libs/fontawesome-free-5.0.6/web-fonts-with-css/css/fontawesome-all.min.css">
 
     <!-- ESTILOS ESPECÍFICOS -->
     <?php if (isset($styleRequires) and is_array($styleRequires)): ?>

@@ -140,9 +140,9 @@ function turn($val)
 /**
  * Função para selecionar campo select se ja possuir valor
  */
-function select($target, $value)
+function sel($target, $value)
 {
-	echo ($target == $value) ? "selected" : "";
+	echo ($target == $value) ? "class='selected'" : "";
 }
 
 /**

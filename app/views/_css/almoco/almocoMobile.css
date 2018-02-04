@@ -19,7 +19,8 @@
     }
 
     /* Escondendo dados desnecessários em mobile */
-    section#lista_alunos ul li div.dados-title {
+    section#lista_alunos ul li div.dados-title,
+    section#lista_alunos h1 span {
         display: none;
     }
 

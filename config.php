@@ -14,6 +14,7 @@ define('MODAL_PATH', VIEWS_PATH . '/_includes/modals');		// Pasta com modais
 
 define('CONTROL_PATH', ROOT_PATH . '/app/controllers');		// Controllers
 define('PACKS_PATH', ROOT_PATH . '/app/_packages');			// Namespaces
+define('QR_PATH', ROOT_PATH . '/app/views/_img/qr');        // QR Codes
 
 
 
@@ -25,6 +26,7 @@ define('STYLE_URL', HOME_URL . "/app/views/_css");				// Estilos
 define('UPLOAD_URL', HOME_URL . '/app/views/_uploads');			// Uploads
 define('VIEWS_URL', HOME_URL . "/app/views");					// Views
 
+define('QR_URL', VIEWS_URL . "/_img/qr");                       // QR Codes
 
 
 

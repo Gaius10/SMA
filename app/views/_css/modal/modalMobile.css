@@ -10,7 +10,7 @@
 		transition-duration: 0.5s;
 		top: 0;
 		left: -90%;
-		position: absolute;
+		position: fixed;
 		z-index: 10;
 		overflow-y: auto;
 	}

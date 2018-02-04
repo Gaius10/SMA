@@ -41,3 +41,23 @@
         <label title="Ocorrências">0000</label>
     </div>
 </li>
+<li>
+    <div class="aluno">
+        <label title="Izabela Ferreira Reis">Izabela Ferreira Reis</label>
+        <label title="Turma">3B</label>
+    </div>
+    <div class="dados modal" id="dados_aluno3">
+        <label title="Repetições">0000</label>
+        <label title="Ocorrências">0000</label>
+    </div>
+</li>
+<li>
+    <div class="aluno">
+        <label title="Vitor Brancalião">Vitor Brancalião</label>
+        <label title="Turma">3B</label>
+    </div>
+    <div class="dados modal" id="dados_aluno3">
+        <label title="Repetições">0000</label>
+        <label title="Ocorrências">0000</label>
+    </div>
+</li>

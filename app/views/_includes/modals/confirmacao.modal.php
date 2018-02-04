@@ -16,7 +16,7 @@
             </label>
             <label class="btn">
                 <button onclick="closeModal('confirmacao'); return false;">
-                    <i class="fa fa-close"></i>
+                    <i class="fa fa-arrow-left"></i>
                     Cancelar
                 </button>
             </label>

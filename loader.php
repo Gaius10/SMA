@@ -19,6 +19,7 @@ else
 }
 
 require_once ROOT_PATH . "/libs/functions/global-functions.php";
+require_once ROOT_PATH . "/libs/phpqrcode/qrlib.php";
 require_once "Autoload.php";
 
 $system = new App();

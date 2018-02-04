@@ -7,7 +7,7 @@
 		position: absolute;
 		grid-template-columns: 1fr 14%;
 		font-size: 1.8em;
-		line-height: 3.5em;
+		line-height: 3.3em;
 		top: 0;
 		left: 0;
 		padding: 0;
@@ -32,8 +32,12 @@
 		padding: 0 0.5em;
 		cursor: pointer;
 	}
+	header#menu section#navegacao ul li.selected,
+	header#menu section#navegacao ul li.selected:hover {
+		background-color: #333;
+	}
 	header#menu section#navegacao ul li:hover {
-		color: blue;
+		background-color: #111;
 	}
 	header#menu section#navegacao ul li + li {
 		margin-left: -4px;
@@ -42,10 +46,12 @@
 	/* Parte com o nome do usuario e icone para o menu de opcoes */
 	header#menu div#optIcon {
 		text-align: right;
-		padding-right: 1em;
 		cursor: pointer;
+	}
+	header#menu div#optIcon a {
 		display: grid;
 		grid-template-columns: 8em 1fr;
+		padding-right: 1em;
 	}
 	header#menu div#optIcon:hover section#opcoes {
 		display: block;
@@ -65,7 +71,7 @@
 		width: 15%;
 		right: 0;
 		top: 3.35em;
-		z-index: 1;
+		z-index: 2;
 	}
 	section#opcoes ul li {
 		padding-left: 1em;

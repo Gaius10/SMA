@@ -42,7 +42,7 @@ class MainController extends UserLogin
 
         if(file_exists($modelPath))
         {
-            require $modelPath;
+            require_once $modelPath;
 
             $modelName = explode('/', $modelName);
             $modelName = end($modelName);

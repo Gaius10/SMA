@@ -1,0 +1,11 @@
+{
+    "ALUNO_NOME": {
+        "description": "Nome do aluno",
+        "validate": "required, fullName, string"
+    },
+    "ALUNO_TURMA": {
+        "description": "Turma do aluno",
+        "validate": "required, len",
+        "len": 2
+    }
+}
