@@ -100,6 +100,9 @@ class AlunoController extends MainController
 
             if (is_array($this->alunos)) {
                 $this->alunos = makeDataArray($this->alunos);
+                foreach ($this->alunos as $k => $aluno) {
+                    $this->model->makeImg($aluno['q']);
+                }
             }
 
             /* Mostrar conteúdo ao usuário */

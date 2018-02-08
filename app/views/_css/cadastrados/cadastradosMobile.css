@@ -36,11 +36,17 @@
         text-overflow: ellipsis;
     }
 
-    /* Formulario que será preenchido com dados dos alunos gerenciados */
-    aside#dados_aluno form {
-        margin-top: 2em;
+    /* Imagem QR code do aluno selecionado */
+    aside#dados_aluno img {
+        height: 7em;
+        width: 7em;
+        border: 0.05em black solid;
+        margin: 1em auto;
+        display: block;
     }
 
+    
+    /* Formulario que será preenchido com dados dos alunos gerenciados */
     /* Campos do formulario */
     aside#dados_aluno form label {
         display: grid;

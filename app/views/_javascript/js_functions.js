@@ -77,7 +77,7 @@ function novaOcorrencia(codAluno, nomeAluno) {
 /**
  * Função que exibe dados do aluno desejado na view "cadastrados.view.php"
  */
-function dadosAluno(codAluno) {
+function dadosAluno(codAluno, imgPath) {
     var nomeId = "al_n" + codAluno;
     var turmaId = "al_t" + codAluno;
 
@@ -87,6 +87,10 @@ function dadosAluno(codAluno) {
     document.getElementById('alunoNome').value = nome.textContent.trim();
     document.getElementById('alunoTurma').value = turma.textContent.trim();
     document.getElementById('alunoCod').value = codAluno;
+
+    // Mudar imagem QR Code
+    var qrCode = imgPath + '/alunos/' + nome.textContent.trim() + '_' + turma.textContent.trim() + '.png';
+    document.getElementById('qrAlunoSelecionado').setAttribute('src', qrCode);
 
     if (screen.width < 1024) {
         openModal('dados_aluno');

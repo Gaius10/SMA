@@ -55,6 +55,7 @@
 <div id="contentCadastrados">
     <aside id="dados_aluno">
         <h1>Dados do aluno</h1>
+        <img src="<?= IMG_URL ?>/default.png" id="qrAlunoSelecionado">
         <form method="post" id="dadosAluno">
             <label>
                 <span>Código:</span>
@@ -82,7 +83,7 @@
                 <label class="btn">
                     <script> var act2 = "<?= HOME_URL ?>/aluno/excluir"</script>
                     <button onclick="excluir('dadosAluno', 'monitorPass', act2); return false;">
-                        <i class="fa fa-times-circle"></i>
+                        <i class="fa fa-minus-circle"></i>
                         Excluir aluno
                     </button>
                 </label>
@@ -111,7 +112,7 @@
             </li>
             <?php if ($this->alunos): ?>
                 <?php foreach ($this->alunos as $k => $a): ?>
-                    <li onclick="dadosAluno(<?=$a['c']?>)">
+                    <li onclick="dadosAluno('<?=$a['c']?>', '<?= QR_URL ?>')">
                         <label class="nome-aluno" id="al_n<?=$a['c']?>" title="<?=$a['n']?>">
                             <?= $a['n'] ?>
                         </label>

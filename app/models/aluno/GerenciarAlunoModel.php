@@ -201,7 +201,7 @@ class GerenciarAlunoModel extends MainModel
      */
     public function load(int $cod = null)
     {
-        $f = "ALUNO_COD AS c, ALUNO_NOME AS n, ALUNO_TURMA AS t";
+        $f = "ALUNO_COD AS c, ALUNO_NOME AS n, ALUNO_TURMA AS t, ALUNO_QRCODE AS q";
         $w = "WHERE ALUNO_ATIVO = '1'";
         $w .= ($cod) ? " AND ALUNO_COD = '{$cod}'" : "";
 
@@ -295,5 +295,29 @@ class GerenciarAlunoModel extends MainModel
             return false;
         }
         return true;
+    }
+
+    /**
+     * function makeImg($imgCode)
+     * 
+     * Gera imagem QR Code do aluno desejado
+     * 
+     * @param string $imgCode Codigo contido na imagem
+     * 
+     * @return void
+     * @access public
+     */
+    public function makeImg(string $imgCode)
+    {
+        // O nome do arquivo será o "nome_turma" do aluno
+        // Gerar nome do arquivo
+
+        $nomeCodificado = explode('/', $imgCode);
+        $nomeArquivo = base64_decode(end($nomeCodificado));
+        $nomeArquivo = explode("_", $nomeArquivo);
+        unset($nomeArquivo[0]);
+        $nomeArquivo = implode('_', $nomeArquivo) . ".png";
+
+        QRcode::png($imgCode, QR_PATH . '/alunos/' . $nomeArquivo, QR_ECLEVEL_M, 2, 5);
     }
 }
