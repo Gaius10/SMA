@@ -160,3 +160,17 @@ function randString(int $len)
 	
 	return $return;
 }
+
+/**
+ * Formata um array de dados com idices numericos mesmo em casos em que apenas
+ * uma linha é retornada do banco de dados
+ */
+function makeDataArray(array $data)
+{
+	if (!isset($data[0])) {
+		$back = $data;
+		unset($data);
+		$data[0] = $back;
+	}
+	return $data;
+}

@@ -59,6 +59,31 @@ class GerenciarAlunoModel extends MainModel
             return false;
         }
 
+        // Se o aluno sendo cadastrado ja existiu e foi excluído, apenas 
+        // torna-lo novamente ativo
+        $w = "WHERE ALUNO_NOME = '{$dados['ALUNO_NOME']}'";
+        $w .= " AND ALUNO_TURMA = '{$dados['ALUNO_TURMA']}'";
+        $w .= " AND ALUNO_ATIVO = '0'";
+        $aluno = $this->connection->read('Aluno', '*', $w);
+        $cod = $aluno['ALUNO_COD'];
+        if (!empty($aluno)) {
+            if ($this->connection->update("Aluno", ['ALUNO_ATIVO' => 1], $w)) {
+                if ($this->connection->update('UltimoAluno', ['COD' => $cod])) {
+                    return true;
+                } else {
+                    // Em caso de erro, nao ativar aluno
+                    $w = "WHERE ALUNO_COD = '{$cod}'";
+                    $this->update('Aluno', ['ALUNO_ATIVO' => 0], $w);
+
+                    $this->error = "Um erro ocorreu durante o registro";
+                    return false;
+                }
+            } else {
+                $this->error = "Um erro ocorreu durante o registro";
+                return false;
+            }
+        }
+
         /* Cadastrar aluno */
         if ($this->connection->register("Aluno", $dados)) {
             // Após cadastrar aluno, cadastrar string do QR Code
@@ -108,7 +133,7 @@ class GerenciarAlunoModel extends MainModel
      * Retorna os dados do ultimo aluno cadastrado
      * 
      * @access public
-     * @return array
+     * @return array|void
      */
     public function montarUltimoAluno()
     {
@@ -116,7 +141,7 @@ class GerenciarAlunoModel extends MainModel
         $cod = $cod['COD'];
 
         $f = "ALUNO_NOME AS nome, ALUNO_TURMA as turma, ALUNO_QRCODE as img";
-        $w = "WHERE ALUNO_COD = '{$cod}'";
+        $w = "WHERE ALUNO_COD = '{$cod}' AND ALUNO_ATIVO = '1'";
 
         // Obter dados
         $ultimoAluno = $this->connection->read("Aluno", $f, $w);
@@ -127,8 +152,6 @@ class GerenciarAlunoModel extends MainModel
             $ultimoAluno['cod'] = $cod;
 
             return $ultimoAluno;
-        } else {
-            return "Não foi possível obter dados do ultimo aluno cadastrado";
         }
     }
 
@@ -164,5 +187,113 @@ class GerenciarAlunoModel extends MainModel
             $this->error = "Senha incorreta";
             return false;
         }
+    }
+
+    /**
+     * function load($cod)
+     * 
+     * Carrega os dados do(s) aluno(s) desejado(s)
+     * 
+     * @param int $cod Codigo do aluno desejado, NULL para buscar por todos cadastrados
+     * 
+     * @access public
+     * @return array
+     */
+    public function load(int $cod = null)
+    {
+        $f = "ALUNO_COD AS c, ALUNO_NOME AS n, ALUNO_TURMA AS t";
+        $w = "WHERE ALUNO_ATIVO = '1'";
+        $w .= ($cod) ? " AND ALUNO_COD = '{$cod}'" : "";
+
+        return $this->connection->read("Aluno", $f, $w);
+    }
+
+    /**
+     * function ocorrencia($dados)
+     * 
+     * Registra ocorrencia para determinado aluno
+     * 
+     * @param array $dados Dados necessarios para o registro
+     *     -> Codigo do aluno, descrição do ocorrido e senha do monitor
+     * 
+     * @return boolean
+     * @access public
+     */
+    public function ocorrencia(array $dados)
+    {
+        // Verificar senha do monitor
+        $passConfirm = $_SESSION['userdata']['MONITOR_SENHA'];
+        if ($this->testPass($dados['pass'], $passConfirm)) {
+            
+            // Confirmar existencia do aluno]
+            $w = "WHERE ALUNO_COD = '{$dados['cod']}' AND ALUNO_ATIVO = '1'";
+            if (!empty($this->connection->read('Aluno', '*', $w))) {
+
+                // Registrar ocorrencia
+                $ocorrencia = addslashes(trim($dados['ocorrencia']));
+
+                $data = array(
+                    "ALUNO_COD" => $dados['cod'],
+                    "ALUNO_OCORRENCIA" => $ocorrencia
+                );
+
+                if ($this->connection->register("Ocorrencia", $data)) {
+                    return true;
+                } else {
+                    $this->error = "Um erro ocorreu durante o registro";
+                    return false;
+                }
+
+            } else {
+                $this->error = "Aluno não cadastrado";
+                return false;
+            }
+            
+
+        } else {
+            $this->error = "Senha do monitor incorreta";
+            return false;
+        }
+    }
+
+    /**
+     * function alterar($dados, $pass)
+     * 
+     * Função que vai alterar dados de determinado aluno
+     * 
+     * @param array  $dados Dados ja alterados do aluno
+     * @param string $pass  Senha do monitor alterando
+     * 
+     * @return boolean
+     * @access public
+     */
+    public function alterar(array $dados, string $pass)
+    {
+        // Validar dados
+        try {
+            $date = [
+                "ALUNO_NOME" => $dados['ALUNO_NOME'],
+                "ALUNO_TURMA" => $dados['ALUNO_TURMA']
+            ];
+
+            $validPath = PACKS_PATH . "/sline/Validation/forms/novo-aluno.json";
+            $validar = new Validator($date, $validPath);
+
+            if (!$validar->validate()) {
+                $this->error = $validar->error;
+                return false;
+            }
+        } catch (Exception $e) {
+            echo (DEBUG) ? $e : "<!--" . $e . "-->";
+            exit("Ocorreu um erro interno, contate o suporte");
+        }
+
+        // Cadastrar alterações
+        $w = "WHERE ALUNO_COD = '{$dados['ALUNO_COD']}'";
+        if (!$this->connection->update('Aluno', $dados, $w)) {
+            $this->error = "Desculpe, houve um erro durante o registro";
+            return false;
+        }
+        return true;
     }
 }

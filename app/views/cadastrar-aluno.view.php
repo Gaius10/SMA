@@ -24,7 +24,7 @@
                     <input type="hidden" name="pass" id="senhaMonitor">
                 </form>
             <?php else: ?>
-                <span><?= $this->ultimoAluno ?></span>
+                <span>Não foi possível obter os dados do ultimo aluno cadastrado</span>
             <?php endif ?>
         </div>
     </aside>

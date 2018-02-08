@@ -1,7 +1,7 @@
 <?php if (!defined('ROOT_PATH')) exit("Erro Interno"); ?>
 <section id="ocorrencia" class="modal">
     <h1>Nova ocorrencia</h1>
-    <form action="<?= HOME_URL ?>/user/novaOcorrencia/">
+    <form method="post" action="<?= HOME_URL ?>/aluno/ocorrencia/">
         <label>
             <span>Nome do aluno:</span>
             <input type="hidden" name="codAluno" id="cod_aluno">

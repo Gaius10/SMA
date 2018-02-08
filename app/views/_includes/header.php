@@ -8,11 +8,7 @@
     <title><?= $this->title ?></title>
 
     <!--JavaScript-->
-    <script language="JavaScript" src="<?=HOME_URL?>/libs/javascript/jquery.js"></script>
-    <script language="JavaScript" src="<?=HOME_URL?>/libs/javascript/valida.js"></script>
-
-    <script language="JavaScript" src="<?=HOME_URL?>/app/views/_javascript/script.js"></script>
-    <script language="JavaScript" src="<?=HOME_URL?>/app/views/_javascript/js_functions.js"></script>
+    <script src="<?=HOME_URL?>/app/views/_javascript/js_functions.js"></script>
 
     <!--CSS RESET-->
     <link rel="stylesheet" type="text/css" href="<?=STYLE_URL?>/reset.css">

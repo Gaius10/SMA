@@ -139,7 +139,7 @@ class Connection
     /*
      * Alterar dados
      */
-    public function update($table, array $values, $where)
+    public function update($table, array $values, $where = null)
     {
         $this->connect();
 

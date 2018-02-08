@@ -107,9 +107,13 @@ INSERT INTO `Monitor` (`MONITOR_COD`, `MONITOR_NOME`, `MONITOR_EMAIL`, `MONITOR_
 --
 
 CREATE TABLE `Ocorrencia` (
+  `OCORRENCIA_COD` int(11) NOT NULL AUTO_INCREMENT,
   `ALUNO_COD` int(11) NOT NULL,
-  `ALUNO_OCORRENCIA` varchar(500) NOT NULL
+  `ALUNO_OCORRENCIA` varchar(500) NOT NULL,
+
+  PRIMARY KEY (`OCORRENCIA_COD`, `ALUNO_COD`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 -- --------------------------------------------------------
 
@@ -166,8 +170,8 @@ ALTER TABLE `Monitor`
 --
 -- Índices de tabela `Ocorrencia`
 --
-ALTER TABLE `Ocorrencia`
-  ADD PRIMARY KEY (`ALUNO_COD`);
+-- ALTER TABLE `Ocorrencia`
+--   ADD PRIMARY KEY (`OCORRENCIA_COD`, `ALUNO_COD`);
 
 --
 -- AUTO_INCREMENT de tabelas apagadas

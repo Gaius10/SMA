@@ -30,7 +30,7 @@
                 
                 <div class="dados dados-title">
                     <label title="Repetições"><i class="fa fa-sync-alt"></i></label>
-                    <label title="Ocorrências"><i class="fa fa-close"></i></label>
+                    <label title="Ocorrências"><i class="fa fa-times-circle"></i></label>
                 </div>
             </li>
             <?php include VIEWS_PATH . "/_includes/testes/lista-alunos.php"; ?>

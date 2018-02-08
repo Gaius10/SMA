@@ -12,9 +12,19 @@ class AlunoController extends MainController
      * Receberá os dados do ultimo aluno cadastrado
      * 
      * @var array
-     * @access public
+     * @access private
      */
     private $ultimoAluno;
+
+    /**
+     * $alunos
+     * 
+     * Recebera os dados de todos os alunos cadastrados
+     * 
+     * @var array
+     * @access private
+     */
+    private $alunos;
 
     /**
      * function cadastrar($aluno)
@@ -74,7 +84,7 @@ class AlunoController extends MainController
     /**
      * function cadastrados()
      * 
-     * Função que mostrará os alunos cadastrados
+     * Função que mostrará os alunos cadastrados no sistema
      * 
      * @access public
      * @return void
@@ -84,15 +94,32 @@ class AlunoController extends MainController
         if (!$this->loggedIn) {
             header("Location: " . HOME_URL . "/login");
         } else {
+            /* Carregar alunos cadastrados */
+            $this->model = $this->loadModel('aluno/GerenciarAluno');
+            $this->alunos = $this->model->load();
+
+            if (is_array($this->alunos)) {
+                $this->alunos = makeDataArray($this->alunos);
+            }
+
+            /* Mostrar conteúdo ao usuário */
             $pag = "ver_al";
             $styleRequires = [
-                "menu",
                 "modal",
-                "footer"
+                "menu",
+                "cadastrados",
+                "footer",
+                /* modals */
+                "modal/meus-dados",
+                "modal/iniciar-almoco",
+                "modal/novo-monitor",
+                "modal/ocorrencia",
+                "modal/confirmacao"
             ];
 
             include VIEWS_PATH . "/_includes/header.php";
             include VIEWS_PATH . "/_includes/menu.php";
+            include VIEWS_PATH . "/cadastrados.view.php";
             include VIEWS_PATH . "/_includes/footer.php";
         }
     }
@@ -107,10 +134,10 @@ class AlunoController extends MainController
      */
     public function excluir()
     {
-        if (!$this->loggedIn) {
+        if (!$this->loggedIn || 
+            (empty($_POST['cod']) || empty($_POST['pass']))
+        ) {
             header("Location: " . HOME_URL . "/login");
-        } else if (empty($_POST['cod']) || empty($_POST['pass'])) {
-            header("Location: " . HOME_URL);
         } else {
 
             $this->model = $this->loadModel('aluno/GerenciarAluno');
@@ -122,6 +149,90 @@ class AlunoController extends MainController
             $red = explode('?', $_SERVER['HTTP_REFERER']);
             $red = $red[0];
             header("Location: " . $red . "?msg=$msg");
+        }
+    }
+
+    /**
+     * function ocorrencia()
+     * 
+     * Registra ocorrencia de determinado aluno
+     * 
+     * @access public
+     * @return void
+     */
+    public function ocorrencia()
+    {
+        // Verificar existencia dos dados
+        if (!isset($_POST['codAluno']) ||
+            !isset($_POST['descOcorrencia']) ||
+            !isset($_POST['pass'])
+        ) {
+            header("Location: " . HOME_URL);
+        } else {
+            // Montar variavel com os dados
+            $dados = array(
+                "cod" =>        $_POST['codAluno'],
+                "ocorrencia" => str_replace(PHP_EOL, '<br />', $_POST['descOcorrencia']),
+                "pass" =>       $_POST['pass']
+            );
+            
+            // Cadastrar no banco de dados
+            $this->model = $this->loadModel('aluno/GerenciarAluno');
+            $msg = null;
+
+            if ($this->model->ocorrencia($dados)) {
+                $msg = urlencode("Sua ocorrencia foi registrada");
+            } else {
+                $msg = urlencode($this->model->error);
+            }
+            
+            $red = explode('?', $_SERVER['HTTP_REFERER']);
+            $red = $red[0];
+            header("Location: " . $red . "?msg=$msg");
+        }   
+    }
+
+    /**
+     * function alterarDados()
+     * 
+     * Funçao responsavel por alterar dados de determinado aluno
+     * 
+     * @access public
+     * @return void
+     */
+    public function alterarDados()
+    {
+        // Verificar existencia dos dados
+        if (!isset($_POST['cod']) ||
+            !isset($_POST['alunoNome']) ||
+            !isset($_POST['alunoTurma']) ||
+            !isset($_POST['pass']) ||
+            !$this->loggedIn
+        ) {
+            header("Location: " . HOME_URL);
+        } else {
+            // Organizar dados corretamente
+            $dados = array(
+                "ALUNO_COD" => $_POST['cod'],
+                "ALUNO_NOME" => $_POST['alunoNome'],
+                "ALUNO_TURMA" => $_POST['alunoTurma'],
+            );
+            $pass = $_POST['pass'];
+
+            // Alterar os dados do aluno
+            $this->model = $this->loadModel('aluno/GerenciarAluno');
+
+            $msg = null;
+            if ($this->model->alterar($dados, $pass)) {
+                $msg = urlencode("Dados alterados com sucesso.");
+            } else {
+                $msg = urlencode($this->model->error);
+            }
+
+            $red = explode('?', $_SERVER['HTTP_REFERER']);
+            $red = $red[0];
+
+            header("Location: " . $red . "/?msg=$msg");
         }
     }
 }

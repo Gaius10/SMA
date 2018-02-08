@@ -1,0 +1,68 @@
+@media only screen and (min-width: 0)
+{
+    /* section com lista de alunos */
+    section#lista_alunos {
+        font-size: 1.8em;
+        width: 90%;
+        margin: 1em auto;
+    }
+
+    section#lista_alunos h1 {
+        display: block;
+        text-align: center;
+        font-size: 1.2em;
+        background: #912e2e;
+        color: white;
+        line-height: 1.5em;
+        margin-bottom: 0.3em;
+    }
+
+    /* Lista de alunos */
+    section#lista_alunos ul li {
+        line-height: 1.8em;
+        display: grid;
+        grid-template-columns: 7fr 1fr;
+        padding-left: 0.3em;
+    }
+    section#lista_alunos ul li:hover {
+        background-color: #DDD;
+    }
+    section#lista_alunos ul li:first-child:hover {
+        background-color: transparent;
+    }
+    section#lista_alunos ul li label {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    /* Formulario que será preenchido com dados dos alunos gerenciados */
+    aside#dados_aluno form {
+        margin-top: 2em;
+    }
+
+    /* Campos do formulario */
+    aside#dados_aluno form label {
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 90%;
+        margin: 0 auto;
+        line-height: 1.5em;
+    }
+    aside#dados_aluno form label input {
+        font-size: 1em;
+        line-height: 1.7em;
+        width: calc(100% - 0.8em);
+    }
+
+    /* Botoes do formulario */
+    aside#dados_aluno form div.buttons {
+        margin-top: 1em;
+        grid-template-rows: 1fr 1fr 1fr;
+    }
+    aside#dados_aluno form label.btn {
+        height: 3em;
+        font-size: 0.8em;
+        margin-top: 0.3em;
+    }
+}
