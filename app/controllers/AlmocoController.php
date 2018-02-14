@@ -29,8 +29,14 @@ class AlmocoController extends MainController
     {
         ## Ver se usuário está logado
         if (!$this->loggedIn) {
-            header("Location: " . HOME_URL . "/login");
+            $this->logout(true);
         } else {
+            // Se uma pagina foi solicitada antes do ato do login
+            if (isset($_SESSION['gotoUrl'])) {
+                $this->gotoPage($_SESSION['gotoUrl']);
+                exit();
+            }
+
             $this->title = "Bem vindo ao SMA";
             $pag = "";
             $styleRequires = [
@@ -66,8 +72,14 @@ class AlmocoController extends MainController
     public function gerenciar()
     {
         if (!$this->loggedIn) {
-            header("Location: " . HOME_URL . "/login");
+            $this->logout(true);
         } else {
+            // Se uma pagina foi solicitada antes do ato do login
+            if (isset($_SESSION['gotoUrl'])) {
+                $this->gotoPage($_SESSION['gotoUrl']);
+                exit();
+            }
+
             $pag = "ger_alm";
 
             $styleRequires = [
@@ -93,8 +105,14 @@ class AlmocoController extends MainController
     public function estatisticas()
     {
         if (!$this->loggedIn) {
-            header("Location: " . HOME_URL . "/login");
+            $this->logout(true);
         } else {
+            // Se uma pagina foi solicitada antes do ato do login
+            if (isset($_SESSION['gotoUrl'])) {
+                $this->gotoPage($_SESSION['gotoUrl']);
+                exit();
+            }
+            
             $pag = "ests";
 
             $styleRequires = [

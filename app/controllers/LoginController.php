@@ -19,7 +19,11 @@ class LoginController extends MainController
     public function index()
     {
         if ($this->loggedIn) {
-            header("Location: " . HOME_URL . "/almoco");
+            if (isset($_SESSION['gotoUrl'])) {
+                $this->gotoPage($_SESSION['gotoUrl']);
+            } else {
+                header("Location: " . HOME_URL . "/almoco");
+            }
         } else {
             $this->title = "SMA - Login";
 

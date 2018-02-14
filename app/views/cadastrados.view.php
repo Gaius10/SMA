@@ -1,57 +1,4 @@
 <?php if (!defined('ROOT_PATH')) exit("Erro Interno"); ?>
-<script>
-    function ocorrencia()
-    {
-        var cod = document.getElementById('alunoCod');
-        var nome = document.getElementById('alunoNome');
-
-        if (cod.value.length > 0 && nome.value.length > 0) {
-            novaOcorrencia(cod.value, nome.value);
-        } else {
-            if (cod.value.length == 0) {
-                cod.style.borderColor = "red";
-                cod.focus();
-            } else {
-                nome.style.borderColor = "red";
-                nome.focus();
-            }
-        }
-    }
-
-    function excluir(dadosAluno, monitorPass, act) {
-        var cod = document.getElementById('alunoCod');
-        var nome = document.getElementById('alunoNome');
-        
-        if (cod.value.length > 0 && nome.value.length > 0) {
-            confirmar(dadosAluno, monitorPass, act);
-        } else {
-            if (cod.value.length == 0) {
-                cod.style.borderColor = "red";
-                cod.focus();
-            } else {
-                nome.style.borderColor = "red";
-                nome.focus();
-            }
-        }
-    }
-
-    function alterar(dadosAluno, monitorPass, act) {
-        var cod = document.getElementById('alunoCod');
-        var nome = document.getElementById('alunoNome');
-        
-        if (cod.value.length > 0 && nome.value.length > 0) {
-            confirmar(dadosAluno, monitorPass, act);
-        } else {
-            if (cod.value.length == 0) {
-                cod.style.borderColor = "red";
-                cod.focus();
-            } else {
-                nome.style.borderColor = "red";
-                nome.focus();
-            }
-        }
-    }
-</script>
 <div id="contentCadastrados">
     <aside id="dados_aluno">
         <h1>Dados do aluno</h1>
@@ -74,15 +21,8 @@
             </label>
             <div class="buttons">
                 <label class="btn">
-                    <script>var act = "<?=HOME_URL?>/aluno/alterarDados"</script>
-                    <button onclick="alterar('dadosAluno', 'monitorPass', act); return false;">
-                        <i class="fa fa-exchange-alt"></i>
-                        Alterar dados
-                    </button>
-                </label>
-                <label class="btn">
                     <script> var act2 = "<?= HOME_URL ?>/aluno/excluir"</script>
-                    <button onclick="excluir('dadosAluno', 'monitorPass', act2); return false;">
+                    <button onclick="gerenciar('dadosAluno', 'monitorPass', act2); return false;">
                         <i class="fa fa-minus-circle"></i>
                         Excluir aluno
                     </button>

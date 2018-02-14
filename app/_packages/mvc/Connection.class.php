@@ -21,18 +21,18 @@ class Connection
 
     function __construct($dbName)
     {
-        $this -> dbName = $dbName;
+        $this->dbName = $dbName;
     }
 
     private function connect()
     {
-        $dbName = $this -> dbName;
+        $dbName = $this->dbName;
 
         $conn = mysqli_connect(self::HOSTNAME, self::USERNAME, self::PASSWORD, $dbName) or die(mysqli_connect_error());
         //setar default charset
         mysqli_set_charset($conn, self::CHARSET) or die(mysqli_error($conn));
 
-        $this -> connection = $conn;
+        $this->connection = $conn;
     }
 
     private function close()
@@ -145,7 +145,11 @@ class Connection
 
         foreach ($values as $key => $value)
         {
-            $values[$key] = "$key = '$value'";
+            if (preg_match("/\|.*\|/", $value)) {
+                $values[$key] = "$key = " . str_replace('|', '', $value);
+            } else {
+                $values[$key] = "$key = '$value'";
+            }
         }
 
         $values = implode(", ", $values);
@@ -155,6 +159,8 @@ class Connection
 
 
         $query = "UPDATE {$table} SET {$values}{$where}";
+
+        // echo $query . '<br />';
 
         $result = $this->execute($query);
 

@@ -33,7 +33,10 @@ button:hover {
 	background-color: #124559;
 	color: white;
 }
-
+button[disabled] {
+	background: #444;
+	cursor: default;
+}
 /* Resetando aparencia dos inputs */
 input[type=submit],
 button {
@@ -52,6 +55,12 @@ input[type=password] {
 
 input[readonly] {
 	background: #AAA;
+	color: transparent;
+	text-shadow: 0 0 0 #333;
+	cursor: default;
+}
+input[readonly]:focus {
+	outline: hidden;
 }
 /* Formato padrao de paginas */
 /* Toda a pagina */

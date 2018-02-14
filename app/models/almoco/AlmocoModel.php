@@ -72,4 +72,19 @@ class AlmocoModel extends MainModel
             throw new Exception("Um erro ocorreu durante o registro");
         }
     }
+
+    /**
+     * function getCod()
+     * 
+     * Retorna o codigo do almoco em questão
+     * 
+     * @access public
+     * @return int
+     */
+    public function getCod() : int
+    {
+        $w = "WHERE ALMOCO_DATA = '{$this->date}'";
+        $cod = $this->connection->read("Almoco", "ALMOCO_COD", $w);
+        return $cod['ALMOCO_COD'] ? $cod['ALMOCO_COD'] : false;
+    }
 }

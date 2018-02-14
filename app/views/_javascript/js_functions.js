@@ -24,6 +24,7 @@ function confirmar(confirmForm, passElement, action = null) {
     document.getElementById('confirmForm').value = confirmForm;
     document.getElementById('passElement').value = passElement;
     document.getElementById('userPass').focus();
+    
     if (action != null) {
         document.getElementById(confirmForm).setAttribute('action', action);
     }
@@ -39,6 +40,7 @@ function confirmSubmit() {
         document.getElementById(form).submit();
     } else {
         document.getElementById('userPass').style.borderColor = "red";
+        document.getElementById('userPass').focus();
     }
 }
 
@@ -94,5 +96,44 @@ function dadosAluno(codAluno, imgPath) {
 
     if (screen.width < 1024) {
         openModal('dados_aluno');
+    }
+}
+/**
+ * Funcao usada em paginas de gerenciamento de dados de aluno
+ */
+function gerenciar(dadosAluno, monitorPass, act) {
+    var cod = document.getElementById('alunoCod');
+    var nome = document.getElementById('alunoNome');
+
+    if (cod.value.length > 0 && nome.value.length > 0) {
+        confirmar(dadosAluno, monitorPass, act);
+    } else {
+        if (cod.value.length == 0) {
+            cod.style.borderColor = "red";
+            cod.focus();
+        } else {
+            nome.style.borderColor = "red";
+            nome.focus();
+        }
+    }
+}
+
+/*
+ * Funcao usada para dar ocorrencias em paginas de gerenciamento de dados de
+ * alunos
+ */
+function ocorrencia()
+{
+    var cod = document.getElementById('alunoCod');
+    var nome = document.getElementById('alunoNome');
+
+    if (cod.value.length > 0 && nome.value.length > 0) {
+        cod.style.borderColor = "black";
+        nome.style.borderColor = "black";
+        novaOcorrencia(cod.value, nome.value);
+    } else {
+        cod.style.borderColor = "red";
+        nome.style.borderColor = "red";
+        nome.focus();
     }
 }

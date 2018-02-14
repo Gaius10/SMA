@@ -17,7 +17,8 @@ class UserController extends MainController
 	 */
 	public function quit()
 	{
-		$this->logout(true);
+		$this->logout();
+        header("Location: " . HOME_URL);
 	}
 
 

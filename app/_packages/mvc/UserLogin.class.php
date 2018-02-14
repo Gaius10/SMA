@@ -155,13 +155,14 @@ class UserLogin
 	*/
 	final protected function gotoPage($pageUrl = null)
 	{
-		if (isset($_GET['path']) and !empty($_GET['path']) and !pageUrl)
+		if (isset($_GET['path']) and !empty($_GET['path']) and !$pageUrl)
 			$pageUrl = urldecode($_GET['path']);
 
 		if ($pageUrl)
 		{
+			$pageUrl = str_replace("sma/sma", 'sma', $pageUrl);
 			header("Location: {$pageUrl}");
-			return;
+			exit();
 		}
 	}
 

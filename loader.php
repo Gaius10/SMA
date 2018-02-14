@@ -18,8 +18,9 @@ else
     ini_set("display_errors", 0);
 }
 
-require_once ROOT_PATH . "/libs/functions/global-functions.php";
-require_once ROOT_PATH . "/libs/phpqrcode/qrlib.php";
-require_once "Autoload.php";
+
+require ROOT_PATH . "/libs/functions/global-functions.php";
+require ROOT_PATH . "/libs/phpqrcode/qrlib.php";
+require "Autoload.php";
 
 $system = new App();

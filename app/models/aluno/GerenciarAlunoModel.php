@@ -257,47 +257,6 @@ class GerenciarAlunoModel extends MainModel
     }
 
     /**
-     * function alterar($dados, $pass)
-     * 
-     * Função que vai alterar dados de determinado aluno
-     * 
-     * @param array  $dados Dados ja alterados do aluno
-     * @param string $pass  Senha do monitor alterando
-     * 
-     * @return boolean
-     * @access public
-     */
-    public function alterar(array $dados, string $pass)
-    {
-        // Validar dados
-        try {
-            $date = [
-                "ALUNO_NOME" => $dados['ALUNO_NOME'],
-                "ALUNO_TURMA" => $dados['ALUNO_TURMA']
-            ];
-
-            $validPath = PACKS_PATH . "/sline/Validation/forms/novo-aluno.json";
-            $validar = new Validator($date, $validPath);
-
-            if (!$validar->validate()) {
-                $this->error = $validar->error;
-                return false;
-            }
-        } catch (Exception $e) {
-            echo (DEBUG) ? $e : "<!--" . $e . "-->";
-            exit("Ocorreu um erro interno, contate o suporte");
-        }
-
-        // Cadastrar alterações
-        $w = "WHERE ALUNO_COD = '{$dados['ALUNO_COD']}'";
-        if (!$this->connection->update('Aluno', $dados, $w)) {
-            $this->error = "Desculpe, houve um erro durante o registro";
-            return false;
-        }
-        return true;
-    }
-
-    /**
      * function makeImg($imgCode)
      * 
      * Gera imagem QR Code do aluno desejado
