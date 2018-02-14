@@ -40,12 +40,14 @@
 
 
 <div id="modals">
-    <?php include MODAL_PATH . "/encomenda.modal.php"; ?>
-    <?php include MODAL_PATH . "/confirmacao.modal.php"; ?>
-    <?php include MODAL_PATH . "/ocorrencia.modal.php"; ?>
+    <?php include MODAL_PATH . '/encomenda.modal.php'; ?>
+    <?php include MODAL_PATH . '/confirmacao.modal.php'; ?>
+    <?php include MODAL_PATH . '/ocorrencia.modal.php'; ?>
 
     <!-- Modals do menu -->
-    <?php include MODAL_PATH . "/iniciar-almoco.modal.php"; ?>
-    <?php include MODAL_PATH . "/novo-monitor.modal.php"; ?>
-    <?php include MODAL_PATH . "/meus-dados.modal.php"; ?>
+    <?php include MODAL_PATH . '/iniciar-almoco.modal.php'; ?>
+    <?php include MODAL_PATH . '/novo-monitor.modal.php'; ?>
+    <?php include MODAL_PATH . '/meus-dados.modal.php'; ?>
+
+    <?php if (isset($_GET['msg'])) include MODAL_PATH . '/msg.modal.php'; ?>
 </div>

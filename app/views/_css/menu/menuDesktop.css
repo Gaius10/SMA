@@ -75,6 +75,9 @@
 	}
 	section#opcoes ul li {
 		padding-left: 1em;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 	}
 	section#opcoes ul li:hover {
 		background-color: #333;
