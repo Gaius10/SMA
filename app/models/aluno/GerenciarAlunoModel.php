@@ -233,8 +233,9 @@ class GerenciarAlunoModel extends MainModel
                 $ocorrencia = addslashes(trim($dados['ocorrencia']));
 
                 $data = array(
-                    "ALUNO_COD" => $dados['cod'],
-                    "ALUNO_OCORRENCIA" => $ocorrencia
+                    'ALUNO_COD' => $dados['cod'],
+                    'ALUNO_OCORRENCIA' => $ocorrencia,
+                    'OCORRENCIA_DATA' => date("Y-m-d")
                 );
 
                 if ($this->connection->register("Ocorrencia", $data)) {

@@ -18,9 +18,29 @@ class AlmocoController extends MainController
     private $periodo;
 
     /**
+     * $alunos
+     * 
+     * Receberá os dados dos alunos que almoçaram no dia gerenciado
+     * 
+     * @var array|null
+     * @access private
+     */
+    private $alunos;
+
+    /**
+     * $infos
+     * 
+     * Receberá informações adicionais a respeito do almoço gerenciado
+     * 
+     * @var array
+     * @access private
+     */
+    private $infos;
+
+    /**
      * function index()
      * 
-     * Função que mostra os dados solicitados
+     * Mostra os dados do almoco em questão
      * 
      * @access public
      * @return void
@@ -37,6 +57,12 @@ class AlmocoController extends MainController
                 exit();
             }
 
+            // Processar dados do almoco
+            $this->model  = $this->loadModel('almoco/Almoco');
+            $this->infos  = $this->model->loadInfo();
+            $this->alunos = $this->model->loadAlunos($this->infos['cod']);
+
+            // Mostrar dados ao usuário
             $this->title = "Bem vindo ao SMA";
             $pag = "";
             $styleRequires = [

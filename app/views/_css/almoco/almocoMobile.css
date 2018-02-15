@@ -30,8 +30,16 @@
         margin: auto;
         line-height: 2em;
     }
+    aside#status_almoco ul li {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
     aside#status_almoco ul li span {
         float: right;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        text-align: right;
     }
 
     /* Estilos da lista de almocos */

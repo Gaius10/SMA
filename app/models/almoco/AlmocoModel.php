@@ -76,15 +76,101 @@ class AlmocoModel extends MainModel
     /**
      * function getCod()
      * 
-     * Retorna o codigo do almoco em questão
+     * Retorna o codigo do almoco desejado
+     * 
+     * @param string|null $date Data do almoço desejado
      * 
      * @access public
      * @return int
      */
-    public function getCod() : int
+    public function getCod(string $date = '') : int
     {
-        $w = "WHERE ALMOCO_DATA = '{$this->date}'";
+        $date = ($date) ? $date : $this->date;
+        $w = "WHERE ALMOCO_DATA = '{$date}'";
         $cod = $this->connection->read("Almoco", "ALMOCO_COD", $w);
         return $cod['ALMOCO_COD'] ? $cod['ALMOCO_COD'] : false;
+    }
+
+    /**
+     * ********************************************************************** 
+     * function load($date)
+     * 
+     * Carrega os dados do almoco especificado por $date
+     * 
+     * @param string $date Data do almoco gerenciado
+     * 
+     * @return array|void
+     * @access public
+     */
+    public function loadInfo(string $date = '')
+    {
+        $date = ($date) ? $date : $this->date;
+
+        // Carregar dados do almoco gerenciado
+        $f = 'ALMOCO_COD AS cod, ALMOCO_CARDAPIO AS card';
+        $w = 'WHERE ALMOCO_COD = \'' . $this->getCod($date) . '\'';
+        $almoco = $this->connection->read('Almoco', $f, $w);
+
+        // Retorna vazio caso nao hajam dados do almoco, ele nao foi iniciado
+        if (!$almoco) {
+            return;
+        }
+
+        // Buscar mais dados:
+        // Quantidade de almocos, total de repeticoes e total de ocorrencias
+        $f = 'COUNT(*) AS alm, SUM(REPETICOES) AS rep';
+        $w = 'WHERE ALMOCO_COD = \'' . $almoco['cod'] . '\'';
+        $almoco['info'] = $this->connection->read('Almocar', $f, $w);
+
+        // Ocorrencias
+        $f = 'COUNT(*) AS oc';
+        $w = 'WHERE OCORRENCIA_DATA = \'' . $date . '\'';
+        $oc = $this->connection->read('Ocorrencia', $f, $w);
+        $almoco['info']['oc'] = $oc['oc'];
+
+        return $almoco;
+    }
+
+    /**
+     * function loadAlunos($codAlmoco)
+     * 
+     * Carrega dados dos alunos que almocaram no dia em questao
+     * 
+     * @param int $codAlmoco Codigo do almoco em questão
+     * 
+     * @access public
+     * @return array|void
+     */
+    public function loadAlunos(int $codAlmoco)
+    {
+        // Obter dados do almoco
+        $f = 'ALMOCO_COD AS alm_c, ALUNO_COD AS alu_c, REPETICOES AS rep';
+        $w = 'WHERE ALMOCO_COD = \'' . $codAlmoco . '\'';
+        $alunos = $this->connection->read('Almocar', $f, $w);
+
+        if (empty($alunos)) {
+            return;
+        }
+
+        $alunos = makeDataArray($alunos);
+
+        foreach ($alunos as $key => $aluno) {
+            // Obter dados do aluno
+            $f = 'ALUNO_NOME AS n, ALUNO_TURMA AS t, ALUNO_QRCODE AS q';
+            $w = 'WHERE ALUNO_COD = \'' . $aluno['alu_c'] . '\'';
+            $alunos[$key]['info'] = $this->connection->read('Aluno', $f, $w);
+
+            // Obter ocorrencias
+            $f = 'OCORRENCIA_DATA AS dat, ALUNO_OCORRENCIA AS oc';
+
+            $alunos[$key]['oc'] = $this->connection->read('Ocorrencia', $f, $w);
+
+            if ($alunos[$key]['oc'] != false) {
+                $alunos[$key]['oc'] = makeDataArray($alunos[$key]['oc']);
+                $alunos[$key]['oc']['qtd'] = count($alunos[$key]['oc']);
+            }
+        }
+
+        return $alunos;
     }
 }
