@@ -1,4 +1,4 @@
-<?php
+to bee<?php
 use mvc\MainModel;
 use sline\Validation\Validator;
 /**
@@ -194,16 +194,27 @@ class GerenciarAlunoModel extends MainModel
      * 
      * Carrega os dados do(s) aluno(s) desejado(s)
      * 
-     * @param int $cod Codigo do aluno desejado, NULL para buscar por todos cadastrados
+     * @param int   $cod    Codigo do aluno desejado, NULL para buscar por todos cadastrados
+     * @param array $filter Dados para filtrar alunos
      * 
      * @access public
      * @return array
      */
-    public function load(int $cod = null)
+    public function load(int $cod = null, array $filter = null)
     {
-        $f = "ALUNO_COD AS c, ALUNO_NOME AS n, ALUNO_TURMA AS t, ALUNO_QRCODE AS q";
-        $w = "WHERE ALUNO_ATIVO = '1'";
-        $w .= ($cod) ? " AND ALUNO_COD = '{$cod}'" : "";
+        $f = 'ALUNO_COD AS c, ALUNO_NOME AS n, ALUNO_TURMA AS t, ALUNO_QRCODE AS q';
+        $w = 'WHERE ALUNO_ATIVO = TRUE';
+        $w .= ($cod) ? ' AND ALUNO_COD = \'' . $cod . '\'' : '';
+
+        // Aplica filtros caso existam
+        if (!empty($filter)) {
+            if (!empty($filter['nome'])) {
+                $w .= ' AND ALUNO_NOME LIKE \'%' . $filter['nome'] . '%\'';
+            }
+            if (!empty($filter['turma'])) {
+                $w .= ' AND ALUNO_TURMA LIKE \'%' . $filter['turma'] . '%\'';
+            }
+        }
 
         return $this->connection->read("Aluno", $f, $w);
     }

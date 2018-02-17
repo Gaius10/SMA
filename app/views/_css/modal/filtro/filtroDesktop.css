@@ -1,0 +1,32 @@
+@media only screen and (min-width: 1024px)
+{
+    section#filtro {
+        display: block;
+    }
+    section#filtro form {
+        display: grid;
+        grid-template-columns: 3fr 1fr 1fr;
+    }
+
+    section#filtro form label,
+    section#filtro form div.buttons{
+        height: 1.5em;
+    }
+    section#filtro form div.buttons {
+        margin-top: 0;
+    }
+    section#filtro form div.buttons label.btn {
+        font-size: 0.5em;
+        height: inherit;
+    }
+
+    section#filtro form label input {
+        background-color: transparent;
+        border: none;
+        color: white;
+    }
+
+    section#filtro form label input {
+        border-left: 0.1em black solid;
+    }
+}

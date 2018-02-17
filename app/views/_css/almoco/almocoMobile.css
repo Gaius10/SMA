@@ -26,13 +26,13 @@
 
     /* Estilos da aside com informacoes sobre o almoco */
     aside#status_almoco ul {
-        width: 60%;
+        width: 90%;
         margin: auto;
         line-height: 2em;
     }
     aside#status_almoco ul li {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 2fr;
     }
     aside#status_almoco ul li span {
         float: right;

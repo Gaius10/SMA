@@ -9,12 +9,21 @@
 
     section#lista_alunos h1 {
         display: block;
-        text-align: center;
+        text-align: left;
+        box-sizing: border-box;
+        padding-left: 0.5em;
         font-size: 1.2em;
         background: #912e2e;
         color: white;
         line-height: 1.5em;
         margin-bottom: 0.3em;
+    }
+
+    section#lista_alunos h1 i {
+        float: right;
+        line-height: inherit;
+        margin-right: 0.5em;
+        color: black;
     }
 
     /* Lista de alunos */

@@ -101,10 +101,13 @@ class AlunoController extends MainController
      * 
      * Função que mostrará os alunos cadastrados no sistema
      * 
+     * @param array $filter Indica se serão aplicados ou nao os filtros na busca 
+     *                      de alunos. Deverá conter um elemento do tipo bool
+     * 
      * @access public
      * @return void
      */
-    public function cadastrados()
+    public function cadastrados($filter)
     {
         if (!$this->loggedIn) {
             $this->logout(true);
@@ -115,9 +118,19 @@ class AlunoController extends MainController
                 exit();
             }
 
+            // Verificar se filtros foram solicitados
+            if ($filter == true) {
+                $filters = array(
+                    'nome' => $_POST['alunoNome'], 
+                    'turma' => $_POST['alunoTurma']
+                );
+            } else {
+                $filters = array();
+            }
+
             /* Carregar alunos cadastrados */
             $this->model = $this->loadModel('aluno/GerenciarAluno');
-            $this->alunos = $this->model->load();
+            $this->alunos = $this->model->load(null, $filters);
 
             if (is_array($this->alunos)) {
                 $this->alunos = makeDataArray($this->alunos);
@@ -141,7 +154,8 @@ class AlunoController extends MainController
                 "modal/iniciar-almoco",
                 "modal/novo-monitor",
                 "modal/ocorrencia",
-                "modal/confirmacao"
+                "modal/confirmacao",
+                "modal/filtro"
             ];
 
             include VIEWS_PATH . "/_includes/header.php";

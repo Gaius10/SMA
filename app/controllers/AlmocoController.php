@@ -60,7 +60,9 @@ class AlmocoController extends MainController
             // Processar dados do almoco
             $this->model  = $this->loadModel('almoco/Almoco');
             $this->infos  = $this->model->loadInfo();
-            $this->alunos = $this->model->loadAlunos($this->infos['cod']);
+            if (!empty($this->infos)) {
+                $this->alunos = $this->model->loadAlunos($this->infos['cod']);
+            }
 
             // Mostrar dados ao usuário
             $this->title = "Bem vindo ao SMA";

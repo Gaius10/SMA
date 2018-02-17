@@ -1,0 +1,37 @@
+@media only screen and (min-width: 0)
+{
+    section#filtro {
+        font-size: 1em;
+    }
+    section#filtro h1 {
+        text-align: center;
+    }
+
+    /* Formulario */
+    section#filtro form label {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    section#filtro form label input,
+    section#filtro form label select {
+        font-size: inherit;
+    }
+    section#filtro form label input {
+        width: 95%;
+    }
+
+    /* Botoes */
+    section#filtro form div.buttons {
+        margin-top: 1em;
+    }
+    section#filtro form div.buttons label.btn {
+        height: 2.5em;
+    }
+    section#filtro form div.buttons label.btn + label.btn {
+        margin-top: 0.05em;
+    }
+    section#filtro form div.buttons label.btn button i {
+        color: white;
+        float: none;
+    }
+}

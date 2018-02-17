@@ -32,8 +32,9 @@ class MainController extends UserLogin
 
     public function loadModel($modelName = null)
     {
-        if (!$modelName)
+        if (!$modelName) {
             return;
+        }
 
         $modelPath = ROOT_PATH . "/app/models/" . $modelName . "Model.php";
         // echo $modelPath;
@@ -42,7 +43,9 @@ class MainController extends UserLogin
 
         if(file_exists($modelPath))
         {
+            ob_start();
             require_once $modelPath;
+            ob_clean();
 
             $modelName = explode('/', $modelName);
             $modelName = end($modelName);
@@ -83,17 +86,5 @@ class MainController extends UserLogin
 
             return false;
         }
-    }
-
-    public function setIp()
-    {
-        exec("ifconfig", $info);
-        @$ip = trim($info[18]);
-        @$ip = explode(" ", $ip);
-        @$ip = $ip[1];
-        @$ip = explode(":", $ip);
-        @$ip = @$ip[1];
-
-        $this->ip = (count(explode('.', $ip)) == 4) ? $ip : "127.0.0.1";
     }
 }

@@ -1,12 +1,5 @@
 @media only screen and (min-width: 1024px)
 {
-    /* Alguns resets */
-    section#lista_alunos { 
-        margin: 0 auto;
-        font-size: 1.6em;
-    }
-    section#lista_alunos h1 { line-height: 1em; }
-
     /* Alterando template da pagina em desktops */
     div#contentCadastrados {
         display: grid;
@@ -21,6 +14,18 @@
         display: block;
         text-align: center;
         line-height: 1.5em !important;
+    }
+
+    /* Alguns resets */
+    section#lista_alunos { 
+        margin: 0 auto;
+        font-size: 1.6em;
+    }
+    section#lista_alunos h1 {
+        line-height: 1em;
+        text-align: left;
+        display: grid;
+        grid-template-columns: 1fr 2fr;
     }
 
 
@@ -57,5 +62,8 @@
     /* Ajustando template da lista de alunos */
     section#lista_alunos ul li {
         grid-template-columns: 14fr 1fr;
+    }
+    section#lista_alunos ul li:first-child label i {
+        line-height: inherit;
     }
 }

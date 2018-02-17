@@ -48,8 +48,6 @@
     section#gerenciar_aluno form div.buttons label.btn button {
         padding-left: 1em;
         text-align: left;
-        display: grid;
-        grid-template-columns: 1fr 6fr;
         line-height: 1em;
     }
 

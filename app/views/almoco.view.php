@@ -21,6 +21,10 @@
                     <span><?=(int)$this->infos['info']['oc']?></span>
                 </li>
             </ul>
+        <?php else: ?>
+            <label style="display: block; text-align: center; margin-top: 1em">
+                Almoço não iniciado
+            </label>
         <?php endif ?>
     </aside>
 
@@ -75,7 +79,7 @@
                 <?php endforeach ?>
             <?php else: ?>
                 <li>
-                    <label>Nenhum aluno almoçou ou o almoço nao foi iniciado</label>
+                    <label>Nenhum aluno almoçou</label>
                 </li>
             <?php endif ?>
         </ul>

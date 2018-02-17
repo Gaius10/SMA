@@ -1,4 +1,5 @@
 <?php if (!defined('ROOT_PATH')) exit("Erro Interno"); ?>
+
 <div id="contentCadastrados">
     <aside id="dados_aluno">
         <h1>Dados do aluno</h1>
@@ -44,7 +45,11 @@
     </aside>
 
     <section id="lista_alunos">
-        <h1>Alunos cadastrados</h1>
+        <h1>
+            Alunos cadastrados
+            <i class="fa fa-search only-mob" onclick="openModal('filtro')"></i>
+            <?php include MODAL_PATH . '/filtro.modal.php'; ?>
+        </h1>
         <ul>
             <li>
                 <label><strong>Nome</strong></label>
