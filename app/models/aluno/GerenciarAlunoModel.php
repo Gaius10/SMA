@@ -215,7 +215,7 @@ class GerenciarAlunoModel extends MainModel
                 $w .= ' AND ALUNO_TURMA LIKE \'%' . $filter['turma'] . '%\'';
             }
         }
-
+        
         return $this->connection->read("Aluno", $f, $w);
     }
 

@@ -141,24 +141,38 @@ class AlmocoModel extends MainModel
      * @access public
      * @return array|void
      */
-    public function loadAlunos(int $codAlmoco)
+    public function loadAlunos(int $codAlmoco = null)
     {
         // Obter dados do almoco
-        $f = 'ALMOCO_COD AS alm_c, ALUNO_COD AS alu_c, REPETICOES AS rep';
-        $w = 'WHERE ALMOCO_COD = \'' . $codAlmoco . '\'';
-        $alunos = $this->connection->read('Almocar', $f, $w);
+        if ($codAlmoco != null) {
+            $f = 'ALMOCO_COD AS alm_c, ALUNO_COD AS alu_c, REPETICOES AS rep';
+            $w = 'WHERE ALMOCO_COD = \'' . $codAlmoco . '\'';
+            $w .= ' ORDER BY ALUNO_NOME';
+            $alunos = $this->connection->read('Almocar', $f, $w);
+        } else {
+            $f = 'ALUNO_COD AS alu_c, ALUNO_NOME AS n, ALUNO_TURMA AS t, ALUNO_QRCODE AS q';
+            $w = 'WHERE ALUNO_ATIVO = TRUE';
+            $w .= ' ORDER BY ALUNO_NOME';
+            $alunos = $this->connection->read('Aluno', $f, $w);
+        }
 
+        // Se nao existir nenhum aluno, retornar vazio
         if (empty($alunos)) {
             return;
         }
 
+        // Cada aluno tera um índice no array, mesmo que seja só um aluno
         $alunos = makeDataArray($alunos);
 
+
+        // Obter outros dados
         foreach ($alunos as $key => $aluno) {
-            // Obter dados do aluno
-            $f = 'ALUNO_NOME AS n, ALUNO_TURMA AS t, ALUNO_QRCODE AS q';
+            // Obter dados do aluno (Se $codAlmoco foi enviado)
             $w = 'WHERE ALUNO_COD = \'' . $aluno['alu_c'] . '\'';
-            $alunos[$key]['info'] = $this->connection->read('Aluno', $f, $w);
+            if ($codAlmoco) {
+                $f = 'ALUNO_NOME AS n, ALUNO_TURMA AS t, ALUNO_QRCODE AS q';
+                $alunos[$key]['info'] = $this->connection->read('Aluno', $f, $w);
+            }
 
             // Obter ocorrencias
             $f = 'OCORRENCIA_DATA AS dat, ALUNO_OCORRENCIA AS oc';

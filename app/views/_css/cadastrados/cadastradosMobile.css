@@ -27,19 +27,25 @@
     }
 
     /* Lista de alunos */
-    section#lista_alunos ul li {
+    section#lista_alunos ul li.nome-aluno {
         line-height: 1.8em;
         display: grid;
         grid-template-columns: 7fr 1fr;
         padding-left: 0.3em;
+        background-color: white;
+        z-index: 1;
     }
-    section#lista_alunos ul li:hover {
+    section#lista_alunos ul li.nome-aluno:hover {
         background-color: #DDD;
     }
-    section#lista_alunos ul li:first-child:hover {
+    section#lista_alunos ul li.nome-aluno:first-child:hover {
         background-color: transparent;
     }
-    section#lista_alunos ul li label {
+    section#lista_alunos ul li.nome-aluno div.nt {
+        display: grid;
+        grid-template-columns: 6fr 1fr;
+    }
+    section#lista_alunos ul li.nome-aluno label {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -79,5 +85,23 @@
         height: 3em;
         font-size: 0.8em;
         margin-top: 0.3em;
+    }
+
+    /* Ocorrencias de cada aluno */
+    section#lista_alunos ul div.dtAluno {
+        color: transparent;
+        box-sizing: border-box;
+        padding-left: 0.3em;
+        padding-right: 0.3em;
+        border-bottom: 0 #AAA solid;
+        border-top: 0 #AAA solid;
+    }
+    section#lista_alunos ul div.dtAluno ul li label {
+        display: block;
+    }
+    section#lista_alunos ul div.dtAluno ul li span {
+        display: block;
+        text-align: right;
+        font-size: 0.7em;
     }
 }

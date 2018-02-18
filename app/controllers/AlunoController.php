@@ -119,7 +119,10 @@ class AlunoController extends MainController
             }
 
             // Verificar se filtros foram solicitados
-            if ($filter == true) {
+            if ($filter == true and
+                isset($_POST['alunoNome']) and
+                isset($_POST['alunoTurma'])
+            ) {
                 $filters = array(
                     'nome' => $_POST['alunoNome'], 
                     'turma' => $_POST['alunoTurma']
@@ -129,10 +132,10 @@ class AlunoController extends MainController
             }
 
             /* Carregar alunos cadastrados */
-            $this->model = $this->loadModel('aluno/GerenciarAluno');
-            $this->alunos = $this->model->load(null, $filters);
+            $this->alunos = ($this->loadModel('almoco/Almoco'))->loadAlunos();
 
             if (is_array($this->alunos)) {
+                $this->model = $this->loadModel('aluno/GerenciarAluno');
                 $this->alunos = makeDataArray($this->alunos);
                 foreach ($this->alunos as $k => $aluno) {
                     $fName = $aluno['n'] . '_' . $aluno['t'] . '.png';

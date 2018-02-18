@@ -60,10 +60,13 @@
     }
 
     /* Ajustando template da lista de alunos */
-    section#lista_alunos ul li {
-        grid-template-columns: 14fr 1fr;
+    section#lista_alunos ul li.nome-aluno {
+        grid-template-columns: 19fr 1fr;
     }
-    section#lista_alunos ul li:first-child label i {
+    section#lista_alunos ul li.nome-aluno div.nt {
+        grid-template-columns: 15fr 1fr;
+    }
+    section#lista_alunos ul li.nome-aluno:first-child label i {
         line-height: inherit;
     }
 }
