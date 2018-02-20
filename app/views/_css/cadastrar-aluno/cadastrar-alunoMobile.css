@@ -40,11 +40,7 @@
         line-height: inherit;
     }
     section#cadastrar_aluno form label input { width: 97%; }
-    section#cadastrar_aluno form label select {
-        color: black;
-        background: none;
-        height: 2em;
-    }
+    section#cadastrar_aluno form label select { height: 2em; }
     
     /* Botão */
     section#cadastrar_aluno form button {

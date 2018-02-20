@@ -18,8 +18,10 @@
 
     /* Alguns resets */
     section#lista_alunos { 
-        margin: 0 auto;
         font-size: 1.6em;
+        width: 97.5%;
+        margin-top: 0;
+        margin-left: 2.5%;
     }
     section#lista_alunos h1 {
         line-height: 1em;
@@ -68,5 +70,11 @@
     }
     section#lista_alunos ul li.nome-aluno:first-child label i {
         line-height: inherit;
+    }
+
+    /* Ocorrencias dos alunos */
+    section#lista_alunos ul div.dtAluno ul {
+        display: grid;
+        grid-template-columns: 1fr 1em 1fr 0;
     }
 }

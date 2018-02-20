@@ -42,10 +42,12 @@ class AlmocoController extends MainController
      * 
      * Mostra os dados do almoco em questão
      * 
+     * @param string $date Data do almoco a ser gerenciado
+     * 
      * @access public
      * @return void
      */
-    public function index()
+    public function index(string $date = '')
     {
         ## Ver se usuário está logado
         if (!$this->loggedIn) {
@@ -58,8 +60,9 @@ class AlmocoController extends MainController
             }
 
             // Processar dados do almoco
+            $date = ($date) ? $date : date('Y-m-d');
             $this->model  = $this->loadModel('almoco/Almoco');
-            $this->infos  = $this->model->loadInfo();
+            $this->infos  = $this->model->loadInfo($date);
             if (!empty($this->infos)) {
                 $this->alunos = $this->model->loadAlunos($this->infos['cod']);
             }
@@ -91,13 +94,15 @@ class AlmocoController extends MainController
     /**
      * function gerenciar()
      * 
-     * Função responsavel por mostrar views de gerenciamento de almocos e fazer
-     * processamentos necessarios
+     * Mostra todos os almocos já registrados e seus dados
+     * 
+     * @param array|string $date Data ou perído do(s) almoço(s) a ser(em) 
+     *                           gerenciado(s)
      * 
      * @access public
      * @return void
      */
-    public function gerenciar()
+    public function gerenciar($date = null)
     {
         if (!$this->loggedIn) {
             $this->logout(true);
@@ -111,46 +116,22 @@ class AlmocoController extends MainController
             $pag = "ger_alm";
 
             $styleRequires = [
-                "menu",
-                "modal",
-                "footer"
+                'menu',
+                'gerenciar-almocos',
+                'modal',
+                'footer',
+                // modals
+                'modal/encomenda',
+                'modal/novo-monitor',
+                'modal/iniciar-almoco',
+                'modal/meus-dados',
+                'modal/confirmacao',
+                'modal/ocorrencia'
             ];
 
             include VIEWS_PATH . "/_includes/header.php";
             include VIEWS_PATH . "/_includes/menu.php";
-            include VIEWS_PATH . "/_includes/footer.php";
-        }
-    }
-
-    /**
-     * function estatisticas()
-     * 
-     * Função responsavel por mostrar estatisticas dos almocos desejados
-     * 
-     * @access public
-     * @return void
-     */
-    public function estatisticas()
-    {
-        if (!$this->loggedIn) {
-            $this->logout(true);
-        } else {
-            // Se uma pagina foi solicitada antes do ato do login
-            if (isset($_SESSION['gotoUrl'])) {
-                $this->gotoPage($_SESSION['gotoUrl']);
-                exit();
-            }
-            
-            $pag = "ests";
-
-            $styleRequires = [
-                "menu",
-                "modal",
-                "footer"
-            ];
-
-            include VIEWS_PATH . "/_includes/header.php";
-            include VIEWS_PATH . "/_includes/menu.php";
+            include VIEWS_PATH . '/gerenciar-almocos.view.php';
             include VIEWS_PATH . "/_includes/footer.php";
         }
     }

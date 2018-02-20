@@ -23,10 +23,6 @@
 					<i class="fa fa-address-book"></i>
 					<span>Ver alunos cadastrados</span>
 				</li>
-				<li onclick="window.location.href='<?=HOME_URL?>/almoco/estatisticas'" <?= sel($pag, 'ests') ?>>
-					<i class="fa fa-tasks"></i>
-					<span>Estatísticas de almoços</span>
-				</li>
 			</ul>
 		</section>
 		

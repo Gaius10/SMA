@@ -1,0 +1,52 @@
+@media only screen and (min-width: 1024px)
+{
+    /* Conteudo de toda a pagina */
+    div#contentGerenciar {
+        display: grid;
+        grid-template-columns: 3fr 7fr;
+        margin: 1em auto;
+        width: 90%;
+    }
+
+    /* Lista de almoços ocorridos */
+    div#contentGerenciar section#gerenciar {
+        margin-top: 0;
+        margin-left: 2.5%;
+        width: 97.5%;
+    }
+
+    /* Títulos */
+    section#gerenciar #title h1,
+    aside#dados_globais #title h1 {
+        display: inline-block;
+    }
+    section#gerenciar #title {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+    section#gerenciar #title h1 {
+        text-align: left;
+    }
+    section#gerenciar #title form {
+        text-align: right;
+    }
+
+    /* Mudando template das linhas */
+    section#gerenciar nav#lista_almocos ul li:first-child label.card {
+        display: block;
+    }
+    section#gerenciar nav#lista_almocos ul li label.card {
+        text-align: left;
+    }
+    section#gerenciar nav#lista_almocos ul li label {
+        cursor: inherit;
+    }
+    section#gerenciar nav#lista_almocos ul li {
+        display: grid;
+        grid-template-areas: "data card alm rep oco";
+        grid-template-columns: 2fr 8fr 1fr 1fr 1fr;
+        cursor: pointer;
+    }
+}

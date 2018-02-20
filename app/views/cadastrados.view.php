@@ -97,7 +97,7 @@
                 <?php foreach ($this->alunos as $k => $a): ?>
 
 
-                    <li class="nome-aluno">
+                    <li class="nome-aluno<?= $k % 2 == 1 ? ' gray' : '' ?>">
                         <div class="nt" onclick="dadosAluno('<?=$a['alu_c']?>', '<?= QR_URL ?>')">
                             <label class="nome-aluno" id="al_n<?=$a['alu_c']?>" title="<?=$a['n']?>">
                                 <?= $a['n'] ?>
@@ -118,10 +118,14 @@
                         <div id="dt<?=$a['alu_c']?>" class="dtAluno" style="height: 0px;" >
                             <ul>
                                 <?php foreach ($a['oc'] as $k => $oc): ?>
-                                    <li>
-                                        <label><?=$oc['oc']?></label>
-                                        <span><?=convertData($oc['dat'])?></span>
-                                    </li>
+                                    <?php if (is_array($oc)): ?>
+                                        
+                                        <li<?= $k % 2 == 1 ? 'class="gray"' : '' ?>>
+                                            <label><?=$oc['oc']?></label>
+                                            <span><?=convertData($oc['dat'])?></span>
+                                        </li>
+                                        <li></li>
+                                    <?php endif ?>
                                 <?php endforeach ?>
                             </ul>
                         </div>

@@ -1,108 +1,118 @@
 /* Todo conteudo das paginas */
 .all {
-	display: grid;
-	width: 100%;
-	min-height: 100%;
-	position: absolute;
+    display: grid;
+    width: 100%;
+    min-height: 100%;
+    position: absolute;
 }
 .grid {
-	display: grid;
+    display: grid;
 }
 
 /* Menus superiores */
 .menu {
-	background-color: black;
-	color: white;
+    background-color: black;
+    color: white;
 }
 
 /* Corpos das paginas */
 body {
-	font-size: 62.5%;
-	font-family: arial, sans-serif;
+    font-size: 62.5%;
+    font-family: arial, sans-serif;
 }
 
 /* Todos botoes */
 button {
-	background-color: black;
-	color: white;
-	border: none;
-	font-size: 1.7em;
-	cursor: pointer;
+    background-color: black;
+    color: white;
+    border: none;
+    font-size: 1.7em;
+    cursor: pointer;
 }
 button:hover {
-	background-color: #124559;
-	color: white;
+    background-color: #124559;
+    color: white;
 }
 button[disabled] {
-	background: #444;
-	cursor: default;
+    background: #444;
+    cursor: default;
 }
 /* Resetando aparencia dos inputs */
 input[type=submit],
 button {
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
-	border-radius: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0;
 }
 
 /* Personaliza borda dos inputs */
 input[type=text],
 input[type=password] {
-	border: 0.05em black solid;
-	padding-left: 0.3em;
+    border: 0.05em black solid;
+    padding-left: 0.3em;
 }
 
 input[readonly] {
-	background: #AAA;
-	color: transparent;
-	text-shadow: 0 0 0 #333;
-	cursor: default;
+    background: #AAA;
+    color: transparent;
+    text-shadow: 0 0 0 #333;
+    cursor: default;
 }
 input[readonly]:focus {
-	outline: hidden;
+    outline: hidden;
 }
 /* Formato padrao de paginas */
 /* Toda a pagina */
 div.all {
-	grid-template-rows: 6em 1fr 5em;
-	grid-template-areas:
-	"menu"
-	"conteudo"
-	"footer";
+    grid-template-rows: 6em 1fr 5em;
+    grid-template-areas:
+    "menu"
+    "conteudo"
+    "footer";
 }
 /* ## Outras tags ## */
 strong {
-	font-weight: bold;
+    font-weight: bold;
 }
 a {
-	color: inherit;
-	text-decoration: inherit;
+    color: inherit;
+    text-decoration: inherit;
 }
 
 
 /* Conteudo escondido em desktops */
 @media only screen and (min-width: 1024px)
 {
-	.only-mob { display: none !important; }
+    .only-mob { display: none !important; }
 }
 
 
 /* Modal de mensagens de feedback */
 section#msg { text-align: center; }
 section#msg label { 
-	display: block;
-	margin-bottom: 1em;
+    display: block;
+    margin-bottom: 1em;
 }
 section#msg button {
-	font-size: inherit;
-	line-height: 2.5em;
-	padding: 0 1em;
-	width: auto;
-	height: auto;
+    font-size: inherit;
+    line-height: 2.5em;
+    padding: 0 1em;
+    width: auto;
+    height: auto;
 }
 @media screen and (max-width: 1024px) {
-	section#msg label {
-		margin: 3em 0 10em 0;
-	}
+    section#msg label {
+        margin: 3em 0 10em 0;
+    }
 }
+
+/* Todos os SELECTs */
+select {
+    color: black;
+    background: none;
+    border: 0.05em black solid;
+}
+
+/* Intercalar cores das linhas das listas */
+ul li.gray  { background: #DDD !important; }

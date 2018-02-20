@@ -1,4 +1,4 @@
-to bee<?php
+<?php
 use mvc\MainModel;
 use sline\Validation\Validator;
 /**
