@@ -107,7 +107,7 @@ class AlmocoModel extends MainModel
         $date = ($date) ? $date : $this->date;
 
         // Carregar dados do almoco gerenciado
-        $f = 'ALMOCO_COD AS cod, ALMOCO_CARDAPIO AS card';
+        $f = 'ALMOCO_COD AS cod, ALMOCO_CARDAPIO AS card, ALMOCO_DATA as dat';
         $w = 'WHERE ALMOCO_COD = \'' . $this->getCod($date) . '\'';
         $almoco = $this->connection->read('Almoco', $f, $w);
 
@@ -145,10 +145,11 @@ class AlmocoModel extends MainModel
     {
         // Obter dados do almoco
         if ($codAlmoco != null) {
-            $f = 'ALMOCO_COD AS alm_c, ALUNO_COD AS alu_c, REPETICOES AS rep';
+            $f = 'ALMOCO_COD AS alm_c, Aluno.ALUNO_COD AS alu_c, REPETICOES AS rep';
             $w = 'WHERE ALMOCO_COD = \'' . $codAlmoco . '\'';
+            $w .= ' AND Aluno.ALUNO_COD = Almocar.ALUNO_COD';
             $w .= ' ORDER BY ALUNO_NOME';
-            $alunos = $this->connection->read('Almocar', $f, $w);
+            $alunos = $this->connection->read('Almocar, Aluno', $f, $w);
         } else {
             $f = 'ALUNO_COD AS alu_c, ALUNO_NOME AS n, ALUNO_TURMA AS t, ALUNO_QRCODE AS q';
             $w = 'WHERE ALUNO_ATIVO = TRUE';

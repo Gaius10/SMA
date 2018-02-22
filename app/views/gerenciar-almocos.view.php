@@ -5,36 +5,44 @@
         <div id="title">
             <h1>Dados globais de</h1>
             <form method="get">
-                <select name="global">
-                    <option value="all" selected>  Todos Almoços</option>
-                    <option value="week">          Ultima semana</option>
-                    <option value="mounth">        Ultimo Mês</option>
+                <select name="global"  onchange="this.form.submit()">
+                    <option value="all" <?= $ver2 == 'all' ? 'selected' : '' ?>>
+                        Todos Almoços
+                    </option>
+                    <option value="week" <?= $ver2 == 'week' ? 'selected' : '' ?>>
+                        Ultima semana
+                    </option>
+                    <option value="mounth" <?= $ver2 == 'mounth' ? 'selected' : '' ?>>
+                        Ultimo Mês
+                    </option>
                 </select>
             </form>
         </div>
 
         <ul id="global_data">
-            <li>
-                <label>
-                    <i class="fa fa-utensils"></i>
-                    Almoços:
-                </label>
-                <span>1000000000000000000</span>
-            </li>
-            <li class="gray">
-                <label>
-                    <i class="fa fa-sync-alt"></i>
-                    Repetições:
-                </label>
-                <span>0</span>
-            </li>
-            <li>
-                <label>
-                    <i class="fa fa-times-circle"></i>
-                    Ocorrências:
-                </label>
-                <span>100</span>
-            </li>
+            <?php if ($this->infos): ?>
+                <li>
+                    <label>
+                        <i class="fa fa-utensils"></i>
+                        Almoços:
+                    </label>
+                    <span><?= (int) $this->infos['alm'] ?></span>
+                </li>
+                <li class="gray">
+                    <label>
+                        <i class="fa fa-sync-alt"></i>
+                        Repetições:
+                    </label>
+                    <span><?= (int) $this->infos['rep'] ?></span>
+                </li>
+                <li>
+                    <label>
+                        <i class="fa fa-times-circle"></i>
+                        Ocorrências:
+                    </label>
+                    <span><?= (int) $this->infos['oc'] ?></span>
+                </li>
+            <?php endif ?>
         </ul>
     </aside>
 
@@ -44,10 +52,16 @@
             <form method="get">
                 <label>
                     Você está vendo:
-                    <select name="view">
-                        <option value="all" selected>  Todos Almoços</option>
-                        <option value="week">          Ultima Semana</option>
-                        <option value="mounth">        Ultimo Mês</option>
+                    <select name="view" onchange="this.form.submit()">
+                        <option value="all" <?= $ver ?>>  
+                            Todos Almoços
+                        </option>
+                        <option value="week" <?= $ver == 'week' ? 'selected' : '' ?>>
+                            Ultima Semana
+                        </option>
+                        <option value="mounth" <?= $ver == 'mounth' ? 'selected' : '' ?>>
+                            Ultimo Mês
+                        </option>
                     </select>
                 </label>
             </form>
@@ -65,10 +79,21 @@
                     </li>
                 </strong>
 
-                <?php include VIEWS_PATH . '/_includes/testes/lista-almocos.php'; ?>
-            </ul>
-        </nav>
-    </section>
+                <?php if (!empty($this->almocos)): ?>
+                    <?php foreach ($this->almocos as $k => $a): ?>
+                        <li <?= $k % 2 == 1 ? ' class="gray"' : '' ?>
+                            onclick="window.location.href = '<?=HOME_URL?>/almoco/gerenciar/<?=$a['dat']?>'">
+                            <label class="data"><?=convertData($a['dat'])?></label>
+                            <label class="card"><?= $a['card'] ?></label>
+                            <label class="qtdA" title="Almoços"><?= (int) $a['qtd_alm'] ?></label>
+                            <label class="qtdR" title="Repetições"><?= (int) $a['rep'] ?></label>
+                            <label class="qtdO" title="Ocorrências"><?= (int) $a['qtd_oc'] ?></label>
+                        </li>
+                <?php endforeach ?>
+            <?php endif ?>
+        </ul>
+    </nav>
+</section>
 </div>
 
 <div id="modals">

@@ -22,7 +22,10 @@ class Autoload
 
         // echo "<hr /> <br /> <br />" . $file . "<br /> <br/>";
 
-        $this->archives = [ROOT_PATH."/app/_packages/".$file.".class.php"];
+        $this->archives = [
+            ROOT_PATH . '/app/_packages/' . $file . '.class.php',
+            ROOT_PATH . '/app/models/' . $file . '.php'
+        ];
         
         foreach ($this -> archives as $archive)
         {

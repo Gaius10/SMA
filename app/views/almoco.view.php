@@ -30,7 +30,9 @@
 
 
     <section id="lista_alunos">
-        <h1>Almoços - Hoje <span><?= date('d / m / Y') ?></span></h1>
+        <h1>
+            Refeições <?=  date('Y-m-d') == $this->infos['dat'] ? 'Hoje' : '' ?>
+            <span><?= convertData($this->infos['dat']) ?></span></h1>
         <ul>
             <li class="list-title">
                 <div class="aluno">
@@ -79,7 +81,7 @@
                 <?php endforeach ?>
             <?php else: ?>
                 <li>
-                    <label>Nenhum aluno almoçou</label>
+                    <label>Nenhum aluno comeu</label>
                 </li>
             <?php endif ?>
         </ul>

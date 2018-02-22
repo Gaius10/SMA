@@ -37,7 +37,7 @@ class Connection
 
     private function close()
     {
-        mysqli_close($this -> connection) or die(mysqli_error($this -> connection));
+        mysqli_close($this->connection) or die(mysqli_error($this->connection));
     }
 
 
@@ -46,12 +46,12 @@ class Connection
 
         //se a variavel NAO é um array coloque os caracteres de escape nela mesma
         if (!is_array($dados))
-            $dados = mysqli_real_escape_string($this -> connection, $dados);
+            $dados = mysqli_real_escape_string($this->connection, $dados);
         else
         {
             //se a variavel É um array faça o mesmo procedimento para cada elemento desse array
             foreach ($dados as $key => $value)
-                $dados[$key] = mysqli_real_escape_string($this -> connection, $value);
+                $dados[$key] = mysqli_real_escape_string($this->connection, $value);
         }
 
         return $dados;
@@ -60,7 +60,7 @@ class Connection
     private function execute($query)
     {
         //execute a query indicada e armazene na variavel result
-        $result = mysqli_query($this -> connection, $query) or die(mysqli_error($this -> connection));
+        $result = mysqli_query($this->connection, $query) or die(mysqli_error($this->connection));
 
 
         return $result;
@@ -82,7 +82,7 @@ class Connection
      */
     public function register($table, array $dados)
     {
-        $this -> connect();
+        $this->connect();
 
         $dados = $this -> escapeString($dados);
 
@@ -93,9 +93,9 @@ class Connection
         //Montar query na variavel
         $query = "INSERT INTO {$table}({$fields}) VALUES ({$dados}) ";
 
-        $this -> execute($query);
+        $this->execute($query);
 
-        $this -> close();
+        $this->close();
 
         return true;
     }
@@ -132,7 +132,7 @@ class Connection
             $dados = $dados[0];
         }
 
-        $this -> close();
+        $this->close();
         return $dados;
     }
 
@@ -173,7 +173,7 @@ class Connection
      */
     public function delete($table, $where = null, $limit = 1)
     {
-        $this -> connect();
+        $this->connect();
 
         if (!$where)
         {

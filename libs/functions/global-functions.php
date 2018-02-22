@@ -58,9 +58,6 @@ function convertData($data)
 	$data = explode("-", $data);
 
 	$data = array_reverse($data);
-	
-	foreach ($data as $key => $value)
-		$data[$key] = "<u>" . $value . "</u>";
 
 	$data = implode(" / ", $data);
 

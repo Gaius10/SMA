@@ -27,6 +27,9 @@
     }
 
     /* Lista de alunos */
+    section#lista_alunos ul li:first-child {
+        border-bottom: 0.05em black solid;
+    }
     section#lista_alunos ul li.nome-aluno {
         line-height: 1.8em;
         display: grid;
