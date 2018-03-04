@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Tempo de geração: 03/02/2018 às 23:31
+-- Tempo de geração: 04/03/2018 às 15:15
 -- Versão do servidor: 5.7.21-0ubuntu0.16.04.1
--- Versão do PHP: 7.0.22-0ubuntu0.16.04.1
+-- Versão do PHP: 7.0.25-0ubuntu0.16.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -28,10 +28,11 @@ USE `SMA`;
 -- Estrutura para tabela `Almocar`
 --
 
+DROP TABLE IF EXISTS `Almocar`;
 CREATE TABLE `Almocar` (
   `ALUNO_COD` int(11) NOT NULL,
   `ALMOCO_COD` int(11) NOT NULL,
-  `REPETICOES` int(11) NOT NULL
+  `REPETICOES` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -40,6 +41,7 @@ CREATE TABLE `Almocar` (
 -- Estrutura para tabela `Almoco`
 --
 
+DROP TABLE IF EXISTS `Almoco`;
 CREATE TABLE `Almoco` (
   `ALMOCO_COD` int(11) NOT NULL,
   `ALMOCO_CARDAPIO` varchar(255) NOT NULL,
@@ -52,16 +54,19 @@ CREATE TABLE `Almoco` (
 -- Estrutura para tabela `Aluno`
 --
 
+DROP TABLE IF EXISTS `Aluno`;
 CREATE TABLE `Aluno` (
   `ALUNO_COD` int(11) NOT NULL,
   `ALUNO_NOME` varchar(255) NOT NULL,
   `ALUNO_TURMA` char(2) NOT NULL,
-  `ALUNO_QRCODE` varchar(1000) DEFAULT NULL
+  `ALUNO_QRCODE` varchar(1000) DEFAULT NULL,
+  `ALUNO_ATIVO` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Gatilhos `Aluno`
 --
+DROP TRIGGER IF EXISTS `UpdateUltimoAluno`;
 DELIMITER $$
 CREATE TRIGGER `UpdateUltimoAluno` AFTER INSERT ON `Aluno` FOR EACH ROW UPDATE UltimoAluno set COD = NEW.ALUNO_COD
 $$
@@ -73,6 +78,7 @@ DELIMITER ;
 -- Estrutura para tabela `Autorizacao`
 --
 
+DROP TABLE IF EXISTS `Autorizacao`;
 CREATE TABLE `Autorizacao` (
   `AUTORIZACAO_EMAIL` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -83,6 +89,7 @@ CREATE TABLE `Autorizacao` (
 -- Estrutura para tabela `Monitor`
 --
 
+DROP TABLE IF EXISTS `Monitor`;
 CREATE TABLE `Monitor` (
   `MONITOR_COD` int(11) NOT NULL,
   `MONITOR_NOME` varchar(255) NOT NULL,
@@ -98,7 +105,9 @@ CREATE TABLE `Monitor` (
 --
 
 INSERT INTO `Monitor` (`MONITOR_COD`, `MONITOR_NOME`, `MONITOR_EMAIL`, `MONITOR_LOGIN`, `MONITOR_SENHA`, `USER_PERMISSIONS`, `SESSION_ID`) VALUES
-(1, 'root', 'caio.chaves@etec.sp.gov.br', 'root', '$2a$10$tEIwh2Rk0i0MKft3hWjUmeBvOhFlCtrBh4Lz/ux0KeT6MG4rHXv2.', 'a:1:{i:0;s:4:"root";}', '16seibs98k31723816e1du3d01');
+(1, 'root', 'root@root', 'root', '$2a$10$tEIwh2Rk0i0MKft3hWjUmeBvOhFlCtrBh4Lz/ux0KeT6MG4rHXv2.', 'a:1:{i:0;s:4:"root";}', '4kcj3gtho810b0ql9bnf28p325'),
+(2, 'Caio Corrêa Chaves', 'caio.chaves@etec.sp.gov.br', 'Gaius', '$2a$10$KvNgc6PRpdv4asui9ALlyelHE7b7waXjqh1Y1WfW2i.BWPI13zwa.', 'a:1:{i:0;s:3:"any";}', 'as7s880q224c0i3o38d3p3a2c7'),
+(3, 'Melissa ', 'naaoseiii08@gmail.com', 'Meel', '$2a$10$uU2nFORwcdNtEnH0LaRKAO11PHyYK8MV4lt.RThZZvbewOYBmNOXy', 'a:1:{i:0;s:3:"any";}', 'un9cn52qn5lhqfbrrtmsfefcj7');
 
 -- --------------------------------------------------------
 
@@ -106,14 +115,13 @@ INSERT INTO `Monitor` (`MONITOR_COD`, `MONITOR_NOME`, `MONITOR_EMAIL`, `MONITOR_
 -- Estrutura para tabela `Ocorrencia`
 --
 
+DROP TABLE IF EXISTS `Ocorrencia`;
 CREATE TABLE `Ocorrencia` (
-  `OCORRENCIA_COD` int(11) NOT NULL AUTO_INCREMENT,
+  `OCORRENCIA_COD` int(11) NOT NULL,
   `ALUNO_COD` int(11) NOT NULL,
   `ALUNO_OCORRENCIA` varchar(500) NOT NULL,
-
-  PRIMARY KEY (`OCORRENCIA_COD`, `ALUNO_COD`)
+  `OCORRENCIA_DATA` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 -- --------------------------------------------------------
 
@@ -121,16 +129,34 @@ CREATE TABLE `Ocorrencia` (
 -- Estrutura para tabela `UltimoAluno`
 --
 
+DROP TABLE IF EXISTS `UltimoAluno`;
 CREATE TABLE `UltimoAluno` (
   `COD` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Fazendo dump de dados para tabela `UltimoAluno`
---
+-- --------------------------------------------------------
 
-INSERT INTO `UltimoAluno` (`COD`) VALUES
-(7);
+--
+-- Estrutura stand-in para view `VIEW_Almoco`
+--
+DROP VIEW IF EXISTS `VIEW_Almoco`;
+CREATE TABLE `VIEW_Almoco` (
+`cod` int(11)
+,`card` varchar(255)
+,`dat` date
+,`rep` decimal(32,0)
+,`qtd_alm` bigint(21)
+,`qtd_oc` bigint(21)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para view `VIEW_Almoco`
+--
+DROP TABLE IF EXISTS `VIEW_Almoco`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `VIEW_Almoco`  AS  select `Almoco`.`ALMOCO_COD` AS `cod`,`Almoco`.`ALMOCO_CARDAPIO` AS `card`,`Almoco`.`ALMOCO_DATA` AS `dat`,(select sum(`Almocar`.`REPETICOES`) from `Almocar` where (`Almocar`.`ALMOCO_COD` = `Almoco`.`ALMOCO_COD`)) AS `rep`,(select count(0) from `Almocar` where (`Almocar`.`ALMOCO_COD` = `Almoco`.`ALMOCO_COD`)) AS `qtd_alm`,(select count(0) from `Ocorrencia` where (`Ocorrencia`.`OCORRENCIA_DATA` = `Almoco`.`ALMOCO_DATA`)) AS `qtd_oc` from `Almoco` ;
 
 --
 -- Índices de tabelas apagadas
@@ -170,8 +196,9 @@ ALTER TABLE `Monitor`
 --
 -- Índices de tabela `Ocorrencia`
 --
--- ALTER TABLE `Ocorrencia`
---   ADD PRIMARY KEY (`OCORRENCIA_COD`, `ALUNO_COD`);
+ALTER TABLE `Ocorrencia`
+  ADD PRIMARY KEY (`OCORRENCIA_COD`,`ALUNO_COD`),
+  ADD KEY `FK_OCORRENCIAxALUNO` (`ALUNO_COD`);
 
 --
 -- AUTO_INCREMENT de tabelas apagadas
@@ -181,17 +208,22 @@ ALTER TABLE `Monitor`
 -- AUTO_INCREMENT de tabela `Almoco`
 --
 ALTER TABLE `Almoco`
-  MODIFY `ALMOCO_COD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ALMOCO_COD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT de tabela `Aluno`
 --
 ALTER TABLE `Aluno`
-  MODIFY `ALUNO_COD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ALUNO_COD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT de tabela `Monitor`
 --
 ALTER TABLE `Monitor`
   MODIFY `MONITOR_COD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT de tabela `Ocorrencia`
+--
+ALTER TABLE `Ocorrencia`
+  MODIFY `OCORRENCIA_COD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Restrições para dumps de tabelas
 --
