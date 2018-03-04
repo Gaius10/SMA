@@ -93,8 +93,7 @@ class App
 
 
             // configurar os parametros
-            if (chk_array($path, 2))
-            {
+            if (chk_array($path, 2)) {
                 unset($path[0]);
                 unset($path[1]);
 
@@ -108,9 +107,7 @@ class App
             echo 'Params: <pre>';
             print_r( $this -> params );
             echo '</pre>';*/
-        }
-        else
-        {
+        } else {
             $this->controller = "almoco";
             $this->action = "index";
             $this->params = "";

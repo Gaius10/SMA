@@ -1,5 +1,5 @@
 <?php
-use mvc\Coneection;
+use mvc\Connection;
 namespace mvc;
 /**
 * UserLogin - Classe para gerenciamento dos dados de login dos usuarios
@@ -41,7 +41,7 @@ class UserLogin
 		}
 
 		/* Logout se os dados do usuário não forem encontrados */
-		if (!$userdata or empty($userdata) or !is_array($userdata))
+		if (empty($userdata) or !is_array($userdata))
 		{
 			$this->loginError = null;
 			$this->logout();
@@ -64,8 +64,7 @@ class UserLogin
 		$w = "WHERE MONITOR_LOGIN = '{$login}'";
 		$user = $connection->read("Monitor", "*", $w);
 
-		if (!$user)
-		{
+		if (!$user) {
 			$this->loginError = "Usuário não encontrado.";
 			$this->logout();
 			return;
@@ -77,8 +76,7 @@ class UserLogin
 			$pass === $user['MONITOR_SENHA']
 		) {
 			// Em caso de já estar logado, verificar id da sessao
-			if (session_id() != $user['SESSION_ID'] and !$post)
-			{
+			if (session_id() != $user['SESSION_ID'] and !$post) {
 				$this->loginError = "ID de sessão incorreto.";
 				$this->logout();
 				return;
@@ -86,8 +84,7 @@ class UserLogin
 
 			// Em caso de estar logando, configurar id da sessao e dados do
 			// usuário em $_SESSION
-			if ($post)
-			{
+			if ($post) {
 				session_regenerate_id();
 				$_SESSION['userdata'] = $user;
 				$_SESSION['userdata']['SESSION_ID'] = session_id();
@@ -103,16 +100,13 @@ class UserLogin
 			$this->loggedIn = true;
 			$this->userdata = $_SESSION['userdata'];
 
-			if (isset($_SESSION['gotoUrl']))
-			{
+			if (isset($_SESSION['gotoUrl'])) {
 				$url = urldecode($_SESSION['gotoUrl']);
 				unset($_SESSION['gotoUrl']);
 				$this->gotoPage(HOME_URL.$url);
 			}
 			return;
-		}
-		else
-		{
+		} else {
 			$this->loginError = "Senha incorreta.";
 			$this->logout();
 			return;
