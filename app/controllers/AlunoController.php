@@ -78,21 +78,22 @@ class AlunoController extends MainController
             $this->title = "SMA - Cadastrar Aluno";
             $pag = "new_aluno";
             $styleRequires = [
-                "menu",
-                "cadastrar-aluno",
-                "modal",
-                "footer",
+                'menu',
+                'cadastrar-aluno',
+                'modal',
+                'footer',
                 /*modais*/
-                "modal/meus-dados",
-                "modal/iniciar-almoco",
-                "modal/novo-monitor",
-                "modal/confirmacao"
+                'modal/meus-dados',
+                'modal/iniciar-almoco',
+                'modal/novo-monitor',
+                'modal/confirmacao',
+                'modal/trocar-adm'
             ];
 
-            include VIEWS_PATH . "/_includes/header.php";
-            include VIEWS_PATH . "/_includes/menu.php";
-            include VIEWS_PATH . "/cadastrar-aluno.view.php";
-            include VIEWS_PATH . "/_includes/footer.php";
+            include VIEWS_PATH . '/_includes/header.php';
+            include VIEWS_PATH . '/_includes/menu.php';
+            include VIEWS_PATH . '/cadastrar-aluno.view.php';
+            include VIEWS_PATH . '/_includes/footer.php';
         }
     }
 
@@ -148,17 +149,18 @@ class AlunoController extends MainController
             /* Mostrar conteúdo ao usuário */
             $pag = "ver_al";
             $styleRequires = [
-                "modal",
-                "menu",
-                "cadastrados",
-                "footer",
+                'modal',
+                'menu',
+                'cadastrados',
+                'footer',
                 /* modals */
-                "modal/meus-dados",
-                "modal/iniciar-almoco",
-                "modal/novo-monitor",
-                "modal/ocorrencia",
-                "modal/confirmacao",
-                "modal/filtro"
+                'modal/meus-dados',
+                'modal/iniciar-almoco',
+                'modal/novo-monitor',
+                'modal/ocorrencia',
+                'modal/confirmacao',
+                'modal/filtro',
+                'modal/trocar-adm'
             ];
 
             include VIEWS_PATH . "/_includes/header.php";
@@ -322,17 +324,18 @@ class AlunoController extends MainController
             $this->title = $this->model->nome . " - " . $this->model->turma;
 
             $styleRequires = array(
-                "menu",
-                "gerenciar-aluno",
-                "modal",
-                "footer",
+                'menu',
+                'gerenciar-aluno',
+                'modal',
+                'footer',
                 // modais 
-                "modal/encomenda",
-                "modal/iniciar-almoco",
-                "modal/ocorrencia",
-                "modal/confirmacao",
-                "modal/meus-dados",
-                "modal/novo-monitor"
+                'modal/encomenda',
+                'modal/iniciar-almoco',
+                'modal/ocorrencia',
+                'modal/confirmacao',
+                'modal/meus-dados',
+                'modal/novo-monitor',
+                'modal/trocar-adm'
             );
 
             include VIEWS_PATH . '/_includes/header.php';

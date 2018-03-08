@@ -28,13 +28,14 @@ class LoginController extends MainController
             $this->title = "SMA - Login";
 
             $styleRequires = [
-                "login",
-                "menu-propagandas", 
-                "footer",
-                "modal",
-                "modal/cadastre-se",
-                "modal/suporte",
-                "modal/encomenda"
+                'login',
+                'menu-propagandas', 
+                'footer',
+                'modal',
+                'modal/cadastre-se',
+                'modal/suporte',
+                'modal/encomenda',
+                'modal/trocar-adm'
             ];
 
             include VIEWS_PATH . "/_includes/header.php";

@@ -37,36 +37,36 @@ class AcoesModel extends MainModel
             !isset($dados['rootPass'])
         ) {
             throw new InvalidArgumentException("Dados informados de forma invalida");
-        return false;
-    } else {
-            // Confirmar senha do root
-        $f = "MONITOR_SENHA AS pass";
-        $w = "WHERE MONITOR_LOGIN = 'root'";
-        $passConfirm = $this->connection->read("Monitor", $f, $w);
-        $passConfirm = $passConfirm['pass'];
-
-        if (crypt($dados['rootPass'], $passConfirm) != $passConfirm) {
-            $this->error = "Senha inválida.";
             return false;
         } else {
-                // CASO A SENHA ESTEJA CORRETA
-                // Confirmar email
-            if ($dados['email'] != $dados['emailConf']) {
-                $this->error = "Emails diferentes";
+                // Confirmar senha do root
+            $f = "MONITOR_SENHA AS pass";
+            $w = "WHERE MONITOR_LOGIN = 'root'";
+            $passConfirm = $this->connection->read("Monitor", $f, $w);
+            $passConfirm = $passConfirm['pass'];
+
+            if (crypt($dados['rootPass'], $passConfirm) != $passConfirm) {
+                $this->error = "Senha inválida.";
                 return false;
             } else {
-                    // CASO EMAILS ESTEJAM CORRETOS
-                $register = ["AUTORIZACAO_EMAIL" => $dados['email']];
-                if ($this->connection->register('Autorizacao', $register)) {
-                    return true;
-                } else {
-                    $this->error = "Um erro ocorreu durante o registro. Contate o suporte.";
+                    // CASO A SENHA ESTEJA CORRETA
+                    // Confirmar email
+                if ($dados['email'] != $dados['emailConf']) {
+                    $this->error = "Emails diferentes";
                     return false;
+                } else {
+                        // CASO EMAILS ESTEJAM CORRETOS
+                    $register = ["AUTORIZACAO_EMAIL" => $dados['email']];
+                    if ($this->connection->register('Autorizacao', $register)) {
+                        return true;
+                    } else {
+                        $this->error = "Um erro ocorreu durante o registro. Contate o suporte.";
+                        return false;
+                    }
                 }
             }
         }
     }
-}
 
     /**
      * function alterarDados($dados, $pass)
@@ -112,6 +112,51 @@ class AcoesModel extends MainModel
                 $this->error = $validar->error;
                 return false;
             }
+        }
+    }
+
+    /**
+     * function alterarRoot($atPass, $nPass, $nPassConf)
+     * 
+     * Altera senha do monitor root do sistema
+     * 
+     * @param string $atPass    Senha atual do monitor root
+     * @param string $nPass     Nova senha do monitor root
+     * @param string $nPAssConf Confirmação da nova senha do monitor root
+     * 
+     * @return bool
+     * @access public
+     */
+    public function alterarRoot(string $atPass, string $nPass, string $nPassConf) : bool
+    {
+        // Testar validade da senha atual
+        if (!$this->testPass($atPass, $_SESSION['userdata']['MONITOR_SENHA'])) {
+
+            $this->error = 'Senha incorreta!';
+            return false;
+
+        } else {
+
+            if ($nPass != $nPassConf) {
+                $this->error = 'Confirmação incorreta da nova senha.';
+                return false;
+            } else {
+
+                $strSalt = "$2a$10$" . randString(22) . "$";
+                $monitorCod = $_SESSION['userdata']['MONITOR_COD'];
+                $w = 'WHERE MONITOR_COD = \'' . $monitorCod . '\'';
+
+                $dados = array(
+                    'MONITOR_SENHA' => crypt($nPass, $strSalt)
+                );
+                if ($this->connection->update('Monitor', $dados, $w)) {
+                    return true;
+                } else {
+                    $this->error = 'Erro durante o registro';
+                    return false;
+                }
+            }
+
         }
     }
 }

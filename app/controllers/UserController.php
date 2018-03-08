@@ -162,5 +162,61 @@ class UserController extends MainController
                 }
             }
         }
+    } // alterarDados()
+
+
+    /**
+     * function trocarAdmin()
+     * 
+     * Muda senha do monitor root
+     * 
+     * @return void
+     * @access public
+     */
+    public function trocarAdmin()
+    {
+        if (!$this->loggedIn) {
+            // Validar se usuário está logado
+            header('Location: ' . HOME_URL);
+        } else {
+            // Checar se dados foram enviados
+            if (empty($_POST['atualPass']) ||
+                empty($_POST['newPass']) ||
+                empty($_POST['newPassConfirm'])
+            ) {
+                $red = explode('?', $_SERVER['HTTP_REFERER']);
+                $red = $red[0];
+                $msg = 'Preencha todos os campos';
+                header('Location: ' . $red . '?msg=' . $msg);
+            } else {
+
+                // Alterar senha via model
+                $this->model = $this->loadModel('usuario/Acoes');
+                if (
+                    $this->model->alterarRoot (
+                        $_POST['atualPass'],
+                        $_POST['newPass'],
+                        $_POST['newPassConfirm']
+                    )
+                ) {
+
+                    // Mostrar modal de sucesso e fazer logout
+                    $this->title = 'Senha alterada';
+                    $styleRequires = array(
+                        'modal',
+                        'modal/msg' 
+                    );
+                    include VIEWS_PATH . '/_includes/header.php';
+                    include MODAL_PATH . '/_msgImp.modal.php';
+                    echo '</div></body></html>';
+
+                } else {
+                    // Voltar à ultima página
+                    $red = explode('?', $_SERVER['HTTP_REFERER']);
+                    $msg = $this->model->error;
+                    header('Location: ' . $red[0] . '?msg=' . $msg);
+                }
+            }
+        }
     }
 }

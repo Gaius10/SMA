@@ -54,5 +54,6 @@
     <?php include MODAL_PATH . '/cadastre-se.modal.php'; ?>
     <?php include MODAL_PATH . '/encomenda.modal.php'; ?>
 
+
     <?php if (isset($_GET['msg'])) include MODAL_PATH . '/msg.modal.php'; ?>
 </div>

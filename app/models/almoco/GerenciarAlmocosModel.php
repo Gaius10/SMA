@@ -70,6 +70,7 @@ class GerenciarAlmocosModel extends MainModel
 
         // Buscar dados contidos na view `VIEW_Almoco`
         $this->almocos = $this->connection->read('VIEW_Almoco', '*', $w);
+        $this->almocos = $this->formatQueryArray($this->almocos);
 
         // Buscar informações globais
         $f = 'SUM(qtd_alm) as alm, SUM(rep) as rep, SUM(qtd_oc) as oc';

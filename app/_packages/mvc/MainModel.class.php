@@ -67,8 +67,14 @@ class MainModel
 	 * function testPass($pass)
 	 * 
 	 * Testa a senha do usuario de sessao atual
+	 * 
+	 * @param string $pass     Senha a ser conferida
+	 * @param string $userPass Senha original criptografada
+	 * 
+	 * @return bool
+	 * @access public
 	 */
-	public function testPass(string $pass, string $userPass)
+	public function testPass(string $pass, string $userPass) : bool
 	{
 		return (crypt($pass, $userPass) === $userPass) ? true : false;
 	}

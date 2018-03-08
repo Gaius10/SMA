@@ -98,6 +98,7 @@
     <?php include MODAL_PATH . '/iniciar-almoco.modal.php'; ?>
     <?php include MODAL_PATH . '/novo-monitor.modal.php'; ?>
     <?php include MODAL_PATH . '/meus-dados.modal.php'; ?>
+    <?php include MODAL_PATH . '/trocar-adm.modal.php'; ?>
 
     <?php if (isset($_GET['msg'])) include MODAL_PATH . '/msg.modal.php'; ?>
 </div>

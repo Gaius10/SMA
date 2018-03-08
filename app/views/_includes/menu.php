@@ -36,25 +36,29 @@
 			<section id="opcoes">
 				<h1>Opções</h1>
 				<ul>
-					<li onclick="openModal('meus_dados')">
+					<li onclick="openModal('meus_dados')" title="Ver Meus Dados">
 						<i class="fa fa-user"></i>
 						<span>Ver Meus Dados</span>
 					</li>
-					<li onclick="openModal('iniciar_almoco')">
+					<li onclick="openModal('iniciar_almoco')" title="Iniciar Almoço">
 						<i class="fa fa-plus-circle"></i>
 						<span>Iniciar Almoço</span>
 					</li>
 					<?php if (in_array('root', $this->userdata['USER_PERMISSIONS'])): ?>
-					<li onclick="openModal('form_autorizar')">
-						<i class="fa fa-user-plus"></i>
-						<span>Autorizar Monitor</span>
-					</li>
+						<li onclick="openModal('form_autorizar')" title="Autorizar Monitor">
+							<i class="fa fa-user-plus"></i>
+							<span>Autorizar Monitor</span>
+						</li>
+						<li onclick="openModal('trocar_adm')" title="Mudar senha do administrador">
+							<i class="fa fa-key"></i>
+							<span>Mudar Administrador</span>
+						</li>
 					<?php endif ?>
 					<label for="opnMenu">
 						<i class="fa fa-arrow-left"></i>
 						<span>Fechar</span>
 					</label>
-					<li onclick="window.location.href = '<?=HOME_URL?>/user/quit'">
+					<li onclick="window.location.href = '<?=HOME_URL?>/user/quit'" title="Sair">
 						<i class="fa fa-power-off"></i>
 						<span>Sair</span>
 					</li>

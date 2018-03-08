@@ -79,26 +79,27 @@ class AlmocoController extends MainController
             }
 
             // Mostrar dados ao usuário
-            $this->title = "Bem vindo ao SMA";
+            $this->title = 'Bem vindo ao SMA';
             $pag = "";
             $styleRequires = [
-                "menu",
-                "almoco",
-                "modal",
-                "footer",
+                'menu',
+                'almoco',
+                'modal',
+                'footer',
                 // modals
-                "modal/encomenda",
-                "modal/novo-monitor",
-                "modal/iniciar-almoco",
-                "modal/meus-dados",
-                "modal/confirmacao",
-                "modal/ocorrencia"
+                'modal/encomenda',
+                'modal/novo-monitor',
+                'modal/iniciar-almoco',
+                'modal/meus-dados',
+                'modal/confirmacao',
+                'modal/ocorrencia',
+                'modal/trocar-adm'
             ];
 
-            include VIEWS_PATH . "/_includes/header.php";
-            include VIEWS_PATH . "/_includes/menu.php";
-            include VIEWS_PATH . "/almoco.view.php";
-            include VIEWS_PATH . "/_includes/footer.php";
+            include VIEWS_PATH . '/_includes/header.php';
+            include VIEWS_PATH . '/_includes/menu.php';
+            include VIEWS_PATH . '/almoco.view.php';
+            include VIEWS_PATH . '/_includes/footer.php';
         }
     }
 
@@ -149,7 +150,8 @@ class AlmocoController extends MainController
                     'modal/iniciar-almoco',
                     'modal/meus-dados',
                     'modal/confirmacao',
-                    'modal/ocorrencia'
+                    'modal/ocorrencia',
+                    'modal/trocar-adm'
                 ];
 
                 include VIEWS_PATH . "/_includes/header.php";

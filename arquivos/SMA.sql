@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Tempo de geração: 04/03/2018 às 15:15
+-- Tempo de geração: 05/03/2018 às 17:14
 -- Versão do servidor: 5.7.21-0ubuntu0.16.04.1
 -- Versão do PHP: 7.0.25-0ubuntu0.16.04.1
 
@@ -28,7 +28,6 @@ USE `SMA`;
 -- Estrutura para tabela `Almocar`
 --
 
-DROP TABLE IF EXISTS `Almocar`;
 CREATE TABLE `Almocar` (
   `ALUNO_COD` int(11) NOT NULL,
   `ALMOCO_COD` int(11) NOT NULL,
@@ -41,7 +40,6 @@ CREATE TABLE `Almocar` (
 -- Estrutura para tabela `Almoco`
 --
 
-DROP TABLE IF EXISTS `Almoco`;
 CREATE TABLE `Almoco` (
   `ALMOCO_COD` int(11) NOT NULL,
   `ALMOCO_CARDAPIO` varchar(255) NOT NULL,
@@ -54,7 +52,6 @@ CREATE TABLE `Almoco` (
 -- Estrutura para tabela `Aluno`
 --
 
-DROP TABLE IF EXISTS `Aluno`;
 CREATE TABLE `Aluno` (
   `ALUNO_COD` int(11) NOT NULL,
   `ALUNO_NOME` varchar(255) NOT NULL,
@@ -66,7 +63,6 @@ CREATE TABLE `Aluno` (
 --
 -- Gatilhos `Aluno`
 --
-DROP TRIGGER IF EXISTS `UpdateUltimoAluno`;
 DELIMITER $$
 CREATE TRIGGER `UpdateUltimoAluno` AFTER INSERT ON `Aluno` FOR EACH ROW UPDATE UltimoAluno set COD = NEW.ALUNO_COD
 $$
@@ -78,7 +74,6 @@ DELIMITER ;
 -- Estrutura para tabela `Autorizacao`
 --
 
-DROP TABLE IF EXISTS `Autorizacao`;
 CREATE TABLE `Autorizacao` (
   `AUTORIZACAO_EMAIL` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -89,7 +84,6 @@ CREATE TABLE `Autorizacao` (
 -- Estrutura para tabela `Monitor`
 --
 
-DROP TABLE IF EXISTS `Monitor`;
 CREATE TABLE `Monitor` (
   `MONITOR_COD` int(11) NOT NULL,
   `MONITOR_NOME` varchar(255) NOT NULL,
@@ -105,8 +99,8 @@ CREATE TABLE `Monitor` (
 --
 
 INSERT INTO `Monitor` (`MONITOR_COD`, `MONITOR_NOME`, `MONITOR_EMAIL`, `MONITOR_LOGIN`, `MONITOR_SENHA`, `USER_PERMISSIONS`, `SESSION_ID`) VALUES
-(1, 'root', 'root@root', 'root', '$2a$10$tEIwh2Rk0i0MKft3hWjUmeBvOhFlCtrBh4Lz/ux0KeT6MG4rHXv2.', 'a:1:{i:0;s:4:"root";}', '4kcj3gtho810b0ql9bnf28p325'),
-(2, 'Caio Corrêa Chaves', 'caio.chaves@etec.sp.gov.br', 'Gaius', '$2a$10$KvNgc6PRpdv4asui9ALlyelHE7b7waXjqh1Y1WfW2i.BWPI13zwa.', 'a:1:{i:0;s:3:"any";}', 'as7s880q224c0i3o38d3p3a2c7'),
+(1, 'root', 'root@root', 'root', '$2a$10$tEIwh2Rk0i0MKft3hWjUmeBvOhFlCtrBh4Lz/ux0KeT6MG4rHXv2.', 'a:1:{i:0;s:4:"root";}', 'cfubncsgbqj31s6i21do1pjpi6'),
+(2, 'Caio Corrêa Chaves', 'caio.chaves@etec.sp.gov.br', 'Gaius', '$2a$10$KvNgc6PRpdv4asui9ALlyelHE7b7waXjqh1Y1WfW2i.BWPI13zwa.', 'a:1:{i:0;s:3:"any";}', 'pbj4agadt81f3u20oio817arf0'),
 (3, 'Melissa ', 'naaoseiii08@gmail.com', 'Meel', '$2a$10$uU2nFORwcdNtEnH0LaRKAO11PHyYK8MV4lt.RThZZvbewOYBmNOXy', 'a:1:{i:0;s:3:"any";}', 'un9cn52qn5lhqfbrrtmsfefcj7');
 
 -- --------------------------------------------------------
@@ -115,7 +109,6 @@ INSERT INTO `Monitor` (`MONITOR_COD`, `MONITOR_NOME`, `MONITOR_EMAIL`, `MONITOR_
 -- Estrutura para tabela `Ocorrencia`
 --
 
-DROP TABLE IF EXISTS `Ocorrencia`;
 CREATE TABLE `Ocorrencia` (
   `OCORRENCIA_COD` int(11) NOT NULL,
   `ALUNO_COD` int(11) NOT NULL,
@@ -129,7 +122,6 @@ CREATE TABLE `Ocorrencia` (
 -- Estrutura para tabela `UltimoAluno`
 --
 
-DROP TABLE IF EXISTS `UltimoAluno`;
 CREATE TABLE `UltimoAluno` (
   `COD` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -139,7 +131,6 @@ CREATE TABLE `UltimoAluno` (
 --
 -- Estrutura stand-in para view `VIEW_Almoco`
 --
-DROP VIEW IF EXISTS `VIEW_Almoco`;
 CREATE TABLE `VIEW_Almoco` (
 `cod` int(11)
 ,`card` varchar(255)

@@ -1,0 +1,28 @@
+@media only screen and (min-width: 0)
+{
+    section#trocar_adm form {
+        width: 95%;
+        margin: 0 auto;
+    }
+    /* Campos do formulario */
+    section#trocar_adm form label {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    section#trocar_adm form label input {
+        line-height: 1.5em;
+        font-size: inherit;
+    }
+
+    /* Botoes do formulario */
+    section#trocar_adm form div.buttons {
+        margin-top: 1em;
+    }
+    section#trocar_adm form div.buttons label.btn {
+        height: 3em;
+    }
+
+    section#trocar_adm form div.buttons label.btn + label.btn {
+        margin-top: 0.15em;
+    }
+}

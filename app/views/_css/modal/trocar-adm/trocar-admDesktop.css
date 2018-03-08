@@ -1,0 +1,6 @@
+@media only screen and (min-width: 1024px)
+{
+    section#trocar_adm form label span {
+        line-height: 1.5em;
+    }
+}
