@@ -13,10 +13,42 @@
                 <ul class="collapsible popout">
 
                     <li>
-                        <div class="collapsible-header row">
-                            <span class="col s9 left-align">Aluno</span>
-                            <span class="col s3"><i class="fas fa-book red-text text-darken-3"></i></span>
-                        </div>
+                        <form method="post">
+                            <div class="row">
+                                <div class="input-field col s9 l9">
+                                    <input type="search" name="aluno">
+                                    <label>Aluno</label>
+                                </div>
+                                <div class="input-field col s3 l3">
+                                    <div class="row">
+                                        <select name="turma" class="col s8" onchange="this.form.submit()">
+                                            <option value="" disabled selected><i class="fas fa-book left"></i></option>
+                                            <option value="1A">1A</option>
+                                            <option value="2A">2A</option>
+                                            <option value="3A">3A</option>
+                                            <option value="1B">1B</option>
+                                            <option value="2B">2B</option>
+                                            <option value="3B">3B</option>
+                                            <option value="1C">1C</option>
+                                            <option value="2C">2C</option>
+                                            <option value="3C">3C</option>
+                                            <option value="1D">1D</option>
+                                            <option value="2D">2D</option>
+                                            <option value="3D">3D</option>
+                                            <option value="1E">1E</option>
+                                            <option value="2E">2E</option>
+                                            <option value="3E">3E</option>
+                                            <option value="1F">1F</option>
+                                            <option value="2F">2F</option>
+                                            <option value="3F">3F</option>
+                                        </select>
+                                        <button class="btn col s4 red darken-4 hide-on-med-and-down" style="margin-top: 0.5em;">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </li>
                     
 

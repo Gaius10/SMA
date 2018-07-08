@@ -1,10 +1,10 @@
 <?php
 use mvc\MainModel;
 /**
-* AlmocoModel - Modelo com acoes relacionadas aos almocos
-* 
-* @author Caio Corrêa Chaves
-*/
+ * AlmocoModel - Modelo com acoes relacionadas aos almocos
+ * 
+ * @author Caio Corrêa Chaves
+ */
 class AlmocoModel extends MainModel
 {
     /**
@@ -174,6 +174,57 @@ class AlmocoModel extends MainModel
                 $f = 'ALUNO_NOME AS n, ALUNO_TURMA AS t, ALUNO_QRCODE AS q';
                 $alunos[$key]['info'] = $this->connection->read('Aluno', $f, $w);
             }
+
+            // Obter ocorrencias
+            $f = 'OCORRENCIA_DATA AS dat, ALUNO_OCORRENCIA AS oc';
+
+            $alunos[$key]['oc'] = $this->connection->read('Ocorrencia', $f, $w);
+
+            if ($alunos[$key]['oc'] != false) {
+                $alunos[$key]['oc'] = makeDataArray($alunos[$key]['oc']);
+                $alunos[$key]['oc']['qtd'] = count($alunos[$key]['oc']);
+            }
+        }
+
+        return $alunos;
+    }
+
+    /**
+     * function filterAlunos($filters)
+     * 
+     * Carrega dados dos alunos que almocaram no dia em questao, aplicando
+     * filtros
+     * 
+     * @param array $filters Filtros aplicados
+     * 
+     * @access public
+     * @return array|void
+     */
+    public function filterAlunos(array $filters)
+    {
+        // Obter dados do almoco
+        $w = "WHERE Aluno.ALUNO_NOME LIKE '%{$filters['nome']}%' AND";
+        $w .= " Aluno.ALUNO_TURMA LIKE '%{$filters['turma']}%'";
+        $w .= ' ORDER BY ALUNO_NOME';
+
+        $alunos = $this->connection->read('Aluno', '*', $w);
+
+        // Se nao existir nenhum aluno, retornar vazio
+        if (empty($alunos)) {
+            return;
+        }
+
+        // Cada aluno tera um índice no array, mesmo que seja só um aluno
+        $alunos = makeDataArray($alunos);
+
+
+        // Obter outros dados
+        foreach ($alunos as $key => $aluno) {
+            // Obter dados do aluno (Se $codAlmoco foi enviado)
+            $w = 'WHERE ALUNO_COD = \'' . $aluno['ALUNO_COD'] . '\'';
+            $f = 'ALUNO_NOME AS n, ALUNO_TURMA AS t, ALUNO_QRCODE AS q';
+            $alunos[$key] = $this->connection->read('Aluno', $f, $w);
+            $alunos[$key]['alu_c'] = $aluno['ALUNO_COD'];
 
             // Obter ocorrencias
             $f = 'OCORRENCIA_DATA AS dat, ALUNO_OCORRENCIA AS oc';

@@ -90,13 +90,10 @@ class AlunoController extends MainController
      * 
      * Função que mostrará os alunos cadastrados no sistema
      * 
-     * @param array $filter Indica se serão aplicados ou nao os filtros na busca 
-     *                      de alunos. Deverá conter um elemento do tipo bool
-     * 
      * @access public
      * @return void
      */
-    public function cadastrados($filter)
+    public function cadastrados()
     {
         if (!$this->loggedIn) {
             $this->logout(true);
@@ -108,20 +105,25 @@ class AlunoController extends MainController
             }
 
             // Verificar se filtros foram solicitados
-            if ($filter == true and
-                isset($_POST['alunoNome']) and
-                isset($_POST['alunoTurma'])
+            $filter = null;
+            if (isset($_POST['aluno']) or
+                isset($_POST['turma'])
             ) {
                 $filters = array(
-                    'nome' => $_POST['alunoNome'], 
-                    'turma' => $_POST['alunoTurma']
+                    'nome' => isset($_POST['aluno']) ? $_POST['aluno'] : '', 
+                    'turma' => isset($_POST['turma']) ? $_POST['turma'] : ''
                 );
             } else {
-                $filters = array();
+                $filters = null;
             }
 
             /* Carregar alunos cadastrados */
-            $this->alunos = ($this->loadModel('almoco/Almoco'))->loadAlunos();
+            $this->alunos = $this->loadModel('almoco/Almoco');
+            if (!$filters) {
+                $this->alunos = $this->alunos->loadAlunos();
+            } else {
+                $this->alunos = $this->alunos->filterAlunos($filters);
+            }
 
             if (is_array($this->alunos)) {
                 $this->model = $this->loadModel('aluno/GerenciarAluno');
@@ -139,6 +141,7 @@ class AlunoController extends MainController
 
             /* Mostrar conteúdo ao usuário */
             $pag = "ver_al";
+            $this->title = 'Alunos Cadastrados';
             
             include VIEWS_PATH . "/_includes/header.php";
             include VIEWS_PATH . "/_includes/menu.php";
