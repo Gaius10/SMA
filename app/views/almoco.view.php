@@ -1,104 +1,82 @@
-<?php if (!defined('ROOT_PATH')) exit("Erro Interno"); ?>
-<div id="almoco">
-    <aside id="status_almoco">
-        <h1>Informações</h1>
-        <?php if (!empty($this->alunos)): ?>
-            <ul>
-                <li>
-                    <label>Cardapio:</label>
-                    <span title="<?=$this->infos['card']?>"><?=$this->infos['card']?></span>
-                </li>
-                <li>
-                    <label>Almoços: </label>
-                    <span><?=(int)$this->infos['info']['alm']?></span>
-                </li>
-                <li>
-                    <label>Repetições: </label>
-                    <span><?=(int)$this->infos['info']['rep']?></span>
-                </li>
-                <li>
-                    <label>Ocorrências: </label>
-                    <span><?=(int)$this->infos['info']['oc']?></span>
-                </li>
-            </ul>
-        <?php else: ?>
-            <label style="display: block; text-align: center; margin-top: 1em">
-                Almoço não iniciado
-            </label>
-        <?php endif ?>
+<?php if (!defined('ROOT_PATH')) exit(); ?>
+<main class="container row">
+
+    <style type="text/css">
+        @media only screen and (min-width: 993px) {
+            aside#infos { left: -0.5em }
+            section#alunos { right: -0.5em }
+        }
+    </style>
+
+    <aside class="card col s12 l4" id="infos">
+        <div class="card-content">
+            <h5 class="card-title center">Informações</h5>
+
+            <?php if (!empty($this->alunos)): ?>
+            <table>
+                <thead>
+                    <tr>
+                        <td>Data</td>
+                        <td><?= convertData($this->infos['dat']) ?></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><p>Cardápio</p></td>
+                        <td><p><?=$this->infos['card']?></p></td>
+                    </tr>
+                    <tr>
+                        <td><p>Almoços</p></td>
+                        <td><p><?=(int)$this->infos['info']['alm']?></p></td>
+                    </tr>
+                    <tr>
+                        <td><p>Repetições</p></td>
+                        <td><p><?=(int)$this->infos['info']['rep']?></p></td>
+                    </tr>
+                    <tr>
+                        <td><p>Ocorrências</p></td>
+                        <td><p><?=(int)$this->infos['info']['oc']?></p></td>
+                    </tr>
+                </tbody>
+            </table>
+            <?php else: ?>
+            <h5 class="flow-text">Almoço não iniciado</h5>
+            <?php endif ?>
+        </div>
     </aside>
 
 
-    <section id="lista_alunos">
-        <h1>
-            Refeições <?=  date('Y-m-d') == $this->infos['dat'] ? 'Hoje' : '' ?>
-            <span><?= convertData($this->infos['dat']) ?></span></h1>
-        <ul>
-            <li class="list-title">
-                <div class="aluno">
-                    <label title="Aluno"><strong>Aluno</strong></label>
-                    <label title="Turma"><i class="fa fa-book"></i></label>
-                </div>
-                
-                <div class="dados dados-title">
-                    <label title="Repetições"><i class="fa fa-sync-alt"></i></label>
-                    <label title="Ocorrências"><i class="fa fa-times-circle"></i></label>
-                </div>
-            </li>
 
-            <?php if (!empty($this->alunos)): ?>
+    <section class="card col s12 l8" id="alunos" style="min-height: 450px">
+        <div class="card-content">
+            <h5 class="card-title center">Alunos que almoçaram</h5>
+
+            <div class="collection">
+                <?php if (!empty($this->alunos)): ?>
+
                 <?php foreach ($this->alunos as $k => $a): ?>
-                    <li onclick="verDados(<?=$a['alu_c']?>)">
-                        <div class="aluno">
-                            <label title="<?=$a['info']['n']?>"><?=$a['info']['n']?></label>
-                            <label title="<?=$a['info']['t']?>"><?=$a['info']['t']?></label>
-                            <label title="Dados" class="only-mob">
-                                <i id="c<?=$a['alu_c']?>" class="fa fa-caret-down"></i>
-                            </label>
-                        </div>
 
-                        <div class="dados" id="dados_aluno<?=$a['alu_c']?>">
-                            <label title="Repetições">
-                                <span class="only-mob"><i class="fa fa-sync-alt"></i></span>
-                                <?=$a['rep']?>
-                            </label>
-                            <label title="Ocorrências">
-                                <span class="only-mob"><i class="fa fa-times-circle"></i></span>
-                                <?=(int)$a['oc']['qtd']?>
-                            </label>
-                            <button class="btnOcorrencia" 
-                                onclick="novaOcorrencia(<?=$a['alu_c']?>, '<?=$a['info']['n']?>')">
-                                <i class="fa fa-plus" style="color: red;"></i>
-                                Ocorrência
-                            </button>
-                        </div>
-                        <script>
-                            if (screen.width < 1024) { 
-                                document.getElementById('dados_aluno<?=$a['alu_c']?>').style.display = "none"; 
-                            }
-                        </script>
-                    </li>
+                <a href="#!" class="collection-item row">
+                    <div class="col s8 l10 black-text">
+                        <p class="flow-text truncate tooltipped" data-position="top" data-tooltip="<?=$a['info']['n']?>"><?=$a['info']['n']?></p>
+                        <span class="flow-text right">
+                            <i class="fas fa-sync-alt blue-text text-darken-4"></i> <?= $a['rep'] ?>
+                            <i class="fas fa-times-circle red-text text-darken-4" style="margin-left: 1em"></i> <?= (int) $a['oc']['qtd'] ?>
+                        </span>
+                    </div>
+                    <div class="secondary-content col s4 l2 black-text">
+                        <span><?=$a['info']['t']?></span> <br >
+                    </div>
+                </a>
+
                 <?php endforeach ?>
-            <?php else: ?>
-                <li>
-                    <label>Nenhum aluno comeu</label>
-                </li>
-            <?php endif ?>
-        </ul>
+
+                <?php else: ?>
+                
+                <h5 class="flow-text">Nenhum aluno comeu</h5>
+
+                <?php endif ?>
+            </div>
+        </div>
     </section>
-</div>
-
-
-<div id="modals">
-    <?php include MODAL_PATH . '/encomenda.modal.php'; ?>
-    <?php include MODAL_PATH . '/confirmacao.modal.php'; ?>
-    <?php include MODAL_PATH . '/ocorrencia.modal.php'; ?>
-
-    <!-- Modals do menu -->
-    <?php include MODAL_PATH . '/iniciar-almoco.modal.php'; ?>
-    <?php include MODAL_PATH . '/novo-monitor.modal.php'; ?>
-    <?php include MODAL_PATH . '/meus-dados.modal.php'; ?>
-    <?php include MODAL_PATH . '/trocar-adm.modal.php'; ?>
-
-    <?php if (isset($_GET['msg'])) include MODAL_PATH . '/msg.modal.php'; ?>
-</div>
+</main>

@@ -48,6 +48,16 @@ class AlmocoController extends MainController
     private $almocos;
 
     /**
+     * $date
+     * 
+     * Data ou perído do qual serão gerenciados os almoços
+     * 
+     * @var array
+     * @access private
+     */
+    private $date;
+
+    /**
      * function index()
      * 
      * Mostra os dados do almoco em questão
@@ -70,9 +80,10 @@ class AlmocoController extends MainController
             }
 
             // Processar dados do almoco
-            $date = ($date) ? $date[0] : date('Y-m-d');
-            $this->model  = $this->loadModel('almoco/Almoco');
-            $this->infos  = $this->model->loadInfo($date);
+            $date = $date ? $date[0] : date('Y-m-d');
+
+            $this->model = $this->loadModel('almoco/Almoco');
+            $this->infos = $this->model->loadInfo($date);
             
             if (!empty($this->infos)) {
                 $this->alunos = $this->model->loadAlunos($this->infos['cod']);
@@ -80,21 +91,6 @@ class AlmocoController extends MainController
 
             // Mostrar dados ao usuário
             $this->title = 'Bem vindo ao SMA';
-            $pag = "";
-            $styleRequires = [
-                'menu',
-                'almoco',
-                'modal',
-                'footer',
-                // modals
-                'modal/encomenda',
-                'modal/novo-monitor',
-                'modal/iniciar-almoco',
-                'modal/meus-dados',
-                'modal/confirmacao',
-                'modal/ocorrencia',
-                'modal/trocar-adm'
-            ];
 
             include VIEWS_PATH . '/_includes/header.php';
             include VIEWS_PATH . '/_includes/menu.php';
@@ -125,34 +121,23 @@ class AlmocoController extends MainController
                 exit();
             }
 
-            if ($date) {
+            if (isset($date[2])) {
+                $date[0] = implode('-', $date);
                 $this->index($date);
             } else {
-                // Buscar almocos
+                if (empty($date)) {
+                    $date = [0 => date('Y')];
+                }
+                
+                $this->date = $date;
+
                 $this->almocos = $this->loadModel('almoco/GerenciarAlmocos');
+                $this->almocos->conf($date);
                 $this->infos   = $this->almocos->getInfos();
                 $this->almocos = $this->almocos->getAlmocos();
 
-                // Para sinalizar no menu
-                $pag = "ger_alm";
-                $ver  = !empty($_GET['view'])   ? $_GET['view'] : 'all';
-                $ver2 = !empty($_GET['global']) ? $_GET['global'] : 'all';
-
-
-                $styleRequires = [
-                    'menu',
-                    'gerenciar-almocos',
-                    'modal',
-                    'footer',
-                    // modals
-                    'modal/encomenda',
-                    'modal/novo-monitor',
-                    'modal/iniciar-almoco',
-                    'modal/meus-dados',
-                    'modal/confirmacao',
-                    'modal/ocorrencia',
-                    'modal/trocar-adm'
-                ];
+                $this->title = 'Gerenciamento de almoços - SMA';
+                $pag = 'ger_alm';
 
                 include VIEWS_PATH . "/_includes/header.php";
                 include VIEWS_PATH . "/_includes/menu.php";

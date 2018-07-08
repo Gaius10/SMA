@@ -1,111 +1,97 @@
-<?php if (!defined('ROOT_PATH')) exit('Erro Interno'); ?>
-<div id="contentGerenciar">
+<?php if (!defined('ROOT_PATH')) exit(); ?>
+<main class="container row">
 
-    <aside id="dados_globais">
-        <div id="title">
-            <h1>Dados globais de</h1>
-            <form method="get">
-                <select name="global"  onchange="this.form.submit()">
-                    <option value="all" <?= $ver2 == 'all' ? 'selected' : '' ?>>
-                        Todos Almoços
-                    </option>
-                    <option value="week" <?= $ver2 == 'week' ? 'selected' : '' ?>>
-                        Ultima semana
-                    </option>
-                    <option value="mounth" <?= $ver2 == 'mounth' ? 'selected' : '' ?>>
-                        Ultimo Mês
-                    </option>
+    <style type="text/css">
+        @media only screen and (min-width: 993px) {
+            #estats {
+                left: -1em;
+            }
+        }
+    </style>
+
+    <section class="card col s12 l4" title="Estatísticas" id="estats">
+        <div class="card-content row">
+            <h5 class="card-title center">Estatísticas do mês atual</h5>
+
+            <table class="col s8 push-s2">
+                <tbody>
+                    <tr>
+                        <td>Almoços</td>
+                        <td class="right-align"><?=(int)$this->infos['alm']?></td>
+                    </tr>
+                    <tr>
+                        <td>Repetições</td>
+                        <td class="right-align"><?=(int)$this->infos['rep']?></td>
+                    </tr>
+                    <tr>
+                        <td>Ocorrências</td>
+                        <td class="right-align"><?=(int)$this->infos['oc']?></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="card col s12 l8 right" title="Almoços">
+        <div class="card-content row">
+
+            <h5 class="card-title col l6">Almoços Registrados</h5>
+
+            <div class="input-field col s4 push-s4 push-l1" style="margin-top: 0;">
+                <select class="validate" id="selectYear">
+                    <?php for ($i = 2018; $i <= date('Y'); $i++): ?>
+                    <option value="<?=$i?>" <?php $i == $this->date[0] ? 'selected' : '' ?>><?=$i?></option>
+                    <?php endfor ?>
                 </select>
-            </form>
+            </div>
+
+            <div class="col s12 l12">
+                <ul class="tabs">
+                    <li class="tab"><a class="waves waves-effect waves-red red-text text-darken-3 <?=(date('m') == '01') ? 'active' : ''?>" href="#mes1"> Janeiro</a></li>
+                    <li class="tab"><a class="waves waves-effect waves-red red-text text-darken-3 <?=(date('m') == '02') ? 'active' : ''?>" href="#mes2"> Fevereiro</a></li>
+                    <li class="tab"><a class="waves waves-effect waves-red red-text text-darken-3 <?=(date('m') == '03') ? 'active' : ''?>" href="#mes3"> Março</a></li>
+                    <li class="tab"><a class="waves waves-effect waves-red red-text text-darken-3 <?=(date('m') == '04') ? 'active' : ''?>" href="#mes4"> Abril</a></li>
+                    <li class="tab"><a class="waves waves-effect waves-red red-text text-darken-3 <?=(date('m') == '05') ? 'active' : ''?>" href="#mes5"> Maio</a></li>
+                    <li class="tab"><a class="waves waves-effect waves-red red-text text-darken-3 <?=(date('m') == '06') ? 'active' : ''?>" href="#mes6"> Junho</a></li>
+                    <li class="tab"><a class="waves waves-effect waves-red red-text text-darken-3 <?=(date('m') == '07') ? 'active' : ''?>" href="#mes7"> Julho</a></li>
+                    <li class="tab"><a class="waves waves-effect waves-red red-text text-darken-3 <?=(date('m') == '08') ? 'active' : ''?>" href="#mes8"> Agosto</a></li>
+                    <li class="tab"><a class="waves waves-effect waves-red red-text text-darken-3 <?=(date('m') == '09') ? 'active' : ''?>" href="#mes9"> Setembro</a></li>
+                    <li class="tab"><a class="waves waves-effect waves-red red-text text-darken-3 <?=(date('m') == '10') ? 'active' : ''?>" href="#mes10">Outubro</a></li>
+                    <li class="tab"><a class="waves waves-effect waves-red red-text text-darken-3 <?=(date('m') == '11') ? 'active' : ''?>" href="#mes11">Novembro</a></li>
+                    <li class="tab"><a class="waves waves-effect waves-red red-text text-darken-3 <?=(date('m') == '12') ? 'active' : ''?>" href="#mes12">Dezembro</a></li>
+                    <li class="indicator black"></li>
+                </ul>
+
+                <section id="almocos" class="row" style="min-height: 300px;">
+                    <?php for ($i = 1; $i <= 12; $i++): ?>
+
+                    <div id="mes<?=$i?>" class="collection col s12">
+                        <?php if (empty($this->almocos['0' . $i])): ?>
+                        <h5 class="flow-text">Não houve almoços nesse mês</h5>
+
+                        <?php else: ?>
+                        <?php foreach ($this->almocos['0' . $i] as $key => $alm): ?>
+
+                        <a class="collection-item left-align row" href="<?=HOME_URL?>/almoco/gerenciar/<?=str_replace('-', '/', $alm['dat'])?>">
+                            <div class="col s8 l9">
+                                <p class="black-text title truncate tooltipped flow-text" data-position="left" data-tooltip="Cardápio"><?=$alm['card']?></p>
+                                <span class="black-text tooltipped right" data-position="left" data-tooltip="data"><?=convertData($alm['dat'])?></span>
+                            </div>
+                            <div class="secondary-content col s4 l3">
+                                <p class="row">
+                                    <span class="blue-text left col s6 truncate tooltipped flow-text" data-position="top" data-tooltip="Almoços"><?=$alm['qtd_alm']?></span>
+                                    <span class="red-text right col s6 truncate tooltipped flow-text" data-position="top" data-tooltip="Ocorrências"><?=$alm['qtd_oc']?></span>
+                                </p>
+                            </div>
+                        </a>
+
+                        <?php endforeach ?>
+                        <?php endif ?>
+                    </div>
+
+                    <?php endfor ?>
+                </section>
+            </div>
         </div>
-
-        <ul id="global_data">
-            <?php if ($this->infos): ?>
-                <li>
-                    <label>
-                        <i class="fa fa-utensils"></i>
-                        Almoços:
-                    </label>
-                    <span><?= (int) $this->infos['alm'] ?></span>
-                </li>
-                <li class="gray">
-                    <label>
-                        <i class="fa fa-sync-alt"></i>
-                        Repetições:
-                    </label>
-                    <span><?= (int) $this->infos['rep'] ?></span>
-                </li>
-                <li>
-                    <label>
-                        <i class="fa fa-times-circle"></i>
-                        Ocorrências:
-                    </label>
-                    <span><?= (int) $this->infos['oc'] ?></span>
-                </li>
-            <?php endif ?>
-        </ul>
-    </aside>
-
-    <section id="gerenciar">
-        <div id="title">
-            <h1>Dados dos almoços</h1>
-            <form method="get">
-                <label>
-                    Você está vendo:
-                    <select name="view" onchange="this.form.submit()">
-                        <option value="all" <?= $ver ?>>  
-                            Todos Almoços
-                        </option>
-                        <option value="week" <?= $ver == 'week' ? 'selected' : '' ?>>
-                            Ultima Semana
-                        </option>
-                        <option value="mounth" <?= $ver == 'mounth' ? 'selected' : '' ?>>
-                            Ultimo Mês
-                        </option>
-                    </select>
-                </label>
-            </form>
-        </div>
-
-        <nav id="lista_almocos">
-            <ul>
-                <strong>
-                    <li>
-                        <label class="data" title="Data do almoço">Data</label>
-                        <label class="card" title="Cardápio do dia">Cardapio</label>
-                        <label class="qtdA" title="Almoços"><i class="fa fa-utensils"></i></label>
-                        <label class="qtdR" title="Repetições"><i class="fa fa-sync-alt"></i></label>
-                        <label class="qtdO" title="Ocorrências"><i class="fa fa-times-circle"></i></label>
-                    </li>
-                </strong>
-
-                <?php if (!empty($this->almocos)): ?>
-                    <?php foreach ($this->almocos as $k => $a): ?>
-                        <li <?= $k % 2 == 1 ? ' class="gray"' : '' ?>
-                            onclick="window.location.href = '<?=HOME_URL?>/almoco/gerenciar/<?=$a['dat']?>'">
-                            <label class="data"><?=convertData($a['dat'])?></label>
-                            <label class="card"><?= $a['card'] ?></label>
-                            <label class="qtdA" title="Almoços"><?= (int) $a['qtd_alm'] ?></label>
-                            <label class="qtdR" title="Repetições"><?= (int) $a['rep'] ?></label>
-                            <label class="qtdO" title="Ocorrências"><?= (int) $a['qtd_oc'] ?></label>
-                        </li>
-                <?php endforeach ?>
-            <?php endif ?>
-        </ul>
-    </nav>
-</section>
-</div>
-
-<div id="modals">
-    <?php include MODAL_PATH . '/encomenda.modal.php'; ?>
-    <?php include MODAL_PATH . '/confirmacao.modal.php'; ?>
-    <?php include MODAL_PATH . '/ocorrencia.modal.php'; ?>
-
-    <!-- Modals do menu -->
-    <?php include MODAL_PATH . '/iniciar-almoco.modal.php'; ?>
-    <?php include MODAL_PATH . '/novo-monitor.modal.php'; ?>
-    <?php include MODAL_PATH . '/meus-dados.modal.php'; ?>
-    <?php include MODAL_PATH . '/trocar-adm.modal.php'; ?>
-
-    <?php if (isset($_GET['msg'])) include MODAL_PATH . '/msg.modal.php'; ?>
-</div>
+    </section>
+</main>

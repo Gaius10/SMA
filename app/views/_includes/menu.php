@@ -1,73 +1,102 @@
 <?php if (!defined("ROOT_PATH")) exit("Internal error"); ?>
 <!-- Menu superior em todas as páginas -->
-<header id="menu">
-	<input type="checkbox" id="opnMenu" hidden>
-	
-	<label id="menu_icon" for="opnMenu">
-		<i class="fa fa-bars"></i>
-	</label>
+<header class="navbar-fixed">
+    <?php include VIEWS_PATH . '/_includes/modals/menu_modals.php'; ?>
 
-	<div id="modal_menu" class="modal">
-		<section id="navegacao">
-			<h1>Navegar pelo site</h1>
-			<ul>
-				<li onclick="window.location.href='<?=HOME_URL?>/aluno/cadastrar'" <?= sel($pag, 'new_aluno') ?>>
-					<i class="fa fa-child"></i>
-					<span>Cadastrar Aluno</span>
-				</li>
-				<li onclick="window.location.href='<?=HOME_URL?>/almoco/gerenciar'" <?= sel($pag, 'ger_alm') ?>>
-					<i class="fa fa-balance-scale"></i>
-					<span>Gerenciar Almoços</span>
-				</li>
-				<li onclick="window.location.href='<?=HOME_URL?>/aluno/cadastrados'" <?= sel($pag, 'ver_al') ?>>
-					<i class="fa fa-address-book"></i>
-					<span>Ver alunos cadastrados</span>
-				</li>
-			</ul>
-		</section>
-		
-		<div id="optIcon">
-			<?php $uname = $this->userdata['MONITOR_NOME']; ?>
-			<a href="<?=HOME_URL?>">
-				<span class="uname" title="<?= $uname ?>"> <?= $uname ?> </span>
-				<i class="fa fa-cogs uname" title="Opções"></i>
-			</a>
+    <ul id="nav-mobile" class="side-nav container">
+        <div class="hide-on-med-and-up">
+            <li><a class="subheader black-text">Navegar pelo site</a></li>
 
-			<section id="opcoes">
-				<h1>Opções</h1>
-				<ul>
-					<li onclick="openModal('meus_dados')" title="Ver Meus Dados">
-						<i class="fa fa-user"></i>
-						<span>Ver Meus Dados</span>
-					</li>
-					<li onclick="openModal('iniciar_almoco')" title="Iniciar Almoço">
-						<i class="fa fa-plus-circle"></i>
-						<span>Iniciar Almoço</span>
-					</li>
-					<?php if (in_array('root', $this->userdata['USER_PERMISSIONS'])): ?>
-						<li onclick="openModal('form_autorizar')" title="Autorizar Monitor">
-							<i class="fa fa-user-plus"></i>
-							<span>Autorizar Monitor</span>
-						</li>
-						<li onclick="openModal('trocar_adm')" title="Mudar senha do administrador">
-							<i class="fa fa-key"></i>
-							<span>Mudar Administrador</span>
-						</li>
-					<?php endif ?>
-					<label for="opnMenu">
-						<i class="fa fa-arrow-left"></i>
-						<span>Fechar</span>
-					</label>
-					<li onclick="window.location.href = '<?=HOME_URL?>/user/quit'" title="Sair">
-						<i class="fa fa-power-off"></i>
-						<span>Sair</span>
-					</li>
-				</ul>
-			</section>
-		</div>
-	</div>
+            <li>
+                <a href="<?=HOME_URL?>/aluno/cadastrar">
+                    <i class="fas fa-user-plus black-text fa-2x"></i> Cadastrar Aluno
+                </a>
+            </li>
 
-	<div id="pageTitle">
-		<h1>SMA</h1>
-	</div>
+            <li>
+                <a href="<?=HOME_URL?>/almoco/gerenciar">
+                    <i class="fas fa-utensils black-text fa-2x"></i> Gerenciar Almoços
+                </a>
+            </li>
+
+            <li>
+                <a href="<?=HOME_URL?>/aluno/cadastrados">
+                    <i class="fas fa-users black-text fa-2x"></i> Alunos Cadastrados
+                </a>
+            </li>
+
+            <li><div class="divider"></div></li>
+        </div>
+
+        <li><a class="subheader black-text">Opções</a></li>
+
+        <li>
+            <a href="#meus_dados" class="modal-trigger">
+                <i class="fas fa-user-cog black-text fa-2x"></i> Meus Dados
+            </a>
+        </li>
+
+        <li>
+            <a href="#iniciar_almoco" class="modal-trigger">
+                <i class="fas fa-plus-circle black-text fa-2x"></i> Iniciar Almoço
+            </a>
+        </li>
+
+        <li>
+            <a href="#autorizar_monitor" class="modal-trigger">
+                <i class="fas fa-user-tie black-text fa-2x"></i> Autorizar Monitor
+            </a>
+        </li>
+
+        <li>
+            <a href="#mudar_monitor" class="modal-trigger">
+                <i class="fas fa-user-edit black-text fa-2x"></i> Mudar Monitor
+            </a>
+        </li>
+
+
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="<?=HOME_URL?>/user/quit">
+                <i class="fas fa-power-off black-text fa-2x"></i> Sair
+            </a>
+        </li>
+    </ul>
+
+    <nav class="black">
+        <div class="nav-wrapper row">
+            <div class="col s10 l1">
+                <a href="<?=HOME_URL?>" class="brand-logo flow-text left">SMA</a>
+            </div>
+
+
+            <div class="hide-on-med-and-down container col l9">
+                <ul>
+                    <li>
+                        <a href="<?=HOME_URL?>/aluno/cadastrar" class="nav-item">
+                            <i class="fas fa-user-plus"></i> <span>Cadastrar Aluno</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="<?=HOME_URL?>/almoco/gerenciar" class="nav-item">
+                            <i class="fas fa-utensils"></i> <span>Gerenciar Almoços</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="<?=HOME_URL?>/aluno/cadastrados" class="nav-item">
+                            <i class="fas fa-users"></i> <span>Alunos Cadastrados</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+
+            <a href="#" class="right right-align col s2"  id="opnMenu" data-activates="nav-mobile">
+                <span class="hide-on-med-and-down"><?=$this->user['nome']?></span>
+                <i class="fas fa-bars fa-2x right" style="line-height: inherit;"></i>
+            </a>
+        </div>
+    </nav>
 </header>

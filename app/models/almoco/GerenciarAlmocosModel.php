@@ -30,52 +30,67 @@ class GerenciarAlmocosModel extends MainModel
 
     /**
      * function __construct()
-     * 
-     * Monta todos os dados dos almocos para ser gerenciado em sma/almoco/gerenciar
-     * 
+     *
      * @access public
      * @return void
      */
     function __construct()
     {
         parent::__construct();
+    }
 
-        $w = '';
-        // Filtrar Almocos
-        if (isset($_GET['view'])) {
-            switch ($_GET['view']) {
-                case 'week':
-                    $w = 'WHERE dat > \'';
-                    $w .=  date('Y-m-d', time() - (60 * 60 * 24 * 7)) . '\'';
-                    break;
-                case 'mounth':
-                    $w = 'WHERE dat LIKE \'%' . date('-m-') . '%\'';
-                    break;
-            }
-        }
+    /**
+     * function conf($date)
+     * 
+     * Monta todos os dados dos almocos para ser gerenciado em sma/almoco/gerenciar
+     * 
+     * @param array $date Array com ano a ter seus almoços consultados
+     * 
+     * @access public
+     * @return void
+     */
+    public function conf(array $date)
+    {
+        $date = $date[0] . '-';
 
         // Filtrar informacoes dos almocos
-        $w2 = '';
-        if (isset($_GET['global'])) {
-            switch ($_GET['global']) {
-                case 'week':
-                    $w2 = 'WHERE dat > \'';
-                    $w2 .= date('Y-m-d', time() - (60 * 60 * 24 * 7)) . '\'';
-                    break;
-                case 'mounth':
-                    $w = 'WHERE dat LIKE \'%' . date('-m-') . '%\'';
-                    break;
-            }
-        }
+        $w = "WHERE dat LIKE '$date%'";
+
 
         // Buscar dados contidos na view `VIEW_Almoco`
         $this->almocos = $this->connection->read('VIEW_Almoco', '*', $w);
         $this->almocos = $this->formatQueryArray($this->almocos);
 
+        // Organizar almoços por mês
+        if (!empty($this->almocos)) {
+            $this->organizarAlmocos();
+        }
+
         // Buscar informações globais
         $f = 'SUM(qtd_alm) as alm, SUM(rep) as rep, SUM(qtd_oc) as oc';
-        $this->infos = $this->connection->read('VIEW_Almoco', $f, $w2);
+        $this->infos = $this->connection->read('VIEW_Almoco', $f, $w);
     }
+
+    /**
+     * function organizarAlmocos()
+     * 
+     * Organiza almocos criando um array dividido por meses
+     * 
+     * @access private
+     * @return void
+     */
+    private function organizarAlmocos()
+    {
+        $dados = array();
+
+        foreach ($this->almocos as $key => $almoco) {
+            preg_match('/-[0-9]{2}-/', $almoco['dat'], $chave);
+            $dados[str_replace('-', '', $chave[0])][] = $almoco;
+        }
+
+        $this->almocos = $dados;
+    }
+
 
     /**
      * function getAlmocos()

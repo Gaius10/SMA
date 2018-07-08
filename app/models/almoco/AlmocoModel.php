@@ -104,14 +104,14 @@ class AlmocoModel extends MainModel
      */
     public function loadInfo(string $date = '')
     {
-        $date = ($date) ? $date : $this->date;
+        $date = $date ? $date : $this->date;
 
         // Carregar dados do almoco gerenciado
         $f = 'ALMOCO_COD AS cod, ALMOCO_CARDAPIO AS card, ALMOCO_DATA as dat';
         $w = 'WHERE ALMOCO_COD = \'' . $this->getCod($date) . '\'';
         $almoco = $this->connection->read('Almoco', $f, $w);
 
-        // Retorna vazio caso nao hajam dados do almoco, ele nao foi iniciado
+        // Retorna vazio caso nao haja dados do almoco, ele nao foi iniciado
         if (!$almoco) {
             return;
         }

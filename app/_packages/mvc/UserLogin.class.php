@@ -124,8 +124,9 @@ class UserLogin
 		unset($_SESSION['userdata']);
 		session_regenerate_id();
 
-		if ($redirect)
+		if ($redirect) {
 			$this->gotoLogin();
+		}
 	}
 
 

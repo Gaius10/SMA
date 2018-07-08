@@ -27,17 +27,6 @@ class LoginController extends MainController
         } else {
             $this->title = "SMA - Login";
 
-            $styleRequires = [
-                'login',
-                'menu-propagandas', 
-                'footer',
-                'modal',
-                'modal/cadastre-se',
-                'modal/suporte',
-                'modal/encomenda',
-                'modal/trocar-adm'
-            ];
-
             include VIEWS_PATH . "/_includes/header.php";
             include VIEWS_PATH . "/_includes/menu-propagandas.php";
             include VIEWS_PATH . "/login.view.php";

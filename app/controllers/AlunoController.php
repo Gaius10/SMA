@@ -77,18 +77,6 @@ class AlunoController extends MainController
             // Mostrar página
             $this->title = "SMA - Cadastrar Aluno";
             $pag = "new_aluno";
-            $styleRequires = [
-                'menu',
-                'cadastrar-aluno',
-                'modal',
-                'footer',
-                /*modais*/
-                'modal/meus-dados',
-                'modal/iniciar-almoco',
-                'modal/novo-monitor',
-                'modal/confirmacao',
-                'modal/trocar-adm'
-            ];
 
             include VIEWS_PATH . '/_includes/header.php';
             include VIEWS_PATH . '/_includes/menu.php';
@@ -138,8 +126,11 @@ class AlunoController extends MainController
             if (is_array($this->alunos)) {
                 $this->model = $this->loadModel('aluno/GerenciarAluno');
                 $this->alunos = makeDataArray($this->alunos);
+
                 foreach ($this->alunos as $k => $aluno) {
+
                     $fName = $aluno['n'] . '_' . $aluno['t'] . '.png';
+
                     if (!file_exists(QR_PATH  . '/alunos/' . $fName)) {
                         $this->model->makeImg($aluno['q']);
                     }
@@ -148,21 +139,7 @@ class AlunoController extends MainController
 
             /* Mostrar conteúdo ao usuário */
             $pag = "ver_al";
-            $styleRequires = [
-                'modal',
-                'menu',
-                'cadastrados',
-                'footer',
-                /* modals */
-                'modal/meus-dados',
-                'modal/iniciar-almoco',
-                'modal/novo-monitor',
-                'modal/ocorrencia',
-                'modal/confirmacao',
-                'modal/filtro',
-                'modal/trocar-adm'
-            ];
-
+            
             include VIEWS_PATH . "/_includes/header.php";
             include VIEWS_PATH . "/_includes/menu.php";
             include VIEWS_PATH . "/cadastrados.view.php";
@@ -273,6 +250,7 @@ class AlunoController extends MainController
             $this->logout(true);
             exit();
         }
+
         // Se uma pagina foi solicitada antes do ato do login
         if (isset($_SESSION['gotoUrl'])) {
             $this->gotoPage($_SESSION['gotoUrl']);
@@ -286,6 +264,7 @@ class AlunoController extends MainController
             // erro
             $this->errors[] = "Dados do aluno inválidos";
             include VIEWS_PATH . "/aluno-invalido.php";
+            
         } else {
             // Montar dados do aluno no objeto
             if (!$this->model->mount()) {
@@ -323,19 +302,11 @@ class AlunoController extends MainController
             $pag = "";
             $this->title = $this->model->nome . " - " . $this->model->turma;
 
-            $styleRequires = array(
-                'menu',
-                'gerenciar-aluno',
-                'modal',
-                'footer',
-                // modais 
-                'modal/encomenda',
-                'modal/iniciar-almoco',
-                'modal/ocorrencia',
-                'modal/confirmacao',
-                'modal/meus-dados',
-                'modal/novo-monitor',
-                'modal/trocar-adm'
+
+            $aluno = array(
+                'nome' => $this->model->nome,
+                'turma' => $this->model->turma,
+                'cod' => $this->model->cod
             );
 
             include VIEWS_PATH . '/_includes/header.php';

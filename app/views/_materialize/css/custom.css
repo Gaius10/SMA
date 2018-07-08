@@ -1,0 +1,81 @@
+/*CUSTOM CSS*/
+p{
+	font-weight: 400;
+}
+.opacity {
+    background: #fff;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    opacity: .8;
+}
+h5 {
+    display: inline-block;
+    font-size: 1.3em;
+}
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+
+/* label color */
+.input-field label,
+.input-field label.active {
+    color: white;
+}
+/* label focus color */
+.input-field input:focus + label,
+.input-field textarea:focus + label {
+    color: white !important;
+}
+/* label underline focus color */
+.input-field input:focus,
+.input-field textarea:focus {
+    border-bottom: 1px solid white !important;
+    box-shadow: 0 1px 0 0 white !important;
+}
+/* valid color */
+.input-field input,
+.input-field textarea {
+    border-bottom: 1px solid white;
+}
+/* invalid color */
+.input-field input.invalid,
+.input-field textarea.invalid {
+    border-bottom: 1px solid red;
+    box-shadow: 0 1px 0 0 red;
+}
+/* icon prefix focus color */
+.input-field .prefix.active {
+    color: white;
+}
+
+/* textarea background */
+.input-field textarea {
+    background: #206;
+    padding-left: 5px;
+}
+
+/* **** Novas Cores **** */
+.roxo {
+    background: #4B0082 !important;
+}
+.roxo-darken {
+    background: #307 !important;
+}
+
+.golden {
+    background: #daa520 !important;
+}
+
+/* Para textos */
+
+
+/* **** Icones **** */
+.icon:hover {
+    color: #daa520 !important;
+}

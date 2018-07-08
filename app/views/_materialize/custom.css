@@ -1,0 +1,97 @@
+/*CUSTOM CSS*/
+.row, .card {
+    margin-bottom: 0;
+}
+
+footer {
+    margin-top: 1em;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+
+main {
+    flex: 1 0 auto;
+}
+
+a.nav-item:hover {
+    background: rgba(255, 255, 255, 0.3);
+    height: 64px;
+}
+
+
+label.active {
+    color: black !important;
+}
+
+/* padding dos cards em mobile */
+@media only screen and (max-width: 992px) {
+    .card .card-content {
+        padding: 0.5em;
+        text-align: center;
+    }
+}
+
+
+
+/* Titulo de secoes e asides nas paginas, padrão */
+main h5.title {
+    padding: 0.3em 0;
+}
+
+
+
+/* Formularios */
+.input-field input,
+.input-field textarea {
+    border-color: black !important;
+}
+.input-field input:focus,
+.input-field textarea:focus {
+    box-shadow: 1px 2px 2px 0px black !important;
+} 
+
+label.active.footer {
+    color: white !important;
+}
+input.footer,
+textarea.footer {
+    border-color: white !important;
+}
+input.footer:focus,
+textarea.footer:focus {
+    box-shadow: 0px 1px 1px 0px white !important;
+}
+
+.input-field input.default {
+    border-color: initial !important;
+}
+.input-field input.default:focus {
+    box-shadow: initial !important;
+}
+
+/* Distâncias entre botões */
+@media only screen and (min-width: 993px) {
+    .modal-close {
+        margin-right: 20px !important;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .btn, .btn-large {
+        margin-bottom: 6px;
+    }
+}
+
+
+
+/* Quando nome do aluno for maior que o espaco na lista */
+.collapsible .collapsible-header span {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}

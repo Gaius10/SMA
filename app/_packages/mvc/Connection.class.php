@@ -111,7 +111,7 @@ class Connection
         $params = ($params) ? " {$params}" : null;
         $query = "SELECT {$fields} FROM {$tables}{$params}";
         
-        //echo "<br /><br /><br /> <hr />$query";
+        // echo "<br /><br /><br /> <hr />$query";
 
         $result = $this->execute($query);
 

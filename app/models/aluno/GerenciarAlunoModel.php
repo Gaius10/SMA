@@ -90,11 +90,13 @@ class GerenciarAlunoModel extends MainModel
             $lastCod = $this->connection->read("UltimoAluno");
             $lastCod = $lastCod['COD'];
 
+
             $f = "ALUNO_COD AS cod, ALUNO_NOME AS nome, ALUNO_TURMA AS turma";
             $w = "WHERE ALUNO_COD = '{$lastCod}'";
             $data = $this->connection->read("Aluno", $f, $w);
 
             $qrStr = $this->generateQrCodeString($data);
+
             $qrStr = array('ALUNO_QRCODE' => $qrStr);
 
             $w = "WHERE ALUNO_COD = '{$lastCod}'";
@@ -148,7 +150,7 @@ class GerenciarAlunoModel extends MainModel
         exec('rm ' . QR_PATH . '/ult.png');
         if (is_array($ultimoAluno)) {
             // Criar Imagem do QR Code
-            QRcode::png($ultimoAluno['img'], QR_PATH.'/ult.png', QR_ECLEVEL_M, 2, 5);
+            QRcode::png($ultimoAluno['img'], QR_PATH . '/ult.png', QR_ECLEVEL_M, 2, 5);
             $ultimoAluno['cod'] = $cod;
 
             return $ultimoAluno;

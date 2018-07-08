@@ -1,59 +1,41 @@
 <?php if (!defined("ROOT_PATH")) exit("Internal Error"); ?>
-<section class="login-content">
-    <form name="formLogin" method="post">
-        
-        <h1>Bem vindo ao SMA</h1>
+<main style="margin-top: 2em; margin-bottom: 4em;">
+    <section id="login_content">
+        <form name="formLogin" method="post" class="row">
 
-        <div class="img" hidden>
-            <img src="<?= VIEWS_URL ?>/_img/logo_sma.png">
-        </div>
+            <h4 class="center-align">Bem vindo ao SMA</h4>
 
-        
-        <label style="grid-area: lineOne">
-            <i class="fa fa-user-circle fa-2x"></i>
-            <input type="text" name="userdata[username]" id="username" 
-                value="<?= @$_POST['userdata']['username'] ?>" placeholder="Login">
-        </label>
+            <div class="container">
+                <div class="col s12 l8 push-l2">
+                    <div class="hide-on-mob col s12 l6">
+                        <img src="<?= VIEWS_URL ?>/_img/logo_sma.png" style="max-width: 100%">
+                    </div>
 
-        <label style="grid-area: lineTwo">
-            <i class="fa fa-key fa-2x"></i>
-            <input type="password" name="userdata[userpass]" id="userpass" placeholder="Senha" />
+                    <div class="col s12 l6">
+                        <div class="col s12 input-field">
+                            <input type="text" name="userdata[username]" id="username" class="validate">
+                            <label for="username">Login</label>
+                        </div>
+                        <div class="col s12 input-field">
+                            <input type="password" name="userdata[userpass]" id="userpass" class="validate">
+                            <label for="userpass">Senha</label>
+                        </div>
 
-            <!-- Feedback de login -->
-            <?php if ($this->loginError): ?>
-                <span></span>
-                <span class="login-error" style="display: block;">
-                    <i class="fa fa-warning" style="color: red;"></i>
-                    Erro: <?= $this->loginError ?>
-                </span>
-            <?php endif; ?>
-        </label>
-        
-        <label class="btn" style="grid-area: lineThree">
-            <button>Entrar</button>
-        </label>
-        <label class="btn" style="grid-area: lineFour">
-            <button id="btnCadastreSe" 
-                onclick="openModal('cadastre_se'); return false;"> Cadastre-se </button>
-        </label>
+                        <?php if ($this->loginError): ?>
+                            <div class="container center-align">
+                                <label class="brand-logo red-text">
+                                    Erro: <?= $this->loginError ?>
+                                </label>
+                            </div>
+                        <?php endif ?>
 
-        <script>
-            var username = document.getElementById('username');
-            var userpass = document.getElementById('userpass');
-
-            if (username.value.length > 0) {
-                userpass.focus();
-            } else {
-                username.focus();
-            }
-        </script>
-    </form>
-</section>
-<div id="modals">
-    <?php include MODAL_PATH . '/suporte.modal.php'; ?>
-    <?php include MODAL_PATH . '/cadastre-se.modal.php'; ?>
-    <?php include MODAL_PATH . '/encomenda.modal.php'; ?>
-
-
-    <?php if (isset($_GET['msg'])) include MODAL_PATH . '/msg.modal.php'; ?>
-</div>
+                        <div class="row">
+                            <button class="btn-large col s12 red darken-3"  style="margin-bottom: 0.2em">Entrar</button>
+                            <button class="btn-large col s12 red darken-3">Cadastre-se</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+</main>
