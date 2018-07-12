@@ -1,6 +1,6 @@
 <?php if (!defined("ROOT_PATH")) exit("Internal error"); ?>
 <!-- Menu superior em todas as páginas -->
-<header class="navbar-fixed">
+<header>
     <?php include VIEWS_PATH . '/_includes/modals/menu_modals.php'; ?>
 
     <ul id="nav-mobile" class="side-nav container">
@@ -63,40 +63,42 @@
         </li>
     </ul>
 
-    <nav class="black">
-        <div class="nav-wrapper row">
-            <div class="col s10 l1">
-                <a href="<?=HOME_URL?>" class="brand-logo flow-text left">SMA</a>
+    <div class="navbar-fixed">
+        <nav class="black">
+            <div class="nav-wrapper row">
+                <div class="col s10 l1">
+                    <a href="<?=HOME_URL?>" class="brand-logo flow-text left">SMA</a>
+                </div>
+
+
+                <div class="hide-on-med-and-down container col l9">
+                    <ul>
+                        <li>
+                            <a href="<?=HOME_URL?>/aluno/cadastrar" class="nav-item">
+                                <i class="fas fa-user-plus"></i> <span>Cadastrar Aluno</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="<?=HOME_URL?>/almoco/gerenciar" class="nav-item">
+                                <i class="fas fa-utensils"></i> <span>Gerenciar Almoços</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="<?=HOME_URL?>/aluno/cadastrados" class="nav-item">
+                                <i class="fas fa-users"></i> <span>Alunos Cadastrados</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <a href="#" class="right right-align col s2"  id="opnMenu" data-activates="nav-mobile">
+                    <span class="hide-on-med-and-down"><?=$this->user['nome']?></span>
+                    <i class="fas fa-bars fa-2x right" style="line-height: inherit;"></i>
+                </a>
             </div>
-
-
-            <div class="hide-on-med-and-down container col l9">
-                <ul>
-                    <li>
-                        <a href="<?=HOME_URL?>/aluno/cadastrar" class="nav-item">
-                            <i class="fas fa-user-plus"></i> <span>Cadastrar Aluno</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="<?=HOME_URL?>/almoco/gerenciar" class="nav-item">
-                            <i class="fas fa-utensils"></i> <span>Gerenciar Almoços</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="<?=HOME_URL?>/aluno/cadastrados" class="nav-item">
-                            <i class="fas fa-users"></i> <span>Alunos Cadastrados</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-
-            <a href="#" class="right right-align col s2"  id="opnMenu" data-activates="nav-mobile">
-                <span class="hide-on-med-and-down"><?=$this->user['nome']?></span>
-                <i class="fas fa-bars fa-2x right" style="line-height: inherit;"></i>
-            </a>
-        </div>
-    </nav>
+        </nav>
+    </div>
 </header>

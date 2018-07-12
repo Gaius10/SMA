@@ -6,7 +6,7 @@
 
         <section id="encomendaModal" title="Encomende seu sistema">
             <!-- <form class="row container" method="post" style="max-width: 600px;" action="<?= HOME_URL ?>/suporte/encomenda"> -->
-                <form class="row container" method="post" style="max-width: 600px;" action="">
+            <form class="row container" method="post" style="max-width: 600px;" action="">
                 <div class="col s12 l6 input-field">
                     <input type="text" name="cliNome" class="validate footer" id="cliNome">
                     <label for="cliNome" class="footer">Seu nome</label>
