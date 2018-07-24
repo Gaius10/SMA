@@ -6,8 +6,24 @@ use sline\Validation\Validator;
 */
 class CadastroModel extends MainModel
 {
-
+	/**
+	 * $error
+	 * 
+	 * Erros ocorridos durante o cadastro
+	 * 
+	 * @var string
+	 * @access public
+	 */
 	public $error;
+
+	/**
+	 * $data
+	 * 
+	 * Dados a serem cadastrados
+	 * 
+	 * @var array
+	 * @access private
+	 */
 	private $data;
 
 	/**
@@ -82,33 +98,27 @@ class CadastroModel extends MainModel
 		);
 
 		// Instanciar classe de validação de dados
-		try
-		{
+		try {
 			/* Validar formato dos dados enviados */
 			$conf = PACKS_PATH . "/sline/Validation/forms/monitor.json";
 			$validator = new Validator($dataToValidate, $conf);
-			if (!$validator->validate())
-			{
+			
+			if (!$validator->validate()) {
 				$this->error = $validator->error;
 				return false;
-			}
-			else
-			{
+			} else {
+
 				/* Verificar autorização para cadastro */
 				$w = "WHERE AUTORIZACAO_EMAIL = '{$this->data['MONITOR_EMAIL']}'";
-				if (!empty($this->connection->read("Autorizacao", "*", $w)))
-				{
+
+				if (!empty($this->connection->read("Autorizacao", "*", $w))) {
 					return true;
-				}
-				else
-				{
+				} else {
 					$this->error = "Desculpe, você não está autorizado.";
 					return false;
 				}
 			}
-		}
-		catch(Exception $e)
-		{
+		} catch(Exception $e) {
 			echo (DEBUG) ? $e : "<!-- $e -->";
 			exit("Houve um erro interno. Por favor, contate o suporte.");
 		}

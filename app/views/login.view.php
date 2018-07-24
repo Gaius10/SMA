@@ -1,4 +1,5 @@
 <?php if (!defined("ROOT_PATH")) exit("Internal Error"); ?>
+<?php include MODAL_PATH . '/cadastre-se.php'; ?>
 <main style="margin-top: 2em; margin-bottom: 4em;">
     <section id="login_content">
         <form name="formLogin" method="post" class="row">
@@ -22,16 +23,16 @@
                         </div>
 
                         <?php if ($this->loginError): ?>
-                            <div class="container center-align">
-                                <label class="brand-logo red-text">
-                                    Erro: <?= $this->loginError ?>
-                                </label>
-                            </div>
+                        <div class="container center-align">
+                            <label class="brand-logo red-text">
+                                Erro: <?= $this->loginError ?>
+                            </label>
+                        </div>
                         <?php endif ?>
 
                         <div class="row">
-                            <button class="btn-large col s12 red darken-3"  style="margin-bottom: 0.2em">Entrar</button>
-                            <button class="btn-large col s12 red darken-3">Cadastre-se</button>
+                            <button class="btn-large col s10 push-s1 red darken-3"  style="margin-bottom: 0.2em">Entrar</button>
+                            <a href="#cadastre_se" class="btn-large col s10 push-s1 red darken-3 modal-trigger">Cadastre-se</a>
                         </div>
                     </div>
                 </div>

@@ -219,4 +219,37 @@ class UserController extends MainController
             }
         }
     }
+
+    /**
+     * function cadastrar()
+     * 
+     * Cadastra novo monitor
+     * 
+     * @return void
+     * @access public
+     */
+    public function cadastrar()
+    {
+        if ($this->loggedIn) {
+            header('Location: ' . HOME_URL);
+        } else {
+            $cadastrar = $this->loadModel('usuario/Cadastro');
+
+            $dados = array(
+                'MONITOR_NOME'  => $_POST['nome'],
+                'MONITOR_LOGIN' => $_POST['login'],
+                'MONITOR_EMAIL' => $_POST['email'],
+                'MONITOR_SENHA' => $_POST['senha'],
+                'passConfirm'   => $_POST['senha2']
+            );
+
+            if ($cadastrar->cadastrarMonitor($dados)) {
+                $msg = urlencode('Obrigado por se cadastrar!');
+            } else {
+                $msg = urlencode($cadastrar->error);
+            }
+
+            header('Location: ' . HOME_URL . '/Login?msg=' . $msg);
+        }
+    }
 }
