@@ -147,7 +147,9 @@ class GerenciarAlunoModel extends MainModel
 
         // Obter dados
         $ultimoAluno = $this->connection->read("Aluno", $f, $w);
-        exec('rm ' . QR_PATH . '/ult.png');
+        if (file_exists(QR_PATH . '/ult.png')) {
+            unlink(QR_PATH . '/ult.png');
+        }
         if (is_array($ultimoAluno)) {
             // Criar Imagem do QR Code
             QRcode::png($ultimoAluno['img'], QR_PATH . '/ult.png', QR_ECLEVEL_M, 2, 5);
