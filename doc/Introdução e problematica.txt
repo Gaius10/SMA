@@ -1,0 +1,29 @@
+Introdução
+
+SMA (Sistema de Merenda Acadêmico) é um projeto em desenvolvimento para auxiliar o corpo docente de uma instituição acadêmica com relação ao gerenciamento e registro da distribuição de merenda escolar.
+Originado a partir da iniciativa por parte do estado para oferecer merenda escolar nas Etecs – Escolas Técnicas Estaduais, o SMA junta em apenas um sistema várias funcionalidades de registros com relação a essa distribuição.
+Inicialmente, o projeto visa a implantação em instituições no formato Etec, mas podendo futuramente ser aplicado em outros modelos institucionais.
+Segundo dados do portal MEC, em 2010 foram destinados 3 bilhões de reais para as finanças correspondentes a gastos de merenda escolar, repassados da união para estados e municípios, o que evidência a importância da temática. Além disso, o “Programa Nacional de Alimentação Escolar”, atende cerca de 36 milhões de alunos entre 0 e 14 anos.
+http://portal.mec.gov.br/component/tags/tag/33209
+https://www.portaleducacao.com.br/conteudo/artigos/direito/sysmeae-o-que-e/47447
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Problemática
+No início do ano letivo de 2017, as Etecs receberam o benefício da distribuição de merenda escolar nas unidades para alunos matriculados nessas instituições. Com isso, criou-se a necessidade de gerenciar esse processo, por meio de registro de informações.
+Até o fim do ano letivo de 2017, ocorria um único registro de dados, de forma manual, referente a quantidade de alunos que merendaram, em 2018 a realização dessa coleta de dados já não é mais feita, passando então a se ter nenhum dado registrado atualmente sobre esse procedimento.
+Mesmo quando era feita a coleta de quantidade de alunos, não era acrescentada a questão da repetição da refeição, que é permitida, logo os dados não eram precisos.
+Em outubro de 2017, alguns alunos da Etec Dr.Celso Giglio (Osasco II) passaram mal e indicaram que o problema seria a comida servida na instituição, sendo que, alguns alunos que realizaram essa acusação se quer merendavam na escola, querendo apenas serem liberados. Constatou-se depois que o problema era a água. Sem o registro de nome dos alunos que realizam a refeição e as datas dessas refeições em questão, é impossível averiguar um caso como esse, por exemplo.
+Existe uma clara preferência dos alunos com relação aos cardápios servidos, sem um registro da demanda de cada cardápio, não é possível direcionar a verba disponibilizada para cardápios com mais adesão pelos alunos, evitando assim desperdícios de comida, um grave problema, tendo em vista que o Centro Paula Souza não permite a doação dessa comida não consumida pelos alunos.
+

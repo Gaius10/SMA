@@ -1,0 +1,205 @@
+METODOLOGIA
+
+Levantamento de dados
+
+
+
+Requisitos funcionais
+?	O sistema deve permitir o cadastro de moderador;
+?	O sistema deve permitir que moderadores cadastrem alunos;
+?	O sistema deve conter função “Iniciar almoço”;
+
+Requisitos não funcionais
+
+Layout:           
+                  Imagens do layout
+Confiabilidade: 
+O sistema tem sua confiabilidade baseada na construção legal do projeto, tal como sua segurança e suporte oferecido pelos desenvolvedores.
+Portabilidade:
+O sistema conta com responsividade, podendo então se adequar a maioria das definições de tela.
+Segurança:
+As páginas contam com sistema de cadastro e login, para as informações serem liberadas apenas para moderadores cadastrados com senha criptografada.
+Além das senhas, os dados do aluno contidos no qr code também são criptografados.
+No script foram usadas técnicas de encapsulamento de código, o que traz maior segurança no sistema.
+Usabilidade:
+Alto nível, as páginas são práticas e diretas, todas as funções podem ser exercidas com poucos cliques.O sistema contém botões direcionados para funções, com textos claros e objetivos.
+
+
+
+
+Viabilidade
+Viabilidade operacional
+A solução complementa a organização já existente, criando possibilidade de consulta a dados registrados, poupando esforço e tempo.
+
+Viabilidade técnica
+Todos as ferramentas e linguagens necessárias foram palpáveis aos desenvolvedores, não tendo quaisquer problemas no quesito técnico. 
+
+Viabilidade de cronograma
+Os prazos são flexíveis e não são necessárias alterações no cronograma de desenvolvimento já existente.
+
+Viabilidade econômica
+Ao cliente: É economicamente viável pelo custo-benefício de contratação do serviço.
+Esse custo-benefício se dá pelos baixíssimos gastos com o desenvolvimento, fazendo com que o produto final se torne economicamente viável ao cliente.
+Dentre os benefícios estão: Controle de todos os dados referentes a distribuição de merenda.
+
+Relatório de viabilidade
+
+Introdução
+A implantação ocorrerá no ambiente escolar (Instituição de ensino médio e técnico Etec Dr.Celso Giglio) por vias legais acordadas entre desenvolvedores e direção.
+A solução contém como restrição uma conexão obrigatória à internet para seu funcionamento pleno.
+
+Benefícios
+
+O benefício de se armazenar esses dados referentes a merenda, passa desde pesquisas com relação a alimentação dos alunos da instituição, quanto para seleção de dados futuros e checagem de informações.
+Caso o projeto não seja implantado, parte do projeto desenvolvido até então pode vir a dar origem a outros projetos (reaproveitamento de código).
+Um provável risco seria o fato do sistema fazer com que se leve mais tempo para pegar a merenda do que o atual sistema ‘manual’.
+Os desenvolvedores estão aptos a realizar adaptações para outras alternativas, caso realmente se apresente algum  problema na implantação.
+
+Objetivo da organização
+Novas atividades pedem novas metodologias, que devem se nortear de acordo com as necessidades, possibilidades e tecnologias palpáveis. 
+Com a chegada da distribuição de merenda nas Etecs, também chegou-se a necessidade de regulamentar e organizar esse novo procedimento. 
+Tendo isso em vista, nossa meta é implantar a solução desenvolvida para auxiliar o corpo docente com a responsabilidade e organização.
+
+Necessidade de integração com outros sistemas
+Inicialmente o sistema não necessita/depende de uma integração com quaisquer outros sistemas, entretanto, sua construção foi feita de maneira adaptável para estar apto a qualquer modificação e possível integração com outros sistemas.
+
+Stakelvolders
+Solução desenvolvida por alunos da instituição Etec Dr.Celso Giglio (Caio Corrêa e Izabela Reis) que no dado momento cursam o segundo ano do ensino médio integrado ao técnico em informática.
+
+
+Modelo de implantação
+
+
+O processo de implantação será gradual, iniciado com uma versão de teste para um número restrito de alunos. Posteriormente será realizado pesquisas com o corpo docente e discente para uma avaliação de melhora ou piora no processo de distribuição de merenda. 
+
+Requisitos 
+
+Requisitos funcionais 
+?	O sistema deve permitir o cadastro de moderador;
+?	O sistema deve permitir que moderadores cadastrem alunos;
+?	O sistema deve conter função “Iniciar almoço”;
+
+
+Requisitos não funcionais
+
+Layout:
+                   
+                  Imagens do layout
+
+Confiabilidade: 
+O sistema tem sua confiabilidade baseada na construção legal do projeto, tal como sua segurança e suporte oferecido pelos desenvolvedores.
+
+Portabilidade:
+O sistema conta com responsividade, podendo então se adequar a maioria das definições de tela.
+
+Segurança:
+As páginas contam com sistema de cadastro e login, para as informações serem liberadas apenas para moderadores cadastrados com senha criptografada.
+Além das senhas, os dados do aluno contidos no qr code também são criptografados.
+No script foram usadas técnicas de encapsulamento de código, o que traz maior segurança no sistema.
+
+Usabilidade:
+Alto nível, as páginas são práticas e diretas, todas as funções podem ser exercidas com poucos cliques.O sistema contém botões direcionados para funções, com textos claros e objetivos.
+
+
+
+Diagrama de caso de uso
+RF1 – “cadastro de moderador”
+Atores: usuário e host
+Descrição: Os dados como nome, e-mail, login e senha são informados ao sistema e o usuário host autoriza os e-mails  cadastrados.
+USUÁRIO	SISTEMA
+?	Usuário clica no botão “Cadastro”.	?	Abrir tela de cadastro de moderador com campos em branco.
+?	Usuário preenche todos os campos e clica em “enviar dados”.	?	Sistema verifica se todos os campos foram preenchidos e então, envia esses dados ao host para aprovação.
+
+RF2 – “Moderador cadastra aluno”
+Atores: Usuário moderador
+Descrição: Moderador informa o nome e série do aluno, gerando um QRCODE com estas informações e cadastrando o aluno na base de dados.
+USUÁRIO	SISTEMA
+?	Moderador clica em “cadastro manual”	?	Abre tela de cadastro manual de aluno com campos em branco.
+?	Moderador preenche todos os campos e clica em “Gerar Código”.	?	Sistema insere o aluno na base de dados.
+
+RF3 – “Iniciar almoço”
+Atores: Usuário moderador
+Descrição: Moderadores devem iniciar o almoço informando o cardápio do dia.
+USUÁRIO	SISTEMA
+?	Moderador clica em “iniciar almoço”.	?	Abre tela de início de almoço com um campo em branco.
+?	Moderador informa o cardápio do dia no campo em branco.	?	Sistema armazena o cardápio informado tal como o dia, para fins de pesquisa.
+
+
+
+
+Diagrama de caso de uso alto nível
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Diagrama de atividades
+
+RF1 – “cadastro de moderador”
+ 
+RF2 – “Moderador cadastra aluno”
+ 
+RF3 – “Moderador iniciar almoço”
+ 
+
+
+Diagrama entidade-Relacionamento e modelo lógico
+Modelo Lógico
+
+ 
+
+Ferramentas
+Trata-se de um desenvolvimento web com responsividade.
+Para a construção utilizou-se as seguintes linguagens:
+?	PHP;
+?	HTML;
+?	CSS;
+?	JavaScript;
+?	SQLserver;
+?	MySQL;
+?	PhpMyAdmin.
+
+Para a construção utilizou-se as seguintes frameworks:
+?	JQuery;
+?	Materialize;
+?	PHP Qr Code;
+?	FontAwesome;
+?	JSON.
+
+Para a construção utilizou-se os seguintes softwares:
+?	Sublime Text 3;
+?	MySQL – Workbench;
+?	Google Chrome;
+?	Mozilla Firefox;
+?	Window Resizer (Extensão do Google Chrome).
+
+Método organizacional
+
+
+
+ 
+
+
+
+
+
+
+
+Cronograma
+
+
+Gráfico de Gantt
+
+
+Telas e códigos
+
