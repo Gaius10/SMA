@@ -40,7 +40,7 @@ class AcoesModel extends MainModel
             return false;
         } else {
                 // Confirmar senha do root
-            $f = "MONITOR_SENHA AS pass";
+            $f = 'MONITOR_SENHA AS pass';
             $w = "WHERE MONITOR_LOGIN = 'root'";
             $passConfirm = $this->connection->read("Monitor", $f, $w);
             $passConfirm = $passConfirm['pass'];
@@ -49,19 +49,26 @@ class AcoesModel extends MainModel
                 $this->error = "Senha inválida.";
                 return false;
             } else {
-                    // CASO A SENHA ESTEJA CORRETA
-                    // Confirmar email
+                // CASO A SENHA ESTEJA CORRETA
+                // Confirmar email
                 if ($dados['email'] != $dados['emailConf']) {
                     $this->error = "Emails diferentes";
                     return false;
                 } else {
-                        // CASO EMAILS ESTEJAM CORRETOS
-                    $register = ["AUTORIZACAO_EMAIL" => $dados['email']];
-                    if ($this->connection->register('Autorizacao', $register)) {
-                        return true;
-                    } else {
-                        $this->error = "Um erro ocorreu durante o registro. Contate o suporte.";
+                    // CASO EMAILS ESTEJAM CORRETOS
+
+                    $w = "WHERE AUTORIZACAO_EMAIL = '$dados[email]'";
+                    if (!empty($this->connection->read('Autorizacao', '*', $w))) {
+                        $this->error = 'Esse email já foi autorizado.';
                         return false;
+                    } else {
+                        $register = ["AUTORIZACAO_EMAIL" => $dados['email']];
+                        if ($this->connection->register('Autorizacao', $register)) {
+                            return true;
+                        } else {
+                            $this->error = "Um erro ocorreu durante o registro. Contate o suporte.";
+                            return false;
+                        }
                     }
                 }
             }

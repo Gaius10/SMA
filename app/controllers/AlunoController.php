@@ -74,6 +74,11 @@ class AlunoController extends MainController
             $this->model = $this->loadModel('aluno/GerenciarAluno');
             $this->ultimoAluno = $this->model->montarUltimoAluno();
 
+            $fName = $this->ultimoAluno['nome'].'_'.$this->ultimoAluno['turma'].'.png';
+            if (!file_exists(QR_PATH  . '/alunos/' . $fName)) {
+                $this->model->makeImg($this->ultimoAluno['img']);
+            }
+
             // Mostrar página
             $this->title = "SMA - Cadastrar Aluno";
             $pag = "new_aluno";
@@ -230,6 +235,43 @@ class AlunoController extends MainController
         }   
     }
     
+    /**
+     * function qrcode($aluno)
+     * 
+     * Faz download do QR Code de determinado aluno
+     * 
+     * @access public
+     * @return void
+     * 
+     * @param array $aluno Dados do aluno a ter o QR Code baixado
+     */
+    public function qrcode($aluno)
+    {
+        $msg = null;
+        $fileName = $aluno[0] . '_' . $aluno[1] . '.png';
+        $file = VIEWS_PATH . '/_img/qr/alunos/' . $fileName;
+
+        if (stripos($fileName, './') !== false or
+            stripos($fileName, '../') !== false or
+            !file_exists($file)
+        ) {
+            $msg = urlencode('Ocorreu um erro relativo ao arquivo.');
+        } else {
+            header('Cache-control: private');
+            header('Content-Type: image/png');
+            header('Content-Length: ' . filesize($file));
+            header('Content-Disposition: filename=' . $fileName);
+            header("Content-Disposition: attachment; filename=" . str_replace(' ', '_', $fileName));
+
+            readfile($file);
+        }
+
+        if ($msg) {
+            header('Location: ' . HOME_URL . '?msg=' . $msg);
+        }
+    }
+
+
     /* --------------------------------------------------------------------- */
     /* --------------------------------------------------------------------- */
     /* --------------------------------------------------------------------- */

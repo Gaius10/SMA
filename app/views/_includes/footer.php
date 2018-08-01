@@ -33,7 +33,7 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#opnMenu').sideNav();
+            $('#opnMenu').sideNav({edge: 'right'});
             $('.modal').modal();
             $('select').material_select();
             $('.collapsible').collapsible();

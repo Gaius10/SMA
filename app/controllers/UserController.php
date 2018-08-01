@@ -201,14 +201,9 @@ class UserController extends MainController
                 ) {
 
                     // Mostrar modal de sucesso e fazer logout
-                    $this->title = 'Senha alterada';
-                    $styleRequires = array(
-                        'modal',
-                        'modal/msg' 
-                    );
-                    include VIEWS_PATH . '/_includes/header.php';
-                    include MODAL_PATH . '/_msgImp.modal.php';
-                    echo '</div></body></html>';
+                    $this->logout();
+                    $msg = urlencode('Senha alterada com sucesso.');
+                    header('Location: ' . HOME_URL . '/login?msg=' . $msg);
 
                 } else {
                     // Voltar à ultima página

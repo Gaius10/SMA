@@ -10,7 +10,7 @@
             <div class="card-content">
                 <h5 class="card-title center">Alunos Cadastrados</h5>
 
-                <ul class="collapsible popout">
+                <ul class="collapsible">
 
                     <li>
                         <form method="post">
@@ -21,7 +21,7 @@
                                 </div>
                                 <div class="input-field col s3 l3">
                                     <div class="row">
-                                        <select name="turma" class="col s8" onchange="this.form.submit()">
+                                        <select name="turma" class="col s12 l7" onchange="this.form.submit()">
                                             <option value="" disabled selected><i class="fas fa-book left"></i></option>
                                             <option value="1A">1A</option>
                                             <option value="2A">2A</option>
@@ -42,7 +42,7 @@
                                             <option value="2F">2F</option>
                                             <option value="3F">3F</option>
                                         </select>
-                                        <button class="btn col s4 red darken-4 hide-on-med-and-down" style="margin-top: 0.5em;">
+                                        <button class="btn col s4 red darken-4 hide-on-med-and-down right" style="margin-top: 0.5em;">
                                             <i class="fas fa-search"></i>
                                         </button>
                                     </div>
@@ -62,7 +62,13 @@
                         </div>
                         <div class="collapsible-body row">
 
-                            <img src="<?=QR_URL?>/alunos/<?=$a['n'].'_'.$a['t']?>.png" class="responsive-img col l2">
+                            <div class="col s12 l2" title="Clique para baixar">
+                                <div class="row">
+                                    <a href="<?=HOME_URL?>/Aluno/qrcode/<?=urlencode($a['n'])?>/<?=$a['t']?>">
+                                        <img src="<?=QR_URL?>/alunos/<?=$a['n'].'_'.$a['t']?>.png" class="responsive-img col l12 s8 push-s2">
+                                    </a>
+                                </div>
+                            </div>
 
                             <p class="flow-text">
                                 <span class="left col s6 l3">Código: <?=$a['alu_c']?></span>

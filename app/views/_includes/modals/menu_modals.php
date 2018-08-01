@@ -74,7 +74,7 @@
     </div>
 
     <div class="modal" id="mudar_monitor">
-        <form title="Alterar Monitor" method="post">
+        <form title="Alterar Monitor" method="post" action="<?=HOME_URL?>/User/trocarAdmin">
             <div class="modal-content row">
                 <h4>Alterar senha do monitor</h4>
 

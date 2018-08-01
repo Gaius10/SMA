@@ -25,18 +25,17 @@ class App
         // Validar controller
         $control = explode('-', $this->controller);
         $this->controller = null;
-        foreach ($control as $key => $value)
+        foreach ($control as $key => $value) {
             $this->controller .= ucfirst($value);
+        }
 
         $this->controller .= "Controller";
 
 
         // Verificar arquivo de controller
-        if (!file_exists(CONTROL_PATH . "/{$this->controller}.php"))
-        {
+        if (!file_exists(CONTROL_PATH . "/{$this->controller}.php")) {
             require_once VIEWS_PATH . "/not-found.view.php";
             echo (DEBUG) ? " Controller File." : "";
-
             return;
         }
         
@@ -55,12 +54,9 @@ class App
         $this->controller = new $this->controller($this->params);
 
         // checar se o metodo existe e chama-lo
-        if(method_exists($this->controller, $this->action))
-        {
+        if(method_exists($this->controller, $this->action)) {
             $this->controller->{$this->action}($this->params);
-        }
-        else
-        {
+        } else {
             include VIEWS_PATH . "/not-found.view.php";
             echo (DEBUG) ? " Controller Method." : "";
 
@@ -81,15 +77,16 @@ class App
             $path = $_GET['path'];
             
             $path = rtrim($path, '/');
-            $path = filter_var($path, FILTER_SANITIZE_URL);
+            $path = urldecode($path);
             
             $path = explode('/', $path);
 
             // configurar as propriedades
             $this->controller    = chk_array($path, 0);
             $this->action        = chk_array($path, 1);
-            if (empty($this->action))
+            if (empty($this->action)) {
                 $this->action = "index";
+            }
 
 
             // configurar os parametros

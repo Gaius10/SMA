@@ -1,5 +1,8 @@
 <?php if (!defined("ROOT_PATH")) exit("Internal Error"); ?>
 <?php include MODAL_PATH . '/cadastre-se.php'; ?>
+<style type="text/css">
+    body { background-color: white !important; }
+</style>
 <main style="margin-top: 2em; margin-bottom: 4em;">
     <section id="login_content">
         <form name="formLogin" method="post" class="row">
