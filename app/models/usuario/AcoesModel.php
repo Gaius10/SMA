@@ -1,5 +1,6 @@
 <?php
 use mvc\MainModel;
+
 /**
 * AcoesModel - Model com acoes que o usuario realizará no sistema
 * @author Caio Corrêa Chaves
@@ -41,7 +42,7 @@ class AcoesModel extends MainModel
         } else {
                 // Confirmar senha do root
             $f = 'MONITOR_SENHA AS pass';
-            $w = "WHERE MONITOR_LOGIN = 'root'";
+            $w = "WHERE MONITOR_LOGIN = 'admin'";
             $passConfirm = $this->connection->read("Monitor", $f, $w);
             $passConfirm = $passConfirm['pass'];
 
@@ -165,5 +166,36 @@ class AcoesModel extends MainModel
             }
 
         }
+    }
+
+    /**
+     * function logar($login, $pass)
+     * 
+     * Efetua login e configura dados do usuario
+     * 
+     * @access public
+     * @return string
+     */
+    public function logar(string $login, string $pass) : string
+    {
+        $w = "WHERE MONITOR_LOGIN = '{$login}'";
+        $userdata = $this->connection->read('Monitor', '*', $w);
+
+        if (empty($userdata)) {
+            return 'Usuário não encontrado.';
+        }
+        if (crypt($pass, $userdata['MONITOR_SENHA']) !== $userdata['MONITOR_SENHA']) {
+            return 'Senha incorreta.';
+        }
+
+        // Configurar id da sessao e dados do usuário em $_SESSION
+        session_regenerate_id();
+        $_SESSION['userdata'] = $userdata;
+        $_SESSION['userdata']['SESSION_ID'] = session_id();
+
+        $w = "WHERE MONITOR_COD = '{$_SESSION['userdata']['MONITOR_COD']}'";
+        $this->connection->update("Monitor", $_SESSION['userdata'], $w);
+
+        return 'OK';
     }
 }

@@ -31,28 +31,17 @@ class UserLogin
 			$post = false;
 		}
 
-		// Por $_POST (Se o usuário estiver logando)
-		if (isset($_POST['userdata']) and
-			is_array($_POST['userdata']) and
-			!empty($_POST['userdata'])
-		) {
-			$userdata = $_POST['userdata'];
-		$post = true;
-		}
-
 		/* Logout se os dados do usuário não forem encontrados */
-		if (empty($userdata) or !is_array($userdata))
-		{
+		if (empty($userdata) or !is_array($userdata)) {
 			$this->loginError = null;
 			$this->logout();
 			return;
 		}
 
 		/* Verificar se existe um usuário e senha */
-		$login = ($post) ? $userdata['username'] : $userdata['MONITOR_LOGIN'];
-		$pass  = ($post) ? $userdata['userpass'] : $userdata['MONITOR_SENHA'];
-		if (is_null($login) or is_null($pass))
-		{
+		$login = $userdata['MONITOR_LOGIN'];
+		$pass  = $userdata['MONITOR_SENHA'];
+		if (is_null($login) or is_null($pass)) {
 			$this->loginError = null;
 			$this->logout();
 			return;
@@ -72,25 +61,12 @@ class UserLogin
 
 
 		##### Conferir senha
-		if (crypt($pass, $user['MONITOR_SENHA']) === $user['MONITOR_SENHA'] or
-			$pass === $user['MONITOR_SENHA']
-		) {
+		if ($pass === $user['MONITOR_SENHA']) {
 			// Em caso de já estar logado, verificar id da sessao
 			if (session_id() != $user['SESSION_ID'] and !$post) {
 				$this->loginError = "ID de sessão incorreto.";
 				$this->logout();
 				return;
-			}
-
-			// Em caso de estar logando, configurar id da sessao e dados do
-			// usuário em $_SESSION
-			if ($post) {
-				session_regenerate_id();
-				$_SESSION['userdata'] = $user;
-				$_SESSION['userdata']['SESSION_ID'] = session_id();
-
-				$w = "WHERE MONITOR_COD = '{$_SESSION['userdata']['MONITOR_COD']}'";
-				$connection->update("Monitor", $_SESSION['userdata'], $w);
 			}
 
 			// Habilitar login

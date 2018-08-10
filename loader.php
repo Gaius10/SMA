@@ -7,13 +7,10 @@ if (!ROOT_PATH)
 
 session_start();
 
-if(DEBUG === true)
-{
+if(DEBUG === true) {
     error_reporting(E_ALL);
     ini_set("display_errors", 1);
-}
-else
-{
+} else {
     error_reporting(0);
     ini_set("display_errors", 0);
 }

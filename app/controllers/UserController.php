@@ -216,35 +216,25 @@ class UserController extends MainController
     }
 
     /**
-     * function cadastrar()
+     * function login()
      * 
-     * Cadastra novo monitor
+     * Faz login
      * 
-     * @return void
      * @access public
+     * @return void
      */
-    public function cadastrar()
+    public function login()
     {
-        if ($this->loggedIn) {
-            header('Location: ' . HOME_URL);
+        if (!$this->loggedIn and !empty($_POST['userdata'])) {
+            $login = $_POST['userdata']['username'];
+            $pass = $_POST['userdata']['userpass'];
+
+            $data = ($this->loadModel('usuario/Acoes'))->logar($login, $pass);
+
+            echo $data;
+            exit();
         } else {
-            $cadastrar = $this->loadModel('usuario/Cadastro');
-
-            $dados = array(
-                'MONITOR_NOME'  => $_POST['nome'],
-                'MONITOR_LOGIN' => $_POST['login'],
-                'MONITOR_EMAIL' => $_POST['email'],
-                'MONITOR_SENHA' => $_POST['senha'],
-                'passConfirm'   => $_POST['senha2']
-            );
-
-            if ($cadastrar->cadastrarMonitor($dados)) {
-                $msg = urlencode('Obrigado por se cadastrar!');
-            } else {
-                $msg = urlencode($cadastrar->error);
-            }
-
-            header('Location: ' . HOME_URL . '/Login?msg=' . $msg);
+            header('Location: ' . HOME_URL);
         }
     }
 }

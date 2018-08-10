@@ -47,11 +47,9 @@ class CadastroModel extends MainModel
 		$this->data = $dados;
 
 		// Validar dados
-		if ($this->validarDados())
-		{
+		if ($this->validarDados()) {
 			// Cadastrar dados caso sejam válidos
-			try
-			{
+			try {
 				unset($this->data['passConfirm']);
 				$strSalt = "$2a$10$" . randString(22) . "$";
 				$this->data['MONITOR_SENHA'] = crypt($dados['MONITOR_SENHA'], $strSalt);
@@ -61,16 +59,12 @@ class CadastroModel extends MainModel
 				// Registrar
 				$this->connection->register("Monitor", $this->data);
 				return true;
-			} 
-			catch (Exception $e)
-			{
+			} catch (Exception $e) {
 				echo (DEBUG) ? $e : "<!-- $e -->";
 				echo "<br /><br />";
 				exit("Houve um erro interno. Por favor, contate o suporte.");
 			}
-		}
-		else
-		{
+		} else {
 			// Retornar mensagem de erro
 			return false;
 		}

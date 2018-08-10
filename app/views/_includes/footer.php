@@ -27,9 +27,10 @@
     </footer>
 
 
-    <script type="text/javascript" src="<?=HOME_URL?>/app/views/_javascript/jquery.js"></script>
-    <script type="text/javascript" src="<?=HOME_URL?>/app/views/_materialize/js/materialize.js"></script>
-    <script type="text/javascript" src="<?=HOME_URL?>/app/views/_javascript/js_functions.js"></script>
+    <script type="text/javascript" src="<?=VIEWS_URL?>/_javascript/jquery.js"></script>
+    <script type="text/javascript" src="<?=VIEWS_URL?>/_materialize/js/materialize.js"></script>
+    <script type="text/javascript" src="<?=VIEWS_URL?>/_javascript/js_functions.js"></script>
+    <script type="text/javascript" src="<?=VIEWS_URL?>/_javascript/ajax_functions.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -47,11 +48,6 @@
             });
         });
     </script>
-
-    <?php 
-        if (isset($_GET['msg'])) {
-            include VIEWS_PATH . '/_includes/modals/msg.php';
-        }
-    ?>
+    <?php include VIEWS_PATH . '/_includes/modals/msg.php'; ?>
 </body>
 </html>

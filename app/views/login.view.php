@@ -5,7 +5,7 @@
 </style>
 <main style="margin-top: 2em; margin-bottom: 4em;">
     <section id="login_content">
-        <form name="formLogin" method="post" class="row">
+        <form id="formLogin" method="post" class="row" action="<?=HOME_URL?>/User/login">
 
             <h4 class="center-align">Bem vindo ao SMA</h4>
 
@@ -17,24 +17,20 @@
 
                     <div class="col s12 l6">
                         <div class="col s12 input-field">
-                            <input type="text" name="userdata[username]" id="username" class="validate">
+                            <input type="text" name="userdata[username]" id="username" class="validate" required>
                             <label for="username">Login</label>
                         </div>
                         <div class="col s12 input-field">
-                            <input type="password" name="userdata[userpass]" id="userpass" class="validate">
+                            <input type="password" name="userdata[userpass]" id="userpass" class="validate" required>
                             <label for="userpass">Senha</label>
                         </div>
 
-                        <?php if ($this->loginError): ?>
                         <div class="container center-align">
-                            <label class="brand-logo red-text">
-                                Erro: <?= $this->loginError ?>
-                            </label>
+                            <label class="brand-logo red-text" id="feedback"></label>
                         </div>
-                        <?php endif ?>
 
                         <div class="row">
-                            <button class="btn-large col s10 push-s1 red darken-3"  style="margin-bottom: 0.2em">Entrar</button>
+                            <button class="btn-large col s10 push-s1 red darken-3"  style="margin-bottom: 0.2em" id="btnLogin">Entrar</button>
                             <a href="#cadastre_se" class="btn-large col s10 push-s1 red darken-3 modal-trigger">Cadastre-se</a>
                         </div>
                     </div>

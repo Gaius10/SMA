@@ -132,12 +132,9 @@ class Validator extends ValidatorFunctions
 	 */
 	public function validate()
 	{
-		foreach ($this->data as $key => $field)
-		{
-			foreach ($this->formConf->$key->validate as $function)
-			{
-				if (!$this->$function($field, $this->formConf->$key))
-				{
+		foreach ($this->data as $key => $field) {
+			foreach ($this->formConf->$key->validate as $function) {
+				if (!$this->$function($field, $this->formConf->$key)) {
 					return false;
 				}
 			}
